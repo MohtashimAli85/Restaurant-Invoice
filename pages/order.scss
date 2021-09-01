@@ -1,0 +1,399 @@
+$orange: #ff8d6b;
+$gray: #efeff1;
+$white: #fff;
+$black: #000000;
+$black2: #1b1a1aa2;
+$primary: #11998e;
+$secondary: #38ef7d;
+
+@font-face {
+  font-family: "montserat";
+  src: url("../assets/Montserrat-Regular.otf");
+}
+
+@font-face {
+  font-family: "bold";
+  src: url("../assets/Montserrat-SemiBold.otf");
+}
+@font-face {
+  font-family: "nimbus";
+  src: url("../assets/NimbusSanL-Reg.otf");
+}
+main {
+  margin: 5rem 1rem 0;
+  .orderSelection {
+    display: none;
+    .orderTitle {
+      align-items: center;
+      margin-bottom: 1rem;
+      h1 {
+        font-family: "bold", sans-serif;
+        margin: 0 1rem;
+      }
+      .backBtn {
+        background: $orange;
+        border-radius: 15px;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        box-sizing: border-box;
+        color: #ffffff;
+        cursor: pointer;
+        opacity: 1;
+        outline: 0 solid transparent;
+        padding: 8px 18px;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        width: fit-content;
+        word-break: break-word;
+        border: 0;
+      }
+    }
+
+    .orderType {
+      padding: 10px 0 25px;
+      .options {
+        align-items: center;
+        background-color: $white;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        flex-basis: 100%;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        img {
+          padding: 1rem;
+          max-width: 100px;
+        }
+        h5 {
+          font-family: "nimbus", sans-serif;
+          font-size: 1.2rem;
+        }
+      }
+      .options + .options {
+        margin-left: 1.5rem;
+      }
+      .active {
+        background-color: $orange !important;
+        color: $white;
+      }
+    }
+    .carOrder {
+      display: none;
+      padding: 1rem;
+      .form__group {
+        position: relative;
+        padding: 15px 0 0;
+        margin-top: 10px;
+        width: 50%;
+      }
+
+      .form__field {
+        font-family: inherit;
+        width: 100%;
+        border: 0;
+        border-bottom: 2px solid $black2;
+        outline: 0;
+        font-size: 1.3rem;
+        color: $black2;
+        padding: 7px 0;
+        background: transparent;
+        transition: border-color 0.2s;
+
+        &::placeholder {
+          color: transparent;
+        }
+
+        &:placeholder-shown ~ .form__label {
+          font-size: 1.3rem;
+          cursor: text;
+          top: 20px;
+        }
+      }
+
+      .form__label {
+        position: absolute;
+        top: 0;
+        display: block;
+        transition: 0.2s;
+        font-size: 1rem;
+        color: $black2;
+      }
+
+      .form__field:focus {
+        ~ .form__label {
+          position: absolute;
+          top: 0;
+          display: block;
+          transition: 0.2s;
+          font-size: 1rem;
+          color: $orange;
+          font-weight: 700;
+        }
+        padding-bottom: 6px;
+        font-weight: 700;
+        border-width: 3px;
+        border-image: linear-gradient(to right, $orange, $gray);
+        border-image-slice: 1;
+      }
+      /* reset input */
+      .form__field {
+        &:required,
+        &:invalid {
+          box-shadow: none;
+        }
+      }
+    }
+    .tableOrder{
+      display: none;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-auto-rows:85px;
+      gap: 2em 1.5em;
+      height: 55vh;
+      overflow-y: scroll;
+      padding: 2rem 1rem 0px .2rem;
+      .table {
+        background-color: $white;
+        border-radius: 5px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        align-items: center;
+        
+        img {
+          padding: 1rem;
+          padding-right: 0.5rem;
+          max-width: 80px;
+        }
+        h5 {
+          font-family: "montserat", sans-serif;
+          font-size: 1.2rem;
+          
+        }
+        .circle{
+          max-width: 80px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+.categories {
+  h1 {
+    margin-bottom: 1.5rem;
+    font-family: "bold", sans-serif;
+  }
+
+  ul {
+    li {
+      align-items: center;
+      background-color: $white;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      flex-basis: 100%;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      img {
+        padding: 1rem;
+        max-width: 80px;
+      }
+      h5 {
+        font-family: "bold", sans-serif;
+      }
+    }
+  }
+
+  li + li {
+    margin-left: 1.5rem;
+  }
+}
+.active {
+  color: $black;
+}
+.menu {
+  h1 {
+    margin: 1.5rem 2rem;
+    font-family: "bold", sans-serif;
+  }
+  .menuGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 85px;
+    gap: 2em 1.5em;
+    height: 50vh;
+    overflow-y: scroll;
+    padding: 6px 1rem 6px 0.2rem;
+    .item {
+      background-color: $white;
+      border-radius: 5px;
+      box-shadow: rgba(141, 67, 67, 0.24) 0px 3px 8px;
+      align-items: center;
+      img {
+        padding: 1rem;
+        padding-right: 0.5rem;
+        max-width: 66px;
+      }
+
+      h6,
+      span,
+      p {
+        font-family: "montserat";
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+li,
+.addIcon {
+  cursor: pointer;
+}
+
+#menu1,
+#menu2,
+#menu3,
+#menu4 {
+  display: none;
+}
+
+footer {
+  padding: 1rem 0.5rem;
+  h1 {
+    text-align: center;
+
+    font-family: "bold", sans-serif;
+  }
+  .orderContainer {
+    max-height: 55vh;
+    min-height: 55vh;
+    overflow-y: scroll;
+    padding: 0 1rem;
+    .orderItem {
+      border-bottom: 1px solid black;
+      padding-bottom: 3px;
+      .orderName {
+        justify-content: space-between;
+        align-items: center;
+        h5 {
+          font-family: "montserat", sans-serif;
+          font-size: 13px;
+        }
+        img {
+          max-width: 35px;
+          cursor: pointer;
+        }
+      }
+      .orderPrice {
+        margin-top: 15px;
+        justify-content: space-between;
+        img {
+          max-width: 24px;
+          cursor: pointer;
+        }
+        .count {
+          p {
+            font-family: "nimbus", sans-serif;
+            background-color: $orange;
+            color: $white;
+            border-radius: 5px;
+            padding: 3px 10px;
+            margin: 0 2px;
+            font-weight: 800;
+          }
+        }
+        .calculation {
+          justify-content: space-between;
+          flex-basis: 60%;
+          align-items: center;
+          .price {
+            font-family: "bold", sans-serif;
+            word-spacing: 3px;
+          }
+          .total {
+            font-family: "nimbus", sans-serif;
+            border-radius: 5px;
+            background-color: $orange;
+            color: $white;
+            padding: 3px 10px;
+            font-weight: 800;
+          }
+        }
+      }
+    }
+  }
+  .receipt {
+    margin-top: 1rem;
+    padding: 1rem 1.5rem;
+    h2 {
+      text-align: center;
+    }
+    h2,
+    h5 {
+      font-family: "bold", sans-serif;
+    }
+    h5 {
+      font-size: 1rem;
+    }
+    .container {
+      margin-top: 1rem;
+      div + div {
+        margin-top: 1rem;
+      }
+      p {
+        font-family: "montserat", sans-serif;
+      }
+      .cancel,
+      .orderNow,
+      .reserveTable {
+        background-color: #ffffff;
+        border: 0;
+        border-radius: 0.5rem;
+        box-sizing: border-box;
+        color: #111827;
+        font-family: "nimbus", sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.25rem;
+        padding: 0.75rem 1rem;
+        text-align: center;
+        text-decoration: none #d1d5db solid;
+        text-decoration-thickness: auto;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+      }
+
+      .cancel:hover {
+        background-color: #f9fafb;
+      }
+
+      .cancel:focus,
+      .orderNow:focus,
+      .reserveTable:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+      }
+
+      .cancel:focus-visible,
+      .orderNow:focus-visible {
+        box-shadow: none;
+      }
+      .orderNow:hover,
+      .reserveTable:hover {
+        background-color: #f38260;
+      }
+
+      .orderNow,
+      .reserveTable {
+        background-color: $orange;
+        color: $white;
+      }
+      .reserveTable{
+        display:none;
+      }
+    }
+  }
+}
+
+.orderItem + .orderItem {
+  margin-top: 1rem;
+}

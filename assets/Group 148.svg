@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="69" height="69" viewBox="0 0 69 69">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.173" y1="0.152" x2="1.717" y2="1.63" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ff8d6b"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <filter id="Ellipse_4" x="3" y="1" width="63" height="63" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_148" data-name="Group 148" transform="translate(-1386 -171)">
+    <circle id="Ellipse_5" data-name="Ellipse 5" cx="22.5" cy="22.5" r="22.5" transform="translate(1398 183)" fill="#fb3e06" opacity="0.35"/>
+    <g transform="matrix(1, 0, 0, 1, 1386, 171)" filter="url(#Ellipse_4)">
+      <circle id="Ellipse_4-2" data-name="Ellipse 4" cx="22.5" cy="22.5" r="22.5" transform="translate(12 7)" fill="url(#linear-gradient)"/>
+    </g>
+    <path id="Icon_ionic-ios-arrow-forward" data-name="Icon ionic-ios-arrow-forward" d="M15.317,18l8.937-8.93a1.681,1.681,0,0,0,0-2.384,1.7,1.7,0,0,0-2.391,0L11.738,16.8a1.685,1.685,0,0,0-.049,2.327L21.856,29.32a1.688,1.688,0,0,0,2.391-2.384Z" transform="translate(1402.957 184)" fill="#fff"/>
+  </g>
+</svg>
