@@ -33,8 +33,8 @@ let input = document.querySelector(".form__field");
 let label = document.querySelector(".form__label");
 let item = "",
   allcircles = "",
-  allTables ="",
-  qty ="";
+  allTables = "",
+  qty = "";
 muttonMenu.forEach((e) => {
   item += `<div class="item d-flex">
     <img src="../assets/chicken.svg" alt="">
@@ -101,7 +101,7 @@ addBtn.forEach((e) => {
       e.addEventListener("click", (e) => {
         e.target.parentNode.parentNode.remove();
         totals = document.querySelectorAll(".total");
-         qty = document.querySelectorAll(".qty");
+        qty = document.querySelectorAll(".qty");
         let count = 0;
         qty.forEach((e) => {
           count += Number(e.innerHTML);
@@ -230,6 +230,14 @@ orderNowBtn.addEventListener("click", () => {
 backBtn.addEventListener("click", (e) => {
   categories.style.display = "block";
   orderSelection.style.display = "none";
+    reserveTableBtn.style.display = "none";
+    reserveTableBtn.classList.remove("reserveActive");
+    orderNowBtn.style.display = "block";
+    car.classList.remove("active");
+    takeAway.classList.remove("active");
+    assignTables.classList.remove("active");
+    tableOrder.style.display = "none";
+    carOrder.style.display = "none";
 });
 
 assignTables.addEventListener("click", (e) => {
@@ -242,8 +250,9 @@ assignTables.addEventListener("click", (e) => {
   }
   assignTables.classList.add("active");
   tableOrder.style.display = "grid";
-  reserveTableBtn.style.display="block";
-  orderNowBtn.style.display ="none";
+  reserveTableBtn.style.display = "block";
+  reserveTableBtn.classList.add("reserveActive");
+  orderNowBtn.style.display = "none";
   let item = "";
   tables.forEach((e) => {
     item += `<div class="d-flex table">
@@ -263,7 +272,7 @@ assignTables.addEventListener("click", (e) => {
         if (t.classList.contains("checked")) {
           t.children[2].src = "../assets/circle-w.png";
           t.classList.remove("checked");
-        }else {
+        } else {
           img.src = "../assets/circle-o.png";
           img.parentNode.classList.add("checked");
           img.parentNode.classList.add("new");
@@ -294,21 +303,19 @@ takeAway.addEventListener("click", (e) => {
     assignTables.classList.remove("active");
   }
   takeAway.classList.add("active");
-  reserveTableBtn.style.display="none";
-  orderNowBtn.style.display ="block";
+  reserveTableBtn.style.display = "none";
+  orderNowBtn.style.display = "block";
 });
 
 let array = [];
 let itemNames = "";
-let itemPrice =""; 
+let itemPrice = "";
 let itemqty = "";
 let amount = "";
 let totalAmount = "";
-reserveTableBtn.addEventListener("click", (e)=>{
-    allTables.forEach(t =>{
-      if(t.classList.contains("new")){
-          
-      }
-    });
-
+reserveTableBtn.addEventListener("click", (e) => {
+  allTables.forEach((t) => {
+    if (t.classList.contains("new")) {
+    }
+  });
 });
