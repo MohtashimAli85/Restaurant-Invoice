@@ -17,6 +17,7 @@ body {
   display: flex;
   height: 100vh;
   background-color: #fff;
+  user-select: none;
 }
 
 header,

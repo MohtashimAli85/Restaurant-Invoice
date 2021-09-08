@@ -27,6 +27,7 @@ body {
   display: flex;
   height: 100vh;
   background-color: $white;
+  user-select: none;
   
 }
 header,
