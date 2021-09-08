@@ -14,6 +14,20 @@ body {
   animation-delay: 0.4s;
 }
 
+.orderItemAnimation {
+  opacity: 0;
+  animation: fadeInAnimation cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.menuAnimation {
+  opacity: 0;
+  animation: fadeInAnimation cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
 @keyframes fadeInAnimation {
   0% {
     opacity: 0;
