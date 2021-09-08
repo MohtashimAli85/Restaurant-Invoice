@@ -25,6 +25,7 @@ let reserveTableBtn = document.querySelector(".reserveTable");
 const orderContainer = document.querySelector(".orderContainer");
 const categories = document.querySelector(".categories");
 const orderSelection = document.querySelector(".orderSelection");
+let orderItem = document.querySelectorAll(".orderItem");
 
 const tableOrder = document.querySelector(".tableOrder");
 const carOrder = document.querySelector(".carOrder");
@@ -35,6 +36,7 @@ let bill = document.querySelector(".bill");
 let totals = document.querySelectorAll(".total");
 let input = document.querySelector(".form__field");
 let label = document.querySelector(".form__label");
+let order = [];
 let item = "",
   allcircles = "",
   allTables = "",
@@ -43,7 +45,7 @@ muttonMenu.forEach((e) => {
   item += `<div class="item d-flex">
     <img src="../assets/rack-of-lamb.png" alt="mutton img">
     <div>
-    <h6>${e.name} <span>(${e.type})</span></h6>
+    <h6>${e.name} (${e.type})</h6>
     <p>Rs.${e.price}</p>
     </div>
     <img src="../assets/add-icon.svg" alt="add icon" class="addIcon addBtn">
@@ -55,7 +57,7 @@ chickenMenu.forEach((e) => {
   item += `<div class="item d-flex">
    <img src="../assets/chicken-leg.png" alt="img">
    <div>
-   <h6>${e.name} <span>(${e.type})</span></h6>
+   <h6>${e.name} (${e.type})</h6>
    <p>Rs.${e.price}</p>
    </div>
    <img src="../assets/add-icon.svg" alt="add icon" class="addIcon addBtn">
@@ -64,19 +66,18 @@ chickenMenu.forEach((e) => {
 chicken.innerHTML = item;
 item = "";
 
-
 sideOrderMenu.forEach((e) => {
   item += `<div class="item d-flex">
    <img src="../assets/menu.png" alt="img">
    <div>
-   <h6>${e.name} <span>(${e.type})</span></h6>
+   <h6>${e.name} (${e.type})</h6>
    <p>Rs.${e.price}</p>
    </div>
    <img src="../assets/add-icon.svg" alt="add icon" class="addIcon addBtn">
 </div>`;
 });
 sideOrder.innerHTML = item;
-item ="";
+item = "";
 item = "";
 let name = "",
   price = "",
@@ -93,7 +94,7 @@ addBtn.forEach((e) => {
     price = price.innerHTML;
     price = price.split(".");
 
-    item = `<div class="orderItem animation">
+    item = `<div class="orderItem orderItemAnimation">
         <div class="orderName d-flex">
             <h5>${name.innerHTML}</h5>
             <img src="../assets/delete-icon.svg" alt="delete icon" class="delImg">
@@ -113,13 +114,14 @@ addBtn.forEach((e) => {
     orderContainer.innerHTML += item;
     setTimeout(() => {
       document.querySelectorAll(".orderItem").forEach((e) => {
-        e.classList.remove("animation");
-        console.log(e);
+        e.classList.remove("orderItemAnimation");
       });
-    }, 1000);
+    }, 100);
 
     delBtns = document.querySelectorAll(".delImg");
     totals = document.querySelectorAll(".total");
+    orderItem = document.querySelectorAll(".orderItem");
+
     item = "";
     delBtns.forEach((e) => {
       e.addEventListener("click", (e) => {
@@ -195,7 +197,6 @@ addBtn.forEach((e) => {
         totals.forEach((e) => {
           tBill += Number(e.innerHTML);
         });
-        console.log(tBill);
         bill.innerHTML = tBill;
       });
     });
@@ -227,7 +228,7 @@ menuOne.addEventListener("click", () => {
     menuFour.classList.remove("active");
   }
   document.querySelector("#menu1").style.display = "block";
-  document.querySelector("#menu1").classList.add("animation");
+  document.querySelector("#menu1").classList.add("menuAnimation");
   menuOne.classList.add("active");
 });
 
@@ -245,10 +246,10 @@ menuTwo.addEventListener("click", () => {
     menuFour.classList.remove("active");
   }
   document.querySelector("#menu2").style.display = "block";
-  document.querySelector("#menu2").classList.add("animation");
+  document.querySelector("#menu2").classList.add("menuAnimation");
   menuTwo.classList.add("active");
 });
-menuThree.addEventListener("click", ()=>{
+menuThree.addEventListener("click", () => {
   if (menuOne.classList.contains("active")) {
     document.querySelector("#menu1").style.display = "none";
     menuOne.classList.remove("active");
@@ -262,11 +263,11 @@ menuThree.addEventListener("click", ()=>{
     menuFour.classList.remove("active");
   }
   document.querySelector("#menu3").style.display = "block";
-  document.querySelector("#menu3").classList.add("animation");
+  document.querySelector("#menu3").classList.add("menuAnimation");
   menuThree.classList.add("active");
 });
 
-menuFour.addEventListener("click", ()=>{
+menuFour.addEventListener("click", () => {
   if (menuOne.classList.contains("active")) {
     document.querySelector("#menu1").style.display = "none";
     menuOne.classList.remove("active");
@@ -280,7 +281,7 @@ menuFour.addEventListener("click", ()=>{
     menuThree.classList.remove("active");
   }
   document.querySelector("#menu4").style.display = "block";
-  document.querySelector("#menu4").classList.add("animation");
+  document.querySelector("#menu4").classList.add("menuAnimation");
   menuFour.classList.add("active");
 });
 cancelBtn.addEventListener("click", () => {
@@ -297,11 +298,28 @@ orderNowBtn.addEventListener("click", () => {
     } else if (menuTwo.classList.contains("active")) {
       document.querySelector("#menu2").style.display = "none";
       menuTwo.classList.remove("active");
+    } else if (menuThree.classList.contains("active")) {
+      document.querySelector("#menu3").style.display = "none";
+      menuThree.classList.remove("active");
+    } else if (menuFour.classList.contains("active")) {
+      document.querySelector("#menu4").style.display = "none";
+      menuFour.classList.remove("active");
     }
     categories.style.display = "none";
     categories.classList.remove("animation");
     orderSelection.style.display = "block";
     orderSelection.classList.add("animation");
+    if (takeAway.classList.contains("active")) {
+      let name = "";
+      orderItem.forEach((e) => {
+        name += `${e.children[0].children[0].innerHTML} ${e.children[1].children[0].children[1].innerHTML}, `;
+      });
+      name = name.slice(0, -2);
+      order.push({
+        description: name,
+        amount: Number(bill.innerHTML),
+      });
+    }
   }
 });
 
@@ -373,6 +391,7 @@ car.addEventListener("click", (e) => {
   }
   car.classList.add("active");
   carOrder.style.display = "block";
+  carOrder.classList.add("animation");
   label.innerHTML = "Car Number";
 });
 
@@ -382,6 +401,7 @@ takeAway.addEventListener("click", (e) => {
   }
   if (assignTables.classList.contains("active")) {
     assignTables.classList.remove("active");
+    tableOrder.style.display = "none";
   }
   takeAway.classList.add("active");
   reserveTableBtn.style.display = "none";
