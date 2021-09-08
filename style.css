@@ -16,6 +16,7 @@ body {
   font-family: "montserat", sans-serif;
   display: flex;
   height: 100vh;
+  background-color: #fff;
 }
 
 header,
