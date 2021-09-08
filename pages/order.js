@@ -76,7 +76,7 @@ addBtn.forEach((e) => {
     price = price.innerHTML;
     price = price.split(".");
 
-    item = `<div class="orderItem">
+    item = `<div class="orderItem animation">
         <div class="orderName d-flex">
             <h5>${name.innerHTML}</h5>
             <img src="../assets/delete-icon.svg" alt="delete icon" class="delImg">
@@ -94,6 +94,13 @@ addBtn.forEach((e) => {
         </div>
     </div>`;
     orderContainer.innerHTML += item;
+    setTimeout(()=>{
+      document.querySelectorAll(".orderItem").forEach(e=>{
+        e.classList.remove('animation');
+        console.log(e);
+      });
+    },1000)
+    
     delBtns = document.querySelectorAll(".delImg");
     totals = document.querySelectorAll(".total");
     item = "";
@@ -195,6 +202,7 @@ menuOne.addEventListener("click", () => {
     menuTwo.classList.remove("active");
   }
   document.querySelector("#menu1").style.display = "block";
+  document.querySelector("#menu1").classList.add('animation');
   menuOne.classList.add("active");
 });
 
@@ -204,6 +212,7 @@ menuTwo.addEventListener("click", () => {
     menuOne.classList.remove("active");
   }
   document.querySelector("#menu2").style.display = "block";
+  document.querySelector("#menu2").classList.add('animation');
   menuTwo.classList.add("active");
 });
 
@@ -223,13 +232,17 @@ orderNowBtn.addEventListener("click", () => {
       menuTwo.classList.remove("active");
     }
     categories.style.display = "none";
+    categories.classList.remove("animation");
     orderSelection.style.display = "block";
+    orderSelection.classList.add("animation");
   }
 });
 
 backBtn.addEventListener("click", (e) => {
   categories.style.display = "block";
+  categories.classList.add("animation");
   orderSelection.style.display = "none";
+  orderSelection.classList.remove("animation");
     reserveTableBtn.style.display = "none";
     reserveTableBtn.classList.remove("reserveActive");
     orderNowBtn.style.display = "block";
@@ -250,6 +263,7 @@ assignTables.addEventListener("click", (e) => {
   }
   assignTables.classList.add("active");
   tableOrder.style.display = "grid";
+  tableOrder.classList.add("animation");
   reserveTableBtn.style.display = "block";
   reserveTableBtn.classList.add("reserveActive");
   orderNowBtn.style.display = "none";
