@@ -398,6 +398,7 @@ car.addEventListener("click", (e) => {
 takeAway.addEventListener("click", (e) => {
   if (car.classList.contains("active")) {
     car.classList.remove("active");
+    car.style.display="none";
   }
   if (assignTables.classList.contains("active")) {
     assignTables.classList.remove("active");
