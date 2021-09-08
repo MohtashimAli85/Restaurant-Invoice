@@ -197,6 +197,9 @@ main {
         font-family: "bold", sans-serif;
       }
     }
+    .active {
+      color: $white;
+    }
   }
 
   li + li {
@@ -224,6 +227,7 @@ main {
       border-radius: 5px;
       box-shadow: rgba(141, 67, 67, 0.24) 0px 3px 8px;
       align-items: center;
+      justify-content: space-between;
       img {
         padding: 1rem;
         padding-right: 0.5rem;

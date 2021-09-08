@@ -174,6 +174,9 @@ main .orderSelection .tableOrder .table .circle {
 .categories ul li h5 {
   font-family: "bold", sans-serif;
 }
+.categories ul .active {
+  color: #fff;
+}
 .categories li + li {
   margin-left: 1.5rem;
 }
@@ -200,6 +203,7 @@ main .orderSelection .tableOrder .table .circle {
   border-radius: 5px;
   box-shadow: rgba(141, 67, 67, 0.24) 0px 3px 8px;
   align-items: center;
+  justify-content: space-between;
 }
 .menu .menuGrid .item img {
   padding: 1rem;
