@@ -1,11 +1,15 @@
 import { tables } from "./tables.js";
 import { muttonMenu } from "./mutton.js";
 import { chickenMenu } from "./chicken.js";
-
+import { sideOrderMenu } from "./sideOrder.js";
 const menuOne = document.querySelector(".menu1");
 const menuTwo = document.querySelector(".menu2");
+const menuThree = document.querySelector(".menu3");
+const menuFour = document.querySelector(".menu4");
 const mutton = document.getElementById("mutton");
 const chicken = document.getElementById("chicken");
+const drinks = document.getElementById("drinks");
+const sideOrder = document.getElementById("sides");
 
 const assignTables = document.querySelector(".tables");
 const car = document.querySelector(".car");
@@ -37,7 +41,7 @@ let item = "",
   qty = "";
 muttonMenu.forEach((e) => {
   item += `<div class="item d-flex">
-    <img src="../assets/chicken.svg" alt="">
+    <img src="../assets/rack-of-lamb.png" alt="mutton img">
     <div>
     <h6>${e.name} <span>(${e.type})</span></h6>
     <p>Rs.${e.price}</p>
@@ -49,7 +53,7 @@ mutton.innerHTML = item;
 item = "";
 chickenMenu.forEach((e) => {
   item += `<div class="item d-flex">
-   <img src="../assets/chicken.svg" alt="">
+   <img src="../assets/chicken-leg.png" alt="img">
    <div>
    <h6>${e.name} <span>(${e.type})</span></h6>
    <p>Rs.${e.price}</p>
@@ -60,6 +64,19 @@ chickenMenu.forEach((e) => {
 chicken.innerHTML = item;
 item = "";
 
+
+sideOrderMenu.forEach((e) => {
+  item += `<div class="item d-flex">
+   <img src="../assets/menu.png" alt="img">
+   <div>
+   <h6>${e.name} <span>(${e.type})</span></h6>
+   <p>Rs.${e.price}</p>
+   </div>
+   <img src="../assets/add-icon.svg" alt="add icon" class="addIcon addBtn">
+</div>`;
+});
+sideOrder.innerHTML = item;
+item ="";
 item = "";
 let name = "",
   price = "",
@@ -94,13 +111,13 @@ addBtn.forEach((e) => {
         </div>
     </div>`;
     orderContainer.innerHTML += item;
-    setTimeout(()=>{
-      document.querySelectorAll(".orderItem").forEach(e=>{
-        e.classList.remove('animation');
+    setTimeout(() => {
+      document.querySelectorAll(".orderItem").forEach((e) => {
+        e.classList.remove("animation");
         console.log(e);
       });
-    },1000)
-    
+    }, 1000);
+
     delBtns = document.querySelectorAll(".delImg");
     totals = document.querySelectorAll(".total");
     item = "";
@@ -201,8 +218,16 @@ menuOne.addEventListener("click", () => {
     document.querySelector("#menu2").style.display = "none";
     menuTwo.classList.remove("active");
   }
+  if (menuThree.classList.contains("active")) {
+    document.querySelector("#menu3").style.display = "none";
+    menuThree.classList.remove("active");
+  }
+  if (menuFour.classList.contains("active")) {
+    document.querySelector("#menu4").style.display = "none";
+    menuFour.classList.remove("active");
+  }
   document.querySelector("#menu1").style.display = "block";
-  document.querySelector("#menu1").classList.add('animation');
+  document.querySelector("#menu1").classList.add("animation");
   menuOne.classList.add("active");
 });
 
@@ -211,11 +236,53 @@ menuTwo.addEventListener("click", () => {
     document.querySelector("#menu1").style.display = "none";
     menuOne.classList.remove("active");
   }
+  if (menuThree.classList.contains("active")) {
+    document.querySelector("#menu3").style.display = "none";
+    menuThree.classList.remove("active");
+  }
+  if (menuFour.classList.contains("active")) {
+    document.querySelector("#menu4").style.display = "none";
+    menuFour.classList.remove("active");
+  }
   document.querySelector("#menu2").style.display = "block";
-  document.querySelector("#menu2").classList.add('animation');
+  document.querySelector("#menu2").classList.add("animation");
   menuTwo.classList.add("active");
 });
+menuThree.addEventListener("click", ()=>{
+  if (menuOne.classList.contains("active")) {
+    document.querySelector("#menu1").style.display = "none";
+    menuOne.classList.remove("active");
+  }
+  if (menuTwo.classList.contains("active")) {
+    document.querySelector("#menu2").style.display = "none";
+    menuTwo.classList.remove("active");
+  }
+  if (menuFour.classList.contains("active")) {
+    document.querySelector("#menu4").style.display = "none";
+    menuFour.classList.remove("active");
+  }
+  document.querySelector("#menu3").style.display = "block";
+  document.querySelector("#menu3").classList.add("animation");
+  menuThree.classList.add("active");
+});
 
+menuFour.addEventListener("click", ()=>{
+  if (menuOne.classList.contains("active")) {
+    document.querySelector("#menu1").style.display = "none";
+    menuOne.classList.remove("active");
+  }
+  if (menuTwo.classList.contains("active")) {
+    document.querySelector("#menu2").style.display = "none";
+    menuTwo.classList.remove("active");
+  }
+  if (menuThree.classList.contains("active")) {
+    document.querySelector("#menu3").style.display = "none";
+    menuThree.classList.remove("active");
+  }
+  document.querySelector("#menu4").style.display = "block";
+  document.querySelector("#menu4").classList.add("animation");
+  menuFour.classList.add("active");
+});
 cancelBtn.addEventListener("click", () => {
   orderContainer.innerHTML = "";
   items.innerHTML = 0;
@@ -243,14 +310,14 @@ backBtn.addEventListener("click", (e) => {
   categories.classList.add("animation");
   orderSelection.style.display = "none";
   orderSelection.classList.remove("animation");
-    reserveTableBtn.style.display = "none";
-    reserveTableBtn.classList.remove("reserveActive");
-    orderNowBtn.style.display = "block";
-    car.classList.remove("active");
-    takeAway.classList.remove("active");
-    assignTables.classList.remove("active");
-    tableOrder.style.display = "none";
-    carOrder.style.display = "none";
+  reserveTableBtn.style.display = "none";
+  reserveTableBtn.classList.remove("reserveActive");
+  orderNowBtn.style.display = "block";
+  car.classList.remove("active");
+  takeAway.classList.remove("active");
+  assignTables.classList.remove("active");
+  tableOrder.style.display = "none";
+  carOrder.style.display = "none";
 });
 
 assignTables.addEventListener("click", (e) => {
