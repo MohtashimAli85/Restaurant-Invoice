@@ -93,7 +93,10 @@ addBtn.forEach((e) => {
     price = item.children[1];
     price = price.innerHTML;
     price = price.split(".");
-
+    if(name.innerHTML.includes('PD')){
+      console.log(price);
+      price[1] = Number(price[1]) / 12;
+    }
     item = `<div class="orderItem orderItemAnimation">
         <div class="orderName d-flex">
             <h5>${name.innerHTML}</h5>
@@ -101,9 +104,7 @@ addBtn.forEach((e) => {
         </div>
         <div class="orderPrice d-flex">
             <div class="count d-flex">
-                <img src="../assets/minus-icon.svg" alt="minus icon" class="minusBtn">
                 <p class="qty">1</p>
-                <img src="../assets/plus-icon.svg" alt="plus icon" class="plusBtn">
             </div>
             <div class="calculation d-flex">
                 <p class="price">x ${price[1]}</p>
