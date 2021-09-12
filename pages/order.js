@@ -95,7 +95,7 @@ addBtn.forEach((e) => {
     price = price.split(".");
     if(name.innerHTML.includes('PD')){
       console.log(price);
-      price[1] = Number(price[1]) / 12;
+      price[1] = Math.round(Number(price[1]) / 12);
     }
     item = `<div class="orderItem orderItemAnimation">
         <div class="orderName d-flex">
