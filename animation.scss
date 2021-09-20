@@ -28,12 +28,19 @@ body {
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
+.orderItemAnimationR{
+    
+    animation: fade cubic-bezier(0.175, 0.885, 0.320, 1.275) 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
 .menuAnimation{
     opacity: 0;
     animation: fadeInAnimation cubic-bezier(0.175, 0.885, 0.320, 1.275) 1.5s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
+
 @keyframes fadeInAnimation {
     0% {
         opacity: 0;
@@ -41,4 +48,12 @@ body {
     100% {
         opacity: 1;
      }
+}
+@keyframes fade {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
 }
