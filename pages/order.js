@@ -126,8 +126,10 @@ addBtn.forEach((e) => {
     item = "";
     delBtns.forEach((e) => {
       e.addEventListener("click", (e) => {
-        e.target.parentNode.parentNode.remove();
-        totals = document.querySelectorAll(".total");
+        e.target.parentNode.parentNode.classList.add('orderItemAnimationR');
+        setTimeout(() =>{
+          e.target.parentNode.parentNode.remove();
+          totals = document.querySelectorAll(".total");
         qty = document.querySelectorAll(".qty");
         let count = 0;
         qty.forEach((e) => {
@@ -140,6 +142,9 @@ addBtn.forEach((e) => {
         });
         console.log(tBill);
         bill.innerHTML = tBill;
+        },500);
+        
+        
       });
     });
 

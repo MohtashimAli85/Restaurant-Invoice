@@ -277,7 +277,7 @@ footer .orderContainer .orderItem .orderPrice .count p {
 }
 footer .orderContainer .orderItem .orderPrice .calculation {
   justify-content: space-between;
-  flex-basis: 60%;
+  flex-basis: 80%;
   align-items: center;
 }
 footer .orderContainer .orderItem .orderPrice .calculation .price {
