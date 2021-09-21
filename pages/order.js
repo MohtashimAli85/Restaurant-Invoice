@@ -1,34 +1,14 @@
 import { tables } from "./tables.js";
-import { muttonMenu } from "./mutton.js";
-import { chickenMenu } from "./chicken.js";
-import { sideOrderMenu } from "./sideOrder.js";
-const menuOne = document.querySelector(".menu1");
-const menuTwo = document.querySelector(".menu2");
-const menuThree = document.querySelector(".menu3");
-const menuFour = document.querySelector(".menu4");
-const mutton = document.getElementById("mutton");
-const chicken = document.getElementById("chicken");
-const drinks = document.getElementById("drinks");
-const sideOrder = document.getElementById("sides");
+import { backBtnArr } from "./test.js";
+import { assignTables, car, orderNowBtn, reserveTableBtn, tableOrder, carOrder, takeAway, categories, orderSelection } from './test.js';
 
-const assignTables = document.querySelector(".tables");
-const car = document.querySelector(".car");
-const takeAway = document.querySelector(".takeAway");
+
 
 let delBtns = document.querySelectorAll(".delImg");
-let minusBtns = document.querySelectorAll(".minusBtn");
-let plusBtns = document.querySelectorAll(".plusBtn");
 let cancelBtn = document.querySelector(".cancel");
-let orderNowBtn = document.querySelector(".orderNow");
 let backBtn = document.querySelector(".backBtn");
-let reserveTableBtn = document.querySelector(".reserveTable");
 const orderContainer = document.querySelector(".orderContainer");
-const categories = document.querySelector(".categories");
-const orderSelection = document.querySelector(".orderSelection");
 let orderItem = document.querySelectorAll(".orderItem");
-
-const tableOrder = document.querySelector(".tableOrder");
-const carOrder = document.querySelector(".carOrder");
 const takeAwayOrder = document.querySelector(".takeAwayOrder");
 
 let items = document.querySelector(".items");
@@ -41,43 +21,7 @@ let item = "",
   allcircles = "",
   allTables = "",
   qty = "";
-muttonMenu.forEach((e) => {
-  item += `<div class="item d-flex">
-    <img src="../assets/rack-of-lamb.png" alt="mutton img">
-    <div>
-    <h6>${e.name} (${e.type})</h6>
-    <p>Rs.${e.price}</p>
-    </div>
-    <img src="../assets/add-icon.svg" alt="add icon" class="addIcon addBtn">
-</div>`;
-});
-mutton.innerHTML = item;
-item = "";
-chickenMenu.forEach((e) => {
-  item += `<div class="item d-flex">
-   <img src="../assets/chicken-leg.png" alt="img">
-   <div>
-   <h6>${e.name} (${e.type})</h6>
-   <p>Rs.${e.price}</p>
-   </div>
-   <img src="../assets/add-icon.svg" alt="add icon" class="addIcon addBtn">
-</div>`;
-});
-chicken.innerHTML = item;
-item = "";
 
-sideOrderMenu.forEach((e) => {
-  item += `<div class="item d-flex">
-   <img src="../assets/menu.png" alt="img">
-   <div>
-   <h6>${e.name} (${e.type})</h6>
-   <p>Rs.${e.price}</p>
-   </div>
-   <img src="../assets/add-icon.svg" alt="add icon" class="addIcon addBtn">
-</div>`;
-});
-sideOrder.innerHTML = item;
-item = "";
 item = "";
 let name = "",
   price = "",
@@ -93,7 +37,7 @@ addBtn.forEach((e) => {
     price = item.children[1];
     price = price.innerHTML;
     price = price.split(".");
-    if(name.innerHTML.includes('PD')){
+    if (name.innerHTML.includes('PD')) {
       console.log(price);
       price[1] = Math.round(Number(price[1]) / 12);
     }
@@ -127,83 +71,24 @@ addBtn.forEach((e) => {
     delBtns.forEach((e) => {
       e.addEventListener("click", (e) => {
         e.target.parentNode.parentNode.classList.add('orderItemAnimationR');
-        setTimeout(() =>{
+        setTimeout(() => {
           e.target.parentNode.parentNode.remove();
           totals = document.querySelectorAll(".total");
-        qty = document.querySelectorAll(".qty");
-        let count = 0;
-        qty.forEach((e) => {
-          count += Number(e.innerHTML);
-        });
-        items.innerHTML = count;
-        tBill = 0;
-        totals.forEach((e) => {
-          tBill += Number(e.innerHTML);
-        });
-        console.log(tBill);
-        bill.innerHTML = tBill;
-        },500);
-        
-        
-      });
-    });
-
-    minusBtns = document.querySelectorAll(".minusBtn");
-    plusBtns = document.querySelectorAll(".plusBtn");
-    minusBtns.forEach((e) => {
-      e.addEventListener("click", (e) => {
-        count = Number(e.target.nextElementSibling.innerHTML);
-        let price =
-          e.target.parentNode.nextElementSibling.children[0].innerHTML;
-        price = Number(price.split(" ")[1]);
-        total = Number(
-          e.target.parentNode.nextElementSibling.children[1].innerHTML
-        );
-        if (count == 1) {
-          return;
-        } else {
-          count--;
-          e.target.nextElementSibling.innerHTML = count;
-          total = price * count;
-          e.target.parentNode.nextElementSibling.children[1].innerHTML = total;
-          let qty = document.querySelectorAll(".qty");
-          let tcount = 0;
+          qty = document.querySelectorAll(".qty");
+          let count = 0;
           qty.forEach((e) => {
-            tcount += Number(e.innerHTML);
+            count += Number(e.innerHTML);
           });
-          items.innerHTML = tcount;
+          items.innerHTML = count;
           tBill = 0;
           totals.forEach((e) => {
             tBill += Number(e.innerHTML);
           });
+          console.log(tBill);
           bill.innerHTML = tBill;
-        }
-      });
-    });
-    plusBtns.forEach((e) => {
-      e.addEventListener("click", (e) => {
-        count = Number(e.target.previousElementSibling.innerHTML);
-        let price =
-          e.target.parentNode.nextElementSibling.children[0].innerHTML;
-        price = Number(price.split(" ")[1]);
-        total = Number(
-          e.target.parentNode.nextElementSibling.children[1].innerHTML
-        );
-        count++;
-        e.target.previousElementSibling.innerHTML = count;
-        total = price * count;
-        e.target.parentNode.nextElementSibling.children[1].innerHTML = total;
-        let qty = document.querySelectorAll(".qty");
-        let tcount = 0;
-        qty.forEach((e) => {
-          tcount += Number(e.innerHTML);
-        });
-        items.innerHTML = tcount;
-        tBill = 0;
-        totals.forEach((e) => {
-          tBill += Number(e.innerHTML);
-        });
-        bill.innerHTML = tBill;
+        }, 500);
+
+
       });
     });
 
@@ -220,76 +105,7 @@ addBtn.forEach((e) => {
     bill.innerHTML = tBill;
   });
 });
-menuOne.addEventListener("click", () => {
-  if (menuTwo.classList.contains("active")) {
-    document.querySelector("#menu2").style.display = "none";
-    menuTwo.classList.remove("active");
-  }
-  if (menuThree.classList.contains("active")) {
-    document.querySelector("#menu3").style.display = "none";
-    menuThree.classList.remove("active");
-  }
-  if (menuFour.classList.contains("active")) {
-    document.querySelector("#menu4").style.display = "none";
-    menuFour.classList.remove("active");
-  }
-  document.querySelector("#menu1").style.display = "block";
-  document.querySelector("#menu1").classList.add("menuAnimation");
-  menuOne.classList.add("active");
-});
 
-menuTwo.addEventListener("click", () => {
-  if (menuOne.classList.contains("active")) {
-    document.querySelector("#menu1").style.display = "none";
-    menuOne.classList.remove("active");
-  }
-  if (menuThree.classList.contains("active")) {
-    document.querySelector("#menu3").style.display = "none";
-    menuThree.classList.remove("active");
-  }
-  if (menuFour.classList.contains("active")) {
-    document.querySelector("#menu4").style.display = "none";
-    menuFour.classList.remove("active");
-  }
-  document.querySelector("#menu2").style.display = "block";
-  document.querySelector("#menu2").classList.add("menuAnimation");
-  menuTwo.classList.add("active");
-});
-menuThree.addEventListener("click", () => {
-  if (menuOne.classList.contains("active")) {
-    document.querySelector("#menu1").style.display = "none";
-    menuOne.classList.remove("active");
-  }
-  if (menuTwo.classList.contains("active")) {
-    document.querySelector("#menu2").style.display = "none";
-    menuTwo.classList.remove("active");
-  }
-  if (menuFour.classList.contains("active")) {
-    document.querySelector("#menu4").style.display = "none";
-    menuFour.classList.remove("active");
-  }
-  document.querySelector("#menu3").style.display = "block";
-  document.querySelector("#menu3").classList.add("menuAnimation");
-  menuThree.classList.add("active");
-});
-
-menuFour.addEventListener("click", () => {
-  if (menuOne.classList.contains("active")) {
-    document.querySelector("#menu1").style.display = "none";
-    menuOne.classList.remove("active");
-  }
-  if (menuTwo.classList.contains("active")) {
-    document.querySelector("#menu2").style.display = "none";
-    menuTwo.classList.remove("active");
-  }
-  if (menuThree.classList.contains("active")) {
-    document.querySelector("#menu3").style.display = "none";
-    menuThree.classList.remove("active");
-  }
-  document.querySelector("#menu4").style.display = "block";
-  document.querySelector("#menu4").classList.add("menuAnimation");
-  menuFour.classList.add("active");
-});
 cancelBtn.addEventListener("click", () => {
   orderContainer.innerHTML = "";
   items.innerHTML = 0;
@@ -298,19 +114,7 @@ cancelBtn.addEventListener("click", () => {
 
 orderNowBtn.addEventListener("click", () => {
   if (items.innerHTML != "0") {
-    if (menuOne.classList.contains("active")) {
-      document.querySelector("#menu1").style.display = "none";
-      menuOne.classList.remove("active");
-    } else if (menuTwo.classList.contains("active")) {
-      document.querySelector("#menu2").style.display = "none";
-      menuTwo.classList.remove("active");
-    } else if (menuThree.classList.contains("active")) {
-      document.querySelector("#menu3").style.display = "none";
-      menuThree.classList.remove("active");
-    } else if (menuFour.classList.contains("active")) {
-      document.querySelector("#menu4").style.display = "none";
-      menuFour.classList.remove("active");
-    }
+
     categories.style.display = "none";
     categories.classList.remove("animation");
     orderSelection.style.display = "block";
@@ -329,26 +133,24 @@ orderNowBtn.addEventListener("click", () => {
   }
 });
 
-backBtn.addEventListener("click", (e) => {
-  categories.style.display = "block";
-  categories.classList.add("animation");
-  orderSelection.style.display = "none";
-  orderSelection.classList.remove("animation");
-  reserveTableBtn.style.display = "none";
-  reserveTableBtn.classList.remove("reserveActive");
-  orderNowBtn.style.display = "block";
-  car.classList.remove("active");
-  takeAway.classList.remove("active");
-  assignTables.classList.remove("active");
-  tableOrder.style.display = "none";
-  carOrder.style.display = "none";
-});
 
-assignTables.addEventListener("click", (e) => {
-  if (car.classList.contains("active")) {
-    car.classList.remove("active");
-    carOrder.style.display = "none";
+backBtn.addEventListener("click", (e) => {
+  backBtnArr.forEach(e => {
+    display(e.vname, e.value, e.command, e.class);;
+  })
+});
+function display(variableName, value, command, cName) {
+  if (value != "")
+    variableName.style.display = value;
+  if (command == "add") {
+    variableName.classList.add(cName);
   }
+  if (command == "remove") {
+    variableName.classList.add(cName);
+  }
+}
+assignTables.addEventListener("click", (e) => {
+  categoriesSelection(car, carOrder);
   if (takeAway.classList.contains("active")) {
     takeAway.classList.remove("active");
   }
@@ -388,10 +190,7 @@ assignTables.addEventListener("click", (e) => {
 });
 
 car.addEventListener("click", (e) => {
-  if (assignTables.classList.contains("active")) {
-    assignTables.classList.remove("active");
-    tableOrder.style.display = "none";
-  }
+  categoriesSelection(assignTables, tableOrder);
   if (takeAway.classList.contains("active")) {
     takeAway.classList.remove("active");
   }
@@ -402,14 +201,9 @@ car.addEventListener("click", (e) => {
 });
 
 takeAway.addEventListener("click", (e) => {
-  if (car.classList.contains("active")) {
-    car.classList.remove("active");
-    car.style.display="none";
-  }
-  if (assignTables.classList.contains("active")) {
-    assignTables.classList.remove("active");
-    tableOrder.style.display = "none";
-  }
+  categoriesSelection(car, carOrder);
+  categoriesSelection(assignTables, tableOrder);
+
   takeAway.classList.add("active");
   reserveTableBtn.style.display = "none";
   orderNowBtn.style.display = "block";
@@ -421,9 +215,17 @@ let itemPrice = "";
 let itemqty = "";
 let amount = "";
 let totalAmount = "";
+
 reserveTableBtn.addEventListener("click", (e) => {
   allTables.forEach((t) => {
     if (t.classList.contains("new")) {
     }
   });
 });
+
+function categoriesSelection(category, order) {
+  if (category.classList.contains("active")) {
+    category.classList.remove("active");
+    order.style.display = "none";
+  }
+}
