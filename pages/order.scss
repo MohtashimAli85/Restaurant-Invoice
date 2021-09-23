@@ -21,7 +21,7 @@ $secondary: #38ef7d;
 }
 main {
   margin: 1rem 1rem 0;
-  flex-basis:70%;
+  flex-basis:60%;
   .home{
     margin-bottom: 1rem;
   }
@@ -45,8 +45,9 @@ main {
         -webkit-user-select: none;
         touch-action: manipulation;
         a{
-          text-decoration: none;
-          color: #111827;
+          img{
+            max-width: 50px;
+          }
         }
   }
   .homeBtn:focus {
@@ -293,14 +294,15 @@ li,
 
 footer {
   padding: 1rem 0.5rem;
-  flex-basis:30%;
+  flex-basis:40%;
+  justify-content: space-between;
   h1 {
     text-align: center;
 
     font-family: "bold", sans-serif;
   }
-  .order{
-    
+  .order,.receipt{
+    flex-basis:48%;
   }
   .orderContainer {
     max-height: 55vh;
@@ -361,7 +363,6 @@ footer {
     }
   }
   .receipt {
-    
     h2 {
       text-align: center;
     }
@@ -373,7 +374,10 @@ footer {
       font-size: 1rem;
     }
     .container {
-      margin-top: 1rem;
+      position: relative;
+      top: 35vh;
+      padding: 5px;
+      
       div + div {
         margin-top: 1rem;
       }
@@ -434,6 +438,26 @@ footer {
       .reserveTable{
         display:none;
       }
+    }
+  }
+  .numPad {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 10rem));
+    grid-auto-rows: 1fr;
+    grid-gap: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    .btn {
+      font-family: "nimbus", sans-serif;
+      color: $white;
+      font-size: 1.5rem;
+      font-weight: 700;
+      border: none;
+       background-color: $orange;
+      border-radius: 5px;
+      box-shadow: 0px 5px 0px 0px #ff8d6b70;
+      height: 39px;;
     }
   }
 }
