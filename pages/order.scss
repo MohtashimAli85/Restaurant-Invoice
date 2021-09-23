@@ -20,7 +20,42 @@ $secondary: #38ef7d;
   src: url("../assets/NimbusSanL-Reg.otf");
 }
 main {
-  margin: 5rem 1rem 0;
+  margin: 1rem 1rem 0;
+  flex-basis:70%;
+  .home{
+    margin-bottom: 1rem;
+  }
+  .homeBtn{
+    background-color: #ffffff;
+        border: 0;
+        border-radius: 0.5rem;
+        box-sizing: border-box;
+        font-family: "nimbus", sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.25rem;
+        padding: 0.75rem 1rem;
+        text-align: center;
+        text-decoration: none #d1d5db solid;
+        text-decoration-thickness: auto;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        a{
+          text-decoration: none;
+          color: #111827;
+        }
+  }
+  .homeBtn:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+  .homeBtn:hover {
+    background-color: #f38260;
+  }
   .orderSelection {
     display: none;
     .orderTitle {
@@ -258,10 +293,14 @@ li,
 
 footer {
   padding: 1rem 0.5rem;
+  flex-basis:30%;
   h1 {
     text-align: center;
 
     font-family: "bold", sans-serif;
+  }
+  .order{
+    
   }
   .orderContainer {
     max-height: 55vh;
@@ -322,8 +361,7 @@ footer {
     }
   }
   .receipt {
-    margin-top: 1rem;
-    padding: 1rem 1.5rem;
+    
     h2 {
       text-align: center;
     }
@@ -366,8 +404,10 @@ footer {
         touch-action: manipulation;
       }
 
-      .cancel:hover {
+      .cancel {
+        &:hover{
         background-color: #f9fafb;
+        }
       }
 
       .cancel:focus,
