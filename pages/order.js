@@ -16,6 +16,7 @@ let bill = document.querySelector(".bill");
 let totals = document.querySelectorAll(".total");
 let input = document.querySelector(".form__field");
 let label = document.querySelector(".form__label");
+let btns = document.querySelectorAll(".btn");
 let order = [];
 let item = "",
   allcircles = "",
@@ -78,6 +79,7 @@ addBtn.forEach((e) => {
           let count = 0;
           qty.forEach((e) => {
             count += Number(e.innerHTML);
+
           });
           items.innerHTML = count;
           tBill = 0;
@@ -96,6 +98,12 @@ addBtn.forEach((e) => {
     let tcount = 0;
     qty.forEach((e) => {
       tcount += Number(e.innerHTML);
+      e.addEventListener("click", () => {
+        // e.contentEditable = true;
+        // e.focus();
+        // document.execCommand('selectAll', false, null);
+        e.classList.add('edit');
+      });
     });
     items.innerHTML = tcount;
     tBill = 0;
@@ -222,7 +230,13 @@ reserveTableBtn.addEventListener("click", (e) => {
     }
   });
 });
-
+btns.forEach(e => {
+  e.addEventListener("click", (e) => {
+    if (Number(e.target.textContent)) {
+      document.querySelector('.edit').innerHTML = e.target.textContent;
+    }
+  });
+});
 function categoriesSelection(category, order) {
   if (category.classList.contains("active")) {
     category.classList.remove("active");
