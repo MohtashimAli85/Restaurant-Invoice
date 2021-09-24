@@ -97,15 +97,12 @@ addBtn.forEach((e) => {
     let qty = document.querySelectorAll(".qty");
     let tcount = 0;
     qty.forEach((e) => {
-      tcount += Number(e.innerHTML);
+
       e.addEventListener("click", () => {
-        // e.contentEditable = true;
-        // e.focus();
-        // document.execCommand('selectAll', false, null);
         e.classList.add('edit');
       });
     });
-    items.innerHTML = tcount;
+    items.innerHTML = qty.length;
     tBill = 0;
     totals.forEach((e) => {
       tBill += Number(e.innerHTML);
@@ -144,17 +141,19 @@ orderNowBtn.addEventListener("click", () => {
 
 backBtn.addEventListener("click", (e) => {
   backBtnArr.forEach(e => {
-    display(e.vname, e.value, e.command, e.class);;
+    console.log('loop');
+    display(e.vname, e.value, e.command, e.class);
   })
 });
 function display(variableName, value, command, cName) {
-  if (value != "")
+  if (value != null) {
     variableName.style.display = value;
+  }
   if (command == "add") {
     variableName.classList.add(cName);
   }
   if (command == "remove") {
-    variableName.classList.add(cName);
+    variableName.classList.remove(cName);
   }
 }
 assignTables.addEventListener("click", (e) => {
@@ -232,9 +231,59 @@ reserveTableBtn.addEventListener("click", (e) => {
 });
 btns.forEach(e => {
   e.addEventListener("click", (e) => {
-    if (Number(e.target.textContent)) {
-      document.querySelector('.edit').innerHTML = e.target.textContent;
+    let qty = document.querySelector('.edit');
+    let eClass = e.target.classList;
+    let eText = e.target.textContent;
+    let once = true;
+    if (!eClass.contains('pressedBtn')) {
+      eClass.add('pressedBtn');
     }
+    setTimeout(() => {
+      eClass.remove('pressedBtn');
+    }, 600)
+    if (qty != null) {
+
+      if (Number(eText)) {
+        if (qty.classList.contains('once')) {
+          qty.innerHTML += eText;
+        }
+        if (!qty.classList.contains('once')) {
+          qty.classList.add('once');
+          qty.innerHTML = eText;
+        }
+
+      }
+      if (eText == '0') {
+        console.log('zero');
+        if (qty.classList.contains('once')) {
+          qty.innerHTML += eText;
+        }
+        if (!qty.classList.contains('once')) {
+          qty.classList.add('once');
+          qty.innerHTML = eText;
+        }
+      }
+      if (eText == 'Del') {
+        let value = qty.innerHTML;
+        value = value.slice(0, -1);
+        qty.innerHTML = value;
+      }
+      if (eText == 'Enter') {
+        qty.classList.remove('once');
+        qty.classList.remove('edit');
+        let price = qty.parentElement.nextElementSibling.children[0].innerHTML;
+        price = price.split("x");
+        price = Number(price[1]);
+        let tPrice = qty.parentElement.nextElementSibling.children[1];
+        tPrice.innerHTML = price * Number(qty.innerHTML);
+        tBill = 0;
+        totals.forEach(e => {
+          tBill += Number(e.innerHTML);
+        });
+        bill.innerHTML = tBill;
+      }
+    }
+
   });
 });
 function categoriesSelection(category, order) {
