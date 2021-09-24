@@ -9,8 +9,6 @@ let cancelBtn = document.querySelector(".cancel");
 let backBtn = document.querySelector(".backBtn");
 const orderContainer = document.querySelector(".orderContainer");
 let orderItem = document.querySelectorAll(".orderItem");
-const takeAwayOrder = document.querySelector(".takeAwayOrder");
-
 let items = document.querySelector(".items");
 let bill = document.querySelector(".bill");
 let totals = document.querySelectorAll(".total");
@@ -20,20 +18,16 @@ let btns = document.querySelectorAll(".btn");
 let order = [];
 let item = "",
   allcircles = "",
-  allTables = "",
-  qty = "";
+  allTables = "";
 
 item = "";
 let name = "",
   price = "",
-  tBill = 0,
-  count = 1,
-  total = 0;
+  tBill = 0;
 const addBtn = document.querySelectorAll(".addBtn");
 addBtn.forEach((e) => {
   e.addEventListener("click", (e) => {
     item = e.target.previousElementSibling;
-
     name = item.firstElementChild;
     price = item.children[1];
     price = price.innerHTML;
@@ -79,7 +73,6 @@ addBtn.forEach((e) => {
           let count = 0;
           qty.forEach((e) => {
             count += Number(e.innerHTML);
-
           });
           items.innerHTML = count;
           tBill = 0;
@@ -89,13 +82,10 @@ addBtn.forEach((e) => {
           console.log(tBill);
           bill.innerHTML = tBill;
         }, 500);
-
-
       });
     });
 
     let qty = document.querySelectorAll(".qty");
-    let tcount = 0;
     qty.forEach((e) => {
 
       e.addEventListener("click", () => {
@@ -119,11 +109,8 @@ cancelBtn.addEventListener("click", () => {
 
 orderNowBtn.addEventListener("click", () => {
   if (items.innerHTML != "0") {
-
-    categories.style.display = "none";
-    categories.classList.remove("animation");
-    orderSelection.style.display = "block";
-    orderSelection.classList.add("animation");
+    display(categories, 'none', 'remove', 'animation');
+    display(orderSelection, 'block', 'add', 'animation');
     if (takeAway.classList.contains("active")) {
       let name = "";
       orderItem.forEach((e) => {
@@ -145,27 +132,15 @@ backBtn.addEventListener("click", (e) => {
     display(e.vname, e.value, e.command, e.class);
   })
 });
-function display(variableName, value, command, cName) {
-  if (value != null) {
-    variableName.style.display = value;
-  }
-  if (command == "add") {
-    variableName.classList.add(cName);
-  }
-  if (command == "remove") {
-    variableName.classList.remove(cName);
-  }
-}
+
 assignTables.addEventListener("click", (e) => {
   categoriesSelection(car, carOrder);
   if (takeAway.classList.contains("active")) {
     takeAway.classList.remove("active");
   }
   assignTables.classList.add("active");
-  tableOrder.style.display = "grid";
-  tableOrder.classList.add("animation");
-  reserveTableBtn.style.display = "block";
-  reserveTableBtn.classList.add("reserveActive");
+  display(tableOrder, 'grid', 'add', 'animation');
+  display(reserveTableBtn, 'block', 'add', 'reserveActive');
   orderNowBtn.style.display = "none";
   let item = "";
   tables.forEach((e) => {
@@ -202,15 +177,13 @@ car.addEventListener("click", (e) => {
     takeAway.classList.remove("active");
   }
   car.classList.add("active");
-  carOrder.style.display = "block";
-  carOrder.classList.add("animation");
+  display(carOrder, 'block', 'add', 'animation');
   label.innerHTML = "Car Number";
 });
 
 takeAway.addEventListener("click", (e) => {
   categoriesSelection(car, carOrder);
   categoriesSelection(assignTables, tableOrder);
-
   takeAway.classList.add("active");
   reserveTableBtn.style.display = "none";
   orderNowBtn.style.display = "block";
@@ -244,24 +217,10 @@ btns.forEach(e => {
     if (qty != null) {
 
       if (Number(eText)) {
-        if (qty.classList.contains('once')) {
-          qty.innerHTML += eText;
-        }
-        if (!qty.classList.contains('once')) {
-          qty.classList.add('once');
-          qty.innerHTML = eText;
-        }
-
+        qtyEdit(qty, eText);
       }
       if (eText == '0') {
-        console.log('zero');
-        if (qty.classList.contains('once')) {
-          qty.innerHTML += eText;
-        }
-        if (!qty.classList.contains('once')) {
-          qty.classList.add('once');
-          qty.innerHTML = eText;
-        }
+        qtyEdit(qty, eText);
       }
       if (eText == 'Del') {
         let value = qty.innerHTML;
@@ -290,5 +249,25 @@ function categoriesSelection(category, order) {
   if (category.classList.contains("active")) {
     category.classList.remove("active");
     order.style.display = "none";
+  }
+}
+function qtyEdit(e, x) {
+  if (e.classList.contains('once')) {
+    e.innerHTML += x;
+  }
+  if (!e.classList.contains('once')) {
+    e.classList.add('once');
+    e.innerHTML = x;
+  }
+}
+function display(variableName, value, command, cName) {
+  if (value != null) {
+    variableName.style.display = value;
+  }
+  if (command == "add") {
+    variableName.classList.add(cName);
+  }
+  if (command == "remove") {
+    variableName.classList.remove(cName);
   }
 }
