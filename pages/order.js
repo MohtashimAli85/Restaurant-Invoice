@@ -1,6 +1,6 @@
 import { tables } from "./tables.js";
-import { backBtnArr } from "./test.js";
-import { assignTables, car, orderNowBtn, reserveTableBtn, tableOrder, carOrder, takeAway, categories, orderSelection } from './test.js';
+import { backBtnArr } from "./reset.js";
+import { assignTables, car, orderNowBtn, reserveTableBtn, tableOrder, carOrder, takeAway, categories, orderSelection } from './reset.js';
 
 
 
