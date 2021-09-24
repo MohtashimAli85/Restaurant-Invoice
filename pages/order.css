@@ -44,7 +44,7 @@ main .homeBtn:focus {
   outline-offset: 2px;
 }
 main .homeBtn:hover {
-  background-color: #f38260;
+  background-color: #ff8d6b;
 }
 main .orderSelection {
   display: none;
@@ -263,7 +263,7 @@ li,
 }
 
 footer {
-  padding: 1rem 0.5rem;
+  padding: 0.5rem 0.5rem 0;
   flex-basis: 40%;
   justify-content: space-between;
 }
@@ -279,6 +279,9 @@ footer .orderContainer {
   min-height: 55vh;
   overflow-y: scroll;
   padding: 0 1rem;
+}
+footer .orderContainer .edit {
+  border: 1px solid black;
 }
 footer .orderContainer .orderItem {
   border-bottom: 1px solid black;
@@ -341,9 +344,7 @@ footer .receipt h5 {
   font-size: 1rem;
 }
 footer .receipt .container {
-  position: relative;
-  top: 35vh;
-  padding: 5px;
+  margin-top: 1rem;
 }
 footer .receipt .container div + div {
   margin-top: 1rem;
@@ -376,13 +377,18 @@ footer .receipt .container .reserveTable {
 footer .receipt .container .cancel:hover {
   background-color: #f9fafb;
 }
-footer .receipt .container .cancel:focus,
+footer .receipt .container .cancel:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+footer .receipt .container .cancel:focus-visible {
+  box-shadow: none;
+}
 footer .receipt .container .orderNow:focus,
 footer .receipt .container .reserveTable:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
-footer .receipt .container .cancel:focus-visible,
 footer .receipt .container .orderNow:focus-visible {
   box-shadow: none;
 }
@@ -403,7 +409,7 @@ footer .numPad {
   grid-template-columns: repeat(3, minmax(0, 10rem));
   grid-auto-rows: 1fr;
   grid-gap: 1rem;
-  padding: 1rem;
+  padding: 0.2rem 1rem 0;
   border-radius: 10px;
   text-align: center;
 }
@@ -416,7 +422,7 @@ footer .numPad .btn {
   background-color: #ff8d6b;
   border-radius: 5px;
   box-shadow: 0px 5px 0px 0px #ff8d6b70;
-  height: 39px;
+  height: 45px;
 }
 
 .orderItem + .orderItem {
