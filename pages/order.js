@@ -25,6 +25,7 @@ let name = "",
   price = "",
   tBill = 0;
 const addBtn = document.querySelectorAll(".addBtn");
+document.querySelector(".menu1").click();
 addBtn.forEach((e) => {
   e.addEventListener("click", (e) => {
     item = e.target.previousElementSibling;
@@ -89,6 +90,9 @@ addBtn.forEach((e) => {
     qty.forEach((e) => {
 
       e.addEventListener("click", () => {
+        let pastEdit = document.querySelector(".edit");
+        if (pastEdit != null)
+          pastEdit.classList.remove('edit');
         e.classList.add('edit');
       });
     });
@@ -207,7 +211,6 @@ btns.forEach(e => {
     let qty = document.querySelector('.edit');
     let eClass = e.target.classList;
     let eText = e.target.textContent;
-    let once = true;
     if (!eClass.contains('pressedBtn')) {
       eClass.add('pressedBtn');
     }
@@ -225,26 +228,35 @@ btns.forEach(e => {
       if (eText == 'Del') {
         let value = qty.innerHTML;
         value = value.slice(0, -1);
+        if(value == "")
+          value = 0;
         qty.innerHTML = value;
       }
       if (eText == 'Enter') {
         qty.classList.remove('once');
         qty.classList.remove('edit');
-        let price = qty.parentElement.nextElementSibling.children[0].innerHTML;
-        price = price.split("x");
-        price = Number(price[1]);
-        let tPrice = qty.parentElement.nextElementSibling.children[1];
-        tPrice.innerHTML = price * Number(qty.innerHTML);
-        tBill = 0;
-        totals.forEach(e => {
-          tBill += Number(e.innerHTML);
-        });
-        bill.innerHTML = tBill;
       }
+      
+      updatePrice(qty);
     }
 
   });
 });
+
+function updatePrice(qty) {
+  
+  let price = qty.parentElement.nextElementSibling.children[0].innerHTML;
+  price = price.split("x");
+  price = Number(price[1]);
+  let tPrice = qty.parentElement.nextElementSibling.children[1];
+  tPrice.innerHTML = price * Number(qty.innerHTML);
+  tBill = 0;
+  totals.forEach(e => {
+    tBill += Number(e.innerHTML);
+  });
+  bill.innerHTML = tBill;
+}
+
 function categoriesSelection(category, order) {
   if (category.classList.contains("active")) {
     category.classList.remove("active");
