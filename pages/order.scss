@@ -281,6 +281,11 @@ li,
 .addIcon {
   cursor: pointer;
 }
+.addIcon{
+  padding:0 !important;
+  width: 40px;
+  margin: 1rem;
+}
 .addIcon:active{
   box-shadow: rgba(255, 141, 107, 0.16) 0px 1px 4px, rgb(255, 98, 67) 0px 0px 0px 3px;
 }
