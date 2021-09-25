@@ -30,13 +30,16 @@ footer {
   height: 100vh;
 }
 
-header,
+header {
+  flex-basis: 10%;
+}
+
 footer {
   flex-basis: 20%;
 }
 
 main {
-  flex-basis: 60%;
+  flex-basis: 70%;
   margin: 2rem 1rem 0;
 }
 
@@ -73,27 +76,34 @@ header {
   align-items: center;
 }
 .decorations .icon {
-  max-width: 150px;
+  min-width: 150px;
 }
 
 ul {
   list-style-type: none;
 }
 
+.tabs {
+  margin-top: 1.63rem;
+}
 .tabs ul {
   text-align: center;
 }
 .tabs ul li {
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 50%;
+  width: 65px;
+  margin: 0 auto;
   box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
 }
 .tabs ul li a {
   display: block;
-  padding: 1rem 0.5rem;
+  padding: 0.5rem;
   font-family: "bold", sans-serif;
   color: #070600ff;
-  text-decoration: none;
+}
+.tabs ul li a img {
+  max-width: 45px;
 }
 
 .tabs ul li + li {
