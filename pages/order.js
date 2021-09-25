@@ -23,6 +23,8 @@ let item = "",
 item = "";
 let name = "",
   price = "",
+  qty = "",
+  newItem="",
   tBill = 0;
 const addBtn = document.querySelectorAll(".addBtn");
 document.querySelector(".menu1").click();
@@ -44,7 +46,7 @@ addBtn.forEach((e) => {
         </div>
         <div class="orderPrice d-flex">
             <div class="count d-flex">
-                <p class="qty">1</p>
+                <p class="qty new">1</p>
             </div>
             <div class="calculation d-flex">
                 <p class="price">x ${price[1]}</p>
@@ -58,10 +60,20 @@ addBtn.forEach((e) => {
         e.classList.remove("orderItemAnimation");
       });
     }, 100);
-
+    qty = document.querySelector(".qty");
+    newItem = document.querySelector('.new');
     delBtns = document.querySelectorAll(".delImg");
     totals = document.querySelectorAll(".total");
     orderItem = document.querySelectorAll(".orderItem");
+    let pastEdit = document.querySelector(".edit");
+    if(newItem){
+      newItem.classList.add('edit');
+      newItem.classList.remove('new');
+      if(pastEdit !=null){
+        pastEdit.classList.remove('edit');
+      }
+    }
+    
 
     item = "";
     delBtns.forEach((e) => {
@@ -86,11 +98,10 @@ addBtn.forEach((e) => {
       });
     });
 
-    let qty = document.querySelectorAll(".qty");
+    qty = document.querySelectorAll(".qty");
     qty.forEach((e) => {
-
       e.addEventListener("click", () => {
-        let pastEdit = document.querySelector(".edit");
+        
         if (pastEdit != null)
           pastEdit.classList.remove('edit');
         e.classList.add('edit');
@@ -134,7 +145,8 @@ backBtn.addEventListener("click", (e) => {
   backBtnArr.forEach(e => {
     console.log('loop');
     display(e.vname, e.value, e.command, e.class);
-  })
+  });
+  document.querySelector(".menu1").click();
 });
 
 assignTables.addEventListener("click", (e) => {
@@ -218,7 +230,6 @@ btns.forEach(e => {
       eClass.remove('pressedBtn');
     }, 600)
     if (qty != null) {
-
       if (Number(eText)) {
         qtyEdit(qty, eText);
       }
@@ -236,7 +247,6 @@ btns.forEach(e => {
         qty.classList.remove('once');
         qty.classList.remove('edit');
       }
-      
       updatePrice(qty);
     }
 
