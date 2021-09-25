@@ -1,4 +1,5 @@
-$orange: #ff8d6b;
+$orange: rgb(255, 141, 107);
+$orange2:rgb(255, 98, 67);
 $gray: #efeff1;
 $white: #fff;
 $black: #000000;
@@ -27,17 +28,10 @@ main {
   }
   .homeBtn{
     background-color: #ffffff;
-        border: 0;
+    border:2px solid transparent;
         border-radius: 0.5rem;
-        box-sizing: border-box;
-        font-family: "nimbus", sans-serif;
-        font-size: 1rem;
-        font-weight: 600;
-        line-height: 1.25rem;
-        padding: 0.75rem 1rem;
+        padding:0.5rem;
         text-align: center;
-        text-decoration: none #d1d5db solid;
-        text-decoration-thickness: auto;
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
           0 1px 2px 0 rgba(0, 0, 0, 0.06);
         cursor: pointer;
@@ -45,16 +39,19 @@ main {
         -webkit-user-select: none;
         touch-action: manipulation;
         a{
+          
           img{
             max-width: 50px;
           }
         }
-        &:focus {
-          outline: 2px solid transparent;
-          outline-offset: 2px;
-        }
+        // &:focus {
+        //   outline: 2px solid transparent;
+        //   outline-offset: 2px;
+        // }
         &:hover {
-          background-color: $orange;
+          // background-color: $orange;
+          border:2px solid $orange2;
+          box-shadow: 0px 15px 13px -7px rgba(255, 141, 107,0.75);
         }
   }
   .orderSelection {
@@ -247,7 +244,7 @@ main {
 }
 .menu {
   h1 {
-    margin: 1.5rem 2rem;
+    margin-block: 2rem;
     font-family: "bold", sans-serif;
   }
   .menuGrid {
@@ -284,6 +281,9 @@ li,
 .addIcon {
   cursor: pointer;
 }
+.addIcon:active{
+  box-shadow: rgba(255, 141, 107, 0.16) 0px 1px 4px, rgb(255, 98, 67) 0px 0px 0px 3px;
+}
 
 #menu1,
 #menu2,
@@ -309,11 +309,12 @@ footer {
     min-height: 55vh;
     overflow-y: scroll;
     padding: 0 1rem;
-    .edit{
-      border: 1px solid black;
-    }
     .qty{
+      border: 2px solid transparent;
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+    }
+    .edit{
+      border: 2px solid #ff6243;
     }
     .orderItem {
       border-bottom: 1px solid black;
