@@ -25,6 +25,7 @@ muttonMenu.forEach((e) => {
       <img src="../assets/add-icon.svg" alt="add icon" class="addIcon addBtn">
   </div>`;
 });
+
 mutton.innerHTML = item;
 item = "";
 chickenMenu.forEach((e) => {
