@@ -76,16 +76,17 @@ header {
   align-items: center;
 }
 .decorations .icon {
-  min-width: 150px;
+  width: 150px;
+  margin-block: 1.5rem;
+}
+.decorations .meal {
+  width: 100px;
 }
 
 ul {
   list-style-type: none;
 }
 
-.tabs {
-  margin-top: 1.63rem;
-}
 .tabs ul {
   text-align: center;
 }
@@ -123,6 +124,8 @@ main h1 {
 }
 main .homeTable {
   height: 500px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   overflow-y: scroll;
 }
 main .homeTable ::-webkit-scrollbar-track {

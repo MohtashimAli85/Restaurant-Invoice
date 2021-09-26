@@ -5,6 +5,7 @@
 // $black2:#070600;
 $coral: #ff8d6bff;
 $cultured: #efeff1ff;
+$outrageousOrange: #ff6c47;
 $black: #070600ff;
 $citrine: #d8cc34ff;
 $black-coral: #5c6672ff;
@@ -28,7 +29,6 @@ body {
   height: 100vh;
   background-color: $white;
   user-select: none;
-  
 }
 header,
 footer {
@@ -38,7 +38,7 @@ header,
 footer {
   height: 100vh;
 }
-header{
+header {
   flex-basis: 10%;
 }
 footer {
@@ -74,14 +74,17 @@ header {
 .decorations {
   align-items: center;
   .icon {
-    min-width: 150px;
+    width: 150px;
+    margin-block: 1.5rem;
+  }
+  .meal {
+    width: 100px;
   }
 }
 ul {
   list-style-type: none;
 }
 .tabs {
-  margin-top:1.63rem;
   ul {
     text-align: center;
     li {
@@ -89,13 +92,15 @@ ul {
       border-radius: 10px;
       width: 65px;
       margin: 0 auto;
-      box-shadow: rgba(255, 98, 67, 0.4) 0px 0px 0px 2px, rgba(255, 98, 67, 0.65) 0px 4px 6px -1px, rgba(255, 98, 67, 0.08) 0px 1px 0px inset;
+      box-shadow: rgba(255, 98, 67, 0.4) 0px 0px 0px 2px,
+        rgba(255, 98, 67, 0.65) 0px 4px 6px -1px,
+        rgba(255, 98, 67, 0.08) 0px 1px 0px inset;
       a {
         display: block;
-        padding:0.5rem;
+        padding: 0.5rem;
         font-family: "bold", sans-serif;
         color: $black;
-        img{
+        img {
           max-width: 45px;
         }
       }
@@ -124,6 +129,8 @@ main {
   }
   .homeTable {
     height: 500px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     overflow-y: scroll;
     ::-webkit-scrollbar-track {
       margin: 40px 0 0;
@@ -137,9 +144,8 @@ main {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   width: 99%;
-  
+
   tr {
-   
     td {
       border: 0;
       padding: 10px;
