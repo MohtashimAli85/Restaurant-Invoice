@@ -1,11 +1,15 @@
 $orange: rgb(255, 141, 107);
-$orange2:rgb(255, 98, 67);
+$orange2: rgb(255, 98, 67);
+$outrageousOrange: #ff6c47;
+$orangeBs: #ce5d41;
 $gray: #efeff1;
 $white: #fff;
 $black: #000000;
 $black2: #1b1a1aa2;
 $primary: #11998e;
 $secondary: #38ef7d;
+$blackCoral: #5c6672;
+$blackCoralbs: #5c667259;
 
 @font-face {
   font-family: "montserat";
@@ -22,37 +26,35 @@ $secondary: #38ef7d;
 }
 main {
   margin: 1rem 1rem 0;
-  flex-basis:60%;
-  .home{
+  flex-basis: 60%;
+  .home {
     margin-bottom: 1rem;
   }
-  .homeBtn{
+  .homeBtn {
     background-color: #ffffff;
-    border:2px solid transparent;
-        border-radius: 0.5rem;
-        padding:0.5rem;
-        text-align: center;
-        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
-          0 1px 2px 0 rgba(0, 0, 0, 0.06);
-        cursor: pointer;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-        a{
-          
-          img{
-            max-width: 50px;
-          }
-        }
-        // &:focus {
-        //   outline: 2px solid transparent;
-        //   outline-offset: 2px;
-        // }
-        &:hover {
-          // background-color: $orange;
-          border:2px solid $orange2;
-          box-shadow: 0px 15px 13px -7px rgba(255, 141, 107,0.75);
-        }
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    text-align: center;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    a {
+      img {
+        max-width: 50px;
+      }
+    }
+    // &:focus {
+    //   outline: 2px solid transparent;
+    //   outline-offset: 2px;
+    // }
+    &:hover {
+      // background-color: $orange;
+      border: 2px solid $orange2;
+      box-shadow: 0px 15px 13px -7px rgba(255, 141, 107, 0.75);
+    }
   }
   .orderSelection {
     display: none;
@@ -176,20 +178,20 @@ main {
         }
       }
     }
-    .tableOrder{
+    .tableOrder {
       display: none;
       grid-template-columns: 1fr 1fr 1fr;
-      grid-auto-rows:85px;
+      grid-auto-rows: 85px;
       gap: 2em 1.5em;
       height: 55vh;
       overflow-y: scroll;
-      padding: 2rem 1rem 0px .2rem;
+      padding: 2rem 1rem 0px 0.2rem;
       .table {
         background-color: $white;
         border-radius: 5px;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         align-items: center;
-        
+
         img {
           padding: 1rem;
           padding-right: 0.5rem;
@@ -198,9 +200,8 @@ main {
         h5 {
           font-family: "montserat", sans-serif;
           font-size: 1.2rem;
-          
         }
-        .circle{
+        .circle {
           max-width: 80px;
           cursor: pointer;
         }
@@ -244,7 +245,7 @@ main {
 }
 .menu {
   h1 {
-    margin-block: 2rem;
+    margin-block: 1rem;
     font-family: "bold", sans-serif;
   }
   .menuGrid {
@@ -281,13 +282,15 @@ li,
 .addIcon {
   cursor: pointer;
 }
-.addIcon{
-  padding:0 !important;
+.addIcon {
+  padding: 0 !important;
   width: 40px;
   margin: 1rem;
+  border: 2px solid transparent;
 }
-.addIcon:active{
-  box-shadow: rgba(255, 141, 107, 0.16) 0px 1px 4px, rgb(255, 98, 67) 0px 0px 0px 3px;
+.addIcon:hover {
+  border: 2px solid #7c7c8d;
+  border-radius: 8px;
 }
 
 #menu1,
@@ -299,27 +302,29 @@ li,
 
 footer {
   padding: 0.5rem 0.5rem 0;
-  flex-basis:40%;
+  flex-basis: 40%;
   justify-content: space-between;
   h1 {
     text-align: center;
 
     font-family: "bold", sans-serif;
   }
-  .order,.receipt{
-    flex-basis:48%;
+  .order,
+  .receipt {
+    flex-basis: 48%;
   }
   .orderContainer {
     max-height: 55vh;
     min-height: 55vh;
     overflow-y: scroll;
     padding: 0 1rem;
-    .qty{
+    .qty {
       border: 2px solid transparent;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .edit{
-      border: 2px solid #ff6243;
+    .edit {
+      // border: 2px solid #ff6243;
+      border: 2px solid #7c7c8d;
     }
     .orderItem {
       border-bottom: 1px solid black;
@@ -346,7 +351,7 @@ footer {
         .count {
           p {
             font-family: "nimbus", sans-serif;
-            background-color: $orange;
+            background-color: $outrageousOrange;
             color: $white;
             border-radius: 5px;
             padding: 3px 10px;
@@ -365,7 +370,7 @@ footer {
           .total {
             font-family: "nimbus", sans-serif;
             border-radius: 5px;
-            background-color: $orange;
+            background-color: $outrageousOrange;
             color: $white;
             padding: 3px 10px;
             font-weight: 800;
@@ -387,7 +392,7 @@ footer {
     }
     .container {
       margin-top: 1rem;
-      
+
       div + div {
         margin-top: 1rem;
       }
@@ -419,8 +424,8 @@ footer {
       }
 
       .cancel {
-        &:hover{
-        background-color: #f9fafb;
+        &:hover {
+          background-color: #f9fafb;
         }
         &:focus {
           outline: 2px solid transparent;
@@ -431,29 +436,27 @@ footer {
         }
       }
 
-      
       .orderNow:focus,
       .reserveTable:focus {
         outline: 2px solid transparent;
         outline-offset: 2px;
       }
 
-      
       .orderNow:focus-visible {
         box-shadow: none;
       }
       .orderNow:hover,
       .reserveTable:hover {
-        background-color: #f38260;
+        background-color: $orangeBs;
       }
 
       .orderNow,
       .reserveTable {
-        background-color: $orange;
+        background-color: $outrageousOrange;
         color: $white;
       }
-      .reserveTable{
-        display:none;
+      .reserveTable {
+        display: none;
       }
     }
   }
@@ -471,11 +474,11 @@ footer {
       font-size: 1.5rem;
       font-weight: 700;
       border: none;
-       background-color: $orange;
+      background-color: $outrageousOrange;
       border-radius: 5px;
-      box-shadow: 0px 5px 0px 0px #ff8d6b70;
+      box-shadow: 0px 5px 0px 0px $orangeBs;
       height: 45px;
-      transition:transform 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
   }
 }

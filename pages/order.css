@@ -209,7 +209,7 @@ main .orderSelection .tableOrder .table .circle {
 }
 
 .menu h1 {
-  margin-block: 2rem;
+  margin-block: 1rem;
   font-family: "bold", sans-serif;
 }
 .menu .menuGrid {
@@ -249,10 +249,12 @@ li,
   padding: 0 !important;
   width: 40px;
   margin: 1rem;
+  border: 2px solid transparent;
 }
 
-.addIcon:active {
-  box-shadow: rgba(255, 141, 107, 0.16) 0px 1px 4px, #ff6243 0px 0px 0px 3px;
+.addIcon:hover {
+  border: 2px solid #7c7c8d;
+  border-radius: 8px;
 }
 
 #menu1,
@@ -271,7 +273,8 @@ footer h1 {
   text-align: center;
   font-family: "bold", sans-serif;
 }
-footer .order, footer .receipt {
+footer .order,
+footer .receipt {
   flex-basis: 48%;
 }
 footer .orderContainer {
@@ -285,7 +288,7 @@ footer .orderContainer .qty {
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 footer .orderContainer .edit {
-  border: 2px solid #ff6243;
+  border: 2px solid #7c7c8d;
 }
 footer .orderContainer .orderItem {
   border-bottom: 1px solid black;
@@ -313,7 +316,7 @@ footer .orderContainer .orderItem .orderPrice img {
 }
 footer .orderContainer .orderItem .orderPrice .count p {
   font-family: "nimbus", sans-serif;
-  background-color: #ff8d6b;
+  background-color: #ff6c47;
   color: #fff;
   border-radius: 5px;
   padding: 3px 10px;
@@ -332,7 +335,7 @@ footer .orderContainer .orderItem .orderPrice .calculation .price {
 footer .orderContainer .orderItem .orderPrice .calculation .total {
   font-family: "nimbus", sans-serif;
   border-radius: 5px;
-  background-color: #ff8d6b;
+  background-color: #ff6c47;
   color: #fff;
   padding: 3px 10px;
   font-weight: 800;
@@ -398,11 +401,11 @@ footer .receipt .container .orderNow:focus-visible {
 }
 footer .receipt .container .orderNow:hover,
 footer .receipt .container .reserveTable:hover {
-  background-color: #f38260;
+  background-color: #ce5d41;
 }
 footer .receipt .container .orderNow,
 footer .receipt .container .reserveTable {
-  background-color: #ff8d6b;
+  background-color: #ff6c47;
   color: #fff;
 }
 footer .receipt .container .reserveTable {
@@ -423,9 +426,9 @@ footer .numPad .btn {
   font-size: 1.5rem;
   font-weight: 700;
   border: none;
-  background-color: #ff8d6b;
+  background-color: #ff6c47;
   border-radius: 5px;
-  box-shadow: 0px 5px 0px 0px #ff8d6b70;
+  box-shadow: 0px 5px 0px 0px #ce5d41;
   height: 45px;
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
