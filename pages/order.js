@@ -1,8 +1,16 @@
 import { tables } from "./tables.js";
 import { backBtnArr } from "./reset.js";
-import { assignTables, car, orderNowBtn, reserveTableBtn, tableOrder, carOrder, takeAway, categories, orderSelection } from './reset.js';
-
-
+import {
+  assignTables,
+  car,
+  orderNowBtn,
+  reserveTableBtn,
+  tableOrder,
+  carOrder,
+  takeAway,
+  categories,
+  orderSelection,
+} from "./reset.js";
 
 let delBtns = document.querySelectorAll(".delImg");
 let cancelBtn = document.querySelector(".cancel");
@@ -24,7 +32,7 @@ item = "";
 let name = "",
   price = "",
   qty = "",
-  newItem="",
+  newItem = "",
   tBill = 0;
 const addBtn = document.querySelectorAll(".addBtn");
 document.querySelector(".menu1").click();
@@ -35,14 +43,14 @@ addBtn.forEach((e) => {
     price = item.children[1];
     price = price.innerHTML;
     price = price.split(".");
-    if (name.innerHTML.includes('PD')) {
+    if (name.innerHTML.includes("PD")) {
       console.log(price);
       price[1] = Math.round(Number(price[1]) / 12);
     }
     item = `<div class="orderItem orderItemAnimation">
         <div class="orderName d-flex">
             <h5>${name.innerHTML}</h5>
-            <img src="../assets/delete-icon.svg" alt="delete icon" class="delImg">
+            <img src="../assets/deleteIcon.svg" alt="delete icon" class="delImg">
         </div>
         <div class="orderPrice d-flex">
             <div class="count d-flex">
@@ -61,24 +69,23 @@ addBtn.forEach((e) => {
       });
     }, 100);
     qty = document.querySelector(".qty");
-    newItem = document.querySelector('.new');
+    newItem = document.querySelector(".new");
     delBtns = document.querySelectorAll(".delImg");
     totals = document.querySelectorAll(".total");
     orderItem = document.querySelectorAll(".orderItem");
     let pastEdit = document.querySelector(".edit");
-    if(newItem){
-      newItem.classList.add('edit');
-      newItem.classList.remove('new');
-      if(pastEdit !=null){
-        pastEdit.classList.remove('edit');
+    if (newItem) {
+      newItem.classList.add("edit");
+      newItem.classList.remove("new");
+      if (pastEdit != null) {
+        pastEdit.classList.remove("edit");
       }
     }
-    
 
     item = "";
     delBtns.forEach((e) => {
       e.addEventListener("click", (e) => {
-        e.target.parentNode.parentNode.classList.add('orderItemAnimationR');
+        e.target.parentNode.parentNode.classList.add("orderItemAnimationR");
         setTimeout(() => {
           e.target.parentNode.parentNode.remove();
           totals = document.querySelectorAll(".total");
@@ -101,10 +108,8 @@ addBtn.forEach((e) => {
     qty = document.querySelectorAll(".qty");
     qty.forEach((e) => {
       e.addEventListener("click", () => {
-        
-        if (pastEdit != null)
-          pastEdit.classList.remove('edit');
-        e.classList.add('edit');
+        if (pastEdit != null) pastEdit.classList.remove("edit");
+        e.classList.add("edit");
       });
     });
     items.innerHTML = qty.length;
@@ -124,8 +129,8 @@ cancelBtn.addEventListener("click", () => {
 
 orderNowBtn.addEventListener("click", () => {
   if (items.innerHTML != "0") {
-    display(categories, 'none', 'remove', 'animation');
-    display(orderSelection, 'block', 'add', 'animation');
+    display(categories, "none", "remove", "animation");
+    display(orderSelection, "block", "add", "animation");
     if (takeAway.classList.contains("active")) {
       let name = "";
       orderItem.forEach((e) => {
@@ -140,10 +145,9 @@ orderNowBtn.addEventListener("click", () => {
   }
 });
 
-
 backBtn.addEventListener("click", (e) => {
-  backBtnArr.forEach(e => {
-    console.log('loop');
+  backBtnArr.forEach((e) => {
+    console.log("loop");
     display(e.vname, e.value, e.command, e.class);
   });
   document.querySelector(".menu1").click();
@@ -155,8 +159,8 @@ assignTables.addEventListener("click", (e) => {
     takeAway.classList.remove("active");
   }
   assignTables.classList.add("active");
-  display(tableOrder, 'grid', 'add', 'animation');
-  display(reserveTableBtn, 'block', 'add', 'reserveActive');
+  display(tableOrder, "grid", "add", "animation");
+  display(reserveTableBtn, "block", "add", "reserveActive");
   orderNowBtn.style.display = "none";
   let item = "";
   tables.forEach((e) => {
@@ -193,7 +197,7 @@ car.addEventListener("click", (e) => {
     takeAway.classList.remove("active");
   }
   car.classList.add("active");
-  display(carOrder, 'block', 'add', 'animation');
+  display(carOrder, "block", "add", "animation");
   label.innerHTML = "Car Number";
 });
 
@@ -218,50 +222,47 @@ reserveTableBtn.addEventListener("click", (e) => {
     }
   });
 });
-btns.forEach(e => {
+btns.forEach((e) => {
   e.addEventListener("click", (e) => {
-    let qty = document.querySelector('.edit');
+    let qty = document.querySelector(".edit");
     let eClass = e.target.classList;
     let eText = e.target.textContent;
-    if (!eClass.contains('pressedBtn')) {
-      eClass.add('pressedBtn');
+    if (!eClass.contains("pressedBtn")) {
+      eClass.add("pressedBtn");
     }
     setTimeout(() => {
-      eClass.remove('pressedBtn');
-    }, 600)
+      eClass.remove("pressedBtn");
+    }, 600);
     if (qty != null) {
       if (Number(eText)) {
         qtyEdit(qty, eText);
       }
-      if (eText == '0') {
+      if (eText == "0") {
         qtyEdit(qty, eText);
       }
-      if (eText == 'Del') {
+      if (eText == "Del") {
         let value = qty.innerHTML;
         value = value.slice(0, -1);
-        if(value == "")
-          value = 0;
+        if (value == "") value = 0;
         qty.innerHTML = value;
       }
-      if (eText == 'Enter') {
-        qty.classList.remove('once');
-        qty.classList.remove('edit');
+      if (eText == "Enter") {
+        qty.classList.remove("once");
+        qty.classList.remove("edit");
       }
       updatePrice(qty);
     }
-
   });
 });
 
 function updatePrice(qty) {
-  
   let price = qty.parentElement.nextElementSibling.children[0].innerHTML;
   price = price.split("x");
   price = Number(price[1]);
   let tPrice = qty.parentElement.nextElementSibling.children[1];
   tPrice.innerHTML = price * Number(qty.innerHTML);
   tBill = 0;
-  totals.forEach(e => {
+  totals.forEach((e) => {
     tBill += Number(e.innerHTML);
   });
   bill.innerHTML = tBill;
@@ -274,11 +275,11 @@ function categoriesSelection(category, order) {
   }
 }
 function qtyEdit(e, x) {
-  if (e.classList.contains('once')) {
+  if (e.classList.contains("once")) {
     e.innerHTML += x;
   }
-  if (!e.classList.contains('once')) {
-    e.classList.add('once');
+  if (!e.classList.contains("once")) {
+    e.classList.add("once");
     e.innerHTML = x;
   }
 }
