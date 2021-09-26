@@ -4,71 +4,82 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <link rel="stylesheet" href="style.min.css" />
-    <link rel="stylesheet" href="animation.css">
+    <link rel="stylesheet" href="animation.css" />
     <title>Amin Kabab House</title>
   </head>
   <body>
     <header>
       <div class="decorations d-flex col">
-        <img src="assets/meal-icon.svg" alt="meal icon" class="meal icon" />
+        <img src="assets/meal-icon.png" alt="meal icon" class="meal" />
         <img src="assets/logo.svg" alt="logo icon" class="icon logo" />
       </div>
       <div class="tabs">
         <ul>
-          <li class=""><a href="index.html"><img src="assets/homeIcon.png" alt="home icon"></a></li>
-          <li><a href="pages/order.html"><img src="assets/orderIcon.png" alt="order icon"></a></li>
-          <li><a href="#"><img src="assets/orderHistory.png" alt="order history icon"></a></li>
-          <li><a href="#"><img src="assets/userIcon.png" alt="user icon"></a></li>
+          <li class="">
+            <a href="index.html"
+              ><img src="assets/homeIcon.png" alt="home icon"
+            /></a>
+          </li>
+          <li>
+            <a href="pages/order.html"
+              ><img src="assets/orderIcon.png" alt="order icon"
+            /></a>
+          </li>
+          <li>
+            <a href="#"
+              ><img src="assets/orderHistory.png" alt="order history icon"
+            /></a>
+          </li>
+          <li>
+            <a href="#"><img src="assets/userIcon.png" alt="user icon" /></a>
+          </li>
         </ul>
       </div>
     </header>
     <main>
       <h1>Sales</h1>
       <div class="homeTable">
-      <table class="salesTable">
+        <table class="salesTable">
+          <colgroup>
+            <col width="20%" />
+            <col width="65%" />
+            <col width="20%" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th class="br-t-l">Order ID</th>
+              <th>Description</th>
+              <th class="br-t-r">Amount</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td class="orderID">#1</td>
+              <td>
+                1 Mutton Kabab Handi, 1 Mutton Karahi, 30 Roti, 2 1.5ltr Drinks,
+                1 Water Bottle
+              </td>
+              <td>1850</td>
+            </tr>
+          </tbody>
+
+          <tfoot></tfoot>
+        </table>
+      </div>
+      <table class="tfoot">
         <colgroup>
           <col width="20%" />
           <col width="65%" />
           <col width="20%" />
         </colgroup>
-        <thead>
-          <tr>
-            <th class="br-t-l">Order ID</th>
-            <th>Description</th>
-            <th class="br-t-r">Amount</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td class="orderID">#1</td>
-            <td>
-              1 Mutton Kabab Handi, 1 Mutton Karahi, 30 Roti, 2 1.5ltr Drinks, 1
-              Water Bottle
-            </td>
-            <td>1850</td>
-          </tr>
-        </tbody>
-
-        <tfoot>
-          
-        </tfoot>
+        <tr>
+          <td colspan="2">Total</td>
+          <td>1850</td>
+        </tr>
       </table>
-    </div>
-    <table class="tfoot">
-      <colgroup>
-        <col width="20%" />
-        <col width="65%" />
-        <col width="20%" />
-      </colgroup>
-      <tr>
-        <td colspan="2">Total</td>
-        <td>1850</td>
-      </tr>
-    </table>
-    
     </main>
     <footer>
       <h1>Reserved Table</h1>
@@ -76,8 +87,6 @@
         <li>Table #1</li>
       </ul>
     </footer>
-
-
 
     <script src="index.js"></script>
   </body>
