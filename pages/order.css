@@ -10,6 +10,11 @@
   font-family: "nimbus";
   src: url("../assets/NimbusSanL-Reg.otf");
 }
+main,
+footer {
+  transition: flex-basis 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
 main {
   margin: 1rem 1rem 0;
   flex-basis: 60%;
@@ -269,6 +274,9 @@ footer {
   flex-basis: 40%;
   justify-content: space-between;
 }
+footer .footerCss {
+  flex-basis: 30%;
+}
 footer h1 {
   text-align: center;
   font-family: "bold", sans-serif;
@@ -288,7 +296,7 @@ footer .orderContainer .qty {
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 footer .orderContainer .edit {
-  border: 2px solid #7c7c8d;
+  border: 2px solid #ff6c47;
 }
 footer .orderContainer .orderItem {
   border-bottom: 1px solid black;
@@ -316,8 +324,8 @@ footer .orderContainer .orderItem .orderPrice img {
 }
 footer .orderContainer .orderItem .orderPrice .count p {
   font-family: "nimbus", sans-serif;
-  background-color: #ff6c47;
-  color: #fff;
+  background-color: #fff;
+  color: #000000;
   border-radius: 5px;
   padding: 3px 10px;
   margin: 0 2px;

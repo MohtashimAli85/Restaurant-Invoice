@@ -24,6 +24,12 @@ $blackCoralbs: #5c667259;
   font-family: "nimbus";
   src: url("../assets/NimbusSanL-Reg.otf");
 }
+* {
+}
+main,
+footer {
+  transition: flex-basis 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
 main {
   margin: 1rem 1rem 0;
   flex-basis: 60%;
@@ -304,6 +310,9 @@ footer {
   padding: 0.5rem 0.5rem 0;
   flex-basis: 40%;
   justify-content: space-between;
+  .footerCss {
+    flex-basis: 30%;
+  }
   h1 {
     text-align: center;
 
@@ -324,7 +333,7 @@ footer {
     }
     .edit {
       // border: 2px solid #ff6243;
-      border: 2px solid #7c7c8d;
+      border: 2px solid $outrageousOrange;
     }
     .orderItem {
       border-bottom: 1px solid black;
@@ -351,8 +360,8 @@ footer {
         .count {
           p {
             font-family: "nimbus", sans-serif;
-            background-color: $outrageousOrange;
-            color: $white;
+            background-color: $white;
+            color: $black;
             border-radius: 5px;
             padding: 3px 10px;
             margin: 0 2px;
