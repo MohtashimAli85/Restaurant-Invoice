@@ -7,6 +7,10 @@ export let reserveTableBtn = document.querySelector(".reserveTable");
 export let orderNowBtn = document.querySelector(".orderNow");
 export const assignTables = document.querySelector(".tables");
 export const car = document.querySelector(".car");
+export let numPad = document.querySelector(".numPad");
+export let footerContainer = document.querySelector(".footer");
+export let footer = document.querySelector("footer");
+export let main = document.querySelector("main");
 export let backBtnArr = [
   {
     vname: categories,
@@ -62,4 +66,79 @@ export let backBtnArr = [
     command: "remove",
     class: "active",
   },
+  {
+    vname: numPad,
+    value: "grid",
+    command: "",
+    class: ""
+  },
+  {
+    vname: main,
+    value: "60%",
+    command: "flexBasis",
+    class: ""
+  },
+  {
+    vname: footer,
+    value: "40%",
+    command: "flexBasis",
+    class: ""
+  },
+  {
+    vname: footerContainer,
+    value: "",
+    command: "add",
+    class: "d-flex"
+  },
+  {
+    vname: footerContainer,
+    value: "",
+    command: "remove",
+    class: "footerCss"
+  }
 ];
+
+export let orderNowBtnArr = [
+  {
+    vname: categories,
+    value: "none",
+    command: "remove",
+    class: "animation"
+  },
+  {
+    vname: orderSelection,
+    value: "block",
+    command: "add",
+    class: "animation"
+  },
+  {
+    vname: numPad,
+    value: "none",
+    command: "",
+    class: ""
+  },
+  {
+    vname: footerContainer,
+    value: "",
+    command: "remove",
+    class: "d-flex"
+  },
+  {
+    vname: footerContainer,
+    value: "",
+    command: "add",
+    class: "footerCss"
+  },
+  {
+    vname: main,
+    value: "75%",
+    command: "flexBasis",
+    class: ""
+  },
+  {
+    vname: footer,
+    value: "25%",
+    command: "flexBasis",
+    class: ""
+  }
+]
