@@ -1,5 +1,5 @@
 import { tables } from "./tables.js";
-import { backBtnArr } from "./reset.js";
+import { backBtnArr, orderNowBtnArr } from "./reset.js";
 import {
   assignTables,
   car,
@@ -23,6 +23,8 @@ let totals = document.querySelectorAll(".total");
 let input = document.querySelector(".form__field");
 let label = document.querySelector(".form__label");
 let btns = document.querySelectorAll(".btn");
+
+let body = document.querySelector("body");
 let order = [];
 let item = "",
   allcircles = "",
@@ -36,6 +38,7 @@ let name = "",
   tBill = 0;
 const addBtn = document.querySelectorAll(".addBtn");
 document.querySelector(".menu1").click();
+print();
 addBtn.forEach((e) => {
   e.addEventListener("click", (e) => {
     item = e.target.previousElementSibling;
@@ -44,10 +47,23 @@ addBtn.forEach((e) => {
     price = price.innerHTML;
     price = price.split(".");
     if (name.innerHTML.includes("PD")) {
-      console.log(price);
+      // console.log(price);
       price[1] = Math.round(Number(price[1]) / 12);
     }
-    item = `<div class="orderItem orderItemAnimation">
+    orderItem = document.querySelectorAll(".orderItem");
+    let match = false;
+    if (orderItem.length > 0) {
+      orderItem.forEach(e => {
+        if (name.innerHTML == e.children[0].children[0].innerHTML) {
+          let qty = e.children[1].children[0].children[0];
+          qty.innerHTML = (1 + Number(qty.innerHTML));
+          match = true;
+          updatePrice(qty);
+        }
+      });
+
+    } if (!match) {
+      item = `<div class="orderItem orderItemAnimation">
         <div class="orderName d-flex">
             <h5>${name.innerHTML}</h5>
             <img src="../assets/deleteIcon.svg" alt="delete icon" class="delImg">
@@ -62,7 +78,8 @@ addBtn.forEach((e) => {
             </div>
         </div>
     </div>`;
-    orderContainer.innerHTML += item;
+      orderContainer.innerHTML += item;
+    }
     setTimeout(() => {
       document.querySelectorAll(".orderItem").forEach((e) => {
         e.classList.remove("orderItemAnimation");
@@ -99,15 +116,17 @@ addBtn.forEach((e) => {
           totals.forEach((e) => {
             tBill += Number(e.innerHTML);
           });
-          console.log(tBill);
+          // console.log(tBill);
           bill.innerHTML = tBill;
         }, 500);
       });
     });
 
     qty = document.querySelectorAll(".qty");
+
     qty.forEach((e) => {
       e.addEventListener("click", () => {
+        pastEdit = document.querySelector(".edit");
         if (pastEdit != null) pastEdit.classList.remove("edit");
         e.classList.add("edit");
       });
@@ -119,6 +138,7 @@ addBtn.forEach((e) => {
     });
     bill.innerHTML = tBill;
   });
+
 });
 
 cancelBtn.addEventListener("click", () => {
@@ -129,25 +149,30 @@ cancelBtn.addEventListener("click", () => {
 
 orderNowBtn.addEventListener("click", () => {
   if (items.innerHTML != "0") {
-    display(categories, "none", "remove", "animation");
-    display(orderSelection, "block", "add", "animation");
+    orderNowBtnArr.forEach(e => {
+      display(e.vname, e.value, e.command, e.class);
+    })
+    body.classList.add("animation");
     if (takeAway.classList.contains("active")) {
       let name = "";
+      orderItem = document.querySelectorAll(".orderItem");
       orderItem.forEach((e) => {
-        name += `${e.children[0].children[0].innerHTML} ${e.children[1].children[0].children[1].innerHTML}, `;
+        console.log(e.children[1].children[0].children[1]);
+        name += `${e.children[0].children[0].innerHTML} ${e.children[1].children[0].children[0].innerHTML}, `;
       });
       name = name.slice(0, -2);
       order.push({
         description: name,
         amount: Number(bill.innerHTML),
       });
+      localStorage.setItem("takeAway", JSON.stringify(order));
+      print();
     }
   }
 });
 
 backBtn.addEventListener("click", (e) => {
   backBtnArr.forEach((e) => {
-    console.log("loop");
     display(e.vname, e.value, e.command, e.class);
   });
   document.querySelector(".menu1").click();
@@ -254,7 +279,13 @@ btns.forEach((e) => {
     }
   });
 });
-
+function print() {
+  if (localStorage.getItem("takeAway")) {
+    console.log(localStorage.getItem("takeAway"));
+  } else {
+    console.log('empty');
+  }
+}
 function updatePrice(qty) {
   let price = qty.parentElement.nextElementSibling.children[0].innerHTML;
   price = price.split("x");
@@ -285,7 +316,11 @@ function qtyEdit(e, x) {
 }
 function display(variableName, value, command, cName) {
   if (value != null) {
-    variableName.style.display = value;
+    if (command == "flexBasis") {
+      variableName.style.flexBasis = value;
+    } else {
+      variableName.style.display = value;
+    }
   }
   if (command == "add") {
     variableName.classList.add(cName);
