@@ -1,5 +1,5 @@
 import { tables } from "./tables.js";
-import { backBtnArr, orderNowBtnArr } from "./reset.js";
+import { backBtnArr, footer, orderNowBtnArr } from "./reset.js";
 import {
   assignTables,
   car,
@@ -23,8 +23,9 @@ let totals = document.querySelectorAll(".total");
 let input = document.querySelector(".form__field");
 let label = document.querySelector(".form__label");
 let btns = document.querySelectorAll(".btn");
-
+let main = document.querySelector("main");
 let body = document.querySelector("body");
+let menuGrid = "";
 let order = [];
 let item = "",
   allcircles = "",
@@ -40,24 +41,32 @@ const addBtn = document.querySelectorAll(".addBtn");
 document.querySelector(".menu1").click();
 print();
 addBtn.forEach((e) => {
+
   e.addEventListener("click", (e) => {
+    menuGrid = document.querySelector(".menuGrid");
+    menuGrid.classList.add("col-3");
+    footer.style.display = "block";
+    footer.style.flexBasis = "35%";
+    main.style.flexBasis = "65%";
+
     item = e.target.previousElementSibling;
-    name = item.firstElementChild;
-    price = item.children[1];
-    price = price.innerHTML;
+    name = item.children[1].children[0].innerHTML;
+    price = item.children[1].children[1].innerHTML;
     price = price.split(".");
-    if (name.innerHTML.includes("PD")) {
+    if (name.includes("PD")) {
       // console.log(price);
       price[1] = Math.round(Number(price[1]) / 12);
     }
     orderItem = document.querySelectorAll(".orderItem");
     let match = false;
     if (orderItem.length > 0) {
+      console.log();
       orderItem.forEach(e => {
-        if (name.innerHTML == e.children[0].children[0].innerHTML) {
+        if (name == e.children[0].children[0].innerHTML) {
           let qty = e.children[1].children[0].children[0];
           qty.innerHTML = (1 + Number(qty.innerHTML));
           match = true;
+          // qty = document.querySelectorAll(".qty")
           updatePrice(qty);
         }
       });
@@ -65,7 +74,7 @@ addBtn.forEach((e) => {
     } if (!match) {
       item = `<div class="orderItem orderItemAnimation">
         <div class="orderName d-flex">
-            <h5>${name.innerHTML}</h5>
+            <h5>${name}</h5>
             <img src="../assets/deleteIcon.svg" alt="delete icon" class="delImg">
         </div>
         <div class="orderPrice d-flex">
@@ -79,6 +88,7 @@ addBtn.forEach((e) => {
         </div>
     </div>`;
       orderContainer.innerHTML += item;
+      match = false;
     }
     setTimeout(() => {
       document.querySelectorAll(".orderItem").forEach((e) => {
@@ -102,8 +112,13 @@ addBtn.forEach((e) => {
     item = "";
     delBtns.forEach((e) => {
       e.addEventListener("click", (e) => {
+
         e.target.parentNode.parentNode.classList.add("orderItemAnimationR");
+
+
+
         setTimeout(() => {
+
           e.target.parentNode.parentNode.remove();
           totals = document.querySelectorAll(".total");
           qty = document.querySelectorAll(".qty");
@@ -118,6 +133,13 @@ addBtn.forEach((e) => {
           });
           // console.log(tBill);
           bill.innerHTML = tBill;
+          if (tBill == 0) {
+            footer.style.flexBasis = "0%";
+            footer.style.display = "none";
+            main.style.flexBasis = "100%";
+            menuGrid = document.querySelector(".menuGrid");
+            menuGrid.classList.remove("col-3");
+          }
         }, 500);
       });
     });
@@ -137,6 +159,11 @@ addBtn.forEach((e) => {
       tBill += Number(e.innerHTML);
     });
     bill.innerHTML = tBill;
+    if (!tBill) {
+      console.log('l');
+      menuGrid = document.querySelector(".menuGrid");
+      menuGrid.classList.remove("col-3");
+    }
   });
 
 });
