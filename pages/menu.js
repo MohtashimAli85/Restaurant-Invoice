@@ -17,24 +17,27 @@ let orderNowBtn = document.querySelector(".orderNow");
 let items = document.querySelector(".items");
 muttonMenu.forEach((e) => {
     item += `<div class="item d-flex">
-      <img src="../assets/rack-of-lamb.png" alt="mutton img">
-      <div>
-      <h6>${e.name} (${e.type})</h6>
-      <p>Rs.${e.price}</p>
-      </div>
+    <div class="d-flex v-center">
+        <img src="../assets/rack-of-lamb.png" alt="mutton img">
+        <div>
+        <h6>${e.name} (${e.type})</h6>
+        <p>Rs.${e.price}</p>
+        </div>
+    </div>
       <img src="../assets/add-icon.svg" alt="add icon" class="addIcon addBtn">
   </div>`;
 });
-
 mutton.innerHTML = item;
 item = "";
 chickenMenu.forEach((e) => {
     item += `<div class="item d-flex">
+    <div class="d-flex v-center">
      <img src="../assets/chicken-leg.png" alt="img">
      <div>
      <h6>${e.name} (${e.type})</h6>
      <p>Rs.${e.price}</p>
      </div>
+    </div>
      <img src="../assets/add-icon.svg" alt="add icon" class="addIcon addBtn">
   </div>`;
 });
@@ -43,11 +46,13 @@ item = "";
 
 sideOrderMenu.forEach((e) => {
     item += `<div class="item d-flex">
+    <div class="d-flex v-center">
      <img src="../assets/menu.png" alt="img">
      <div>
      <h6>${e.name} (${e.type})</h6>
      <p>Rs.${e.price}</p>
      </div>
+    </div>
      <img src="../assets/add-icon.svg" alt="add icon" class="addIcon addBtn">
   </div>`;
 });
