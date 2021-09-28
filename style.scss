@@ -70,7 +70,12 @@ header {
 .br-t-r {
   border-top-right-radius: 9px;
 }
-
+.v-center {
+  align-items: center;
+}
+.col-3 {
+  grid-template-columns: repeat(3, minmax(10px, 1fr)) !important;
+}
 .decorations {
   align-items: center;
   .icon {
