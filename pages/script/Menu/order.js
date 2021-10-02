@@ -1,5 +1,5 @@
-import { footer, orderNowBtnArr, orderNowBtn, takeAway } from "../Component/reset";
-import { updatePrice, display } from "../function/function.js";
+import { footer, orderNowBtnArr, orderNowBtn, takeAway } from "../Component/reset.js";
+import { updatePrice, display } from "../functions/function.js";
 import { addBtn } from "./menu.js";
 let delBtns = document.querySelectorAll(".delImg");
 let cancelBtn = document.querySelector(".cancel");
@@ -24,7 +24,6 @@ let name = "",
   tBill = 0;
 if (document.querySelector(".menu1")) {
   document.querySelector(".menu1").click();
-  console.log(document.querySelector(".menu1"));
 }
 addBtn.forEach((e) => {
 
@@ -133,7 +132,6 @@ addBtn.forEach((e) => {
     });
     bill.innerHTML = tBill;
     if (!tBill) {
-      console.log('l');
       menuGrid = document.querySelector(".menuGrid");
       menuGrid.classList.remove("col-3");
     }
@@ -145,6 +143,12 @@ cancelBtn.addEventListener("click", () => {
   orderContainer.innerHTML = "";
   items.innerHTML = 0;
   bill.innerHTML = 0;
+  footer.style.flexBasis = "0%";
+  main.style.flexBasis = "100%";
+  footer.style.display = "none";
+  menuGrid = document.querySelector(".menuGrid");
+  menuGrid.classList.remove("col-3");
+
 });
 
 orderNowBtn.addEventListener("click", () => {
@@ -153,6 +157,7 @@ orderNowBtn.addEventListener("click", () => {
       display(e.vname, e.value, e.command, e.class);
     })
     body.classList.add("animation");
+    orderContainer.style.height = "66vh";
     if (takeAway.classList.contains("active")) {
       let name = "";
       orderItem = document.querySelectorAll(".orderItem");
