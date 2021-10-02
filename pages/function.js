@@ -58,4 +58,30 @@ export function selectedMenu(menu, id) {
 export function activeChecker(menu, id) {
     document.querySelector(id).style.display = "none";
     menu.classList.remove("active");
+    console.log(id);
+}
+export function validateActive(m1, m2, m3, m4) {
+    let arr = [
+        {
+            Vname: m1,
+            id: "#menu1"
+        },
+        {
+            Vname: m2,
+            id: "#menu2"
+        },
+        {
+            Vname: m3,
+            id: "#menu1"
+        },
+        {
+            Vname: m4,
+            id: "#menu1"
+        }];
+    arr.forEach(e => {
+        if (e.Vname.classList.contains("active")) {
+            activeChecker(e.Vname, e.id);
+        }
+    })
+
 }
