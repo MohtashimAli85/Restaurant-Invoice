@@ -1,8 +1,8 @@
 import { muttonMenu } from "../Data/mutton.js";
 import { chickenMenu } from "../Data/chicken.js";
 import { sideOrderMenu } from "../Data/sideOrder.js";
-import { validateActive, menuFn, fillingData } from "./function.js";
-import { } from "./test.js";
+import { validateActive, menuFn, fillingData } from "../functions/function.js";
+// import { } from "../test.js";
 const menuOne = document.querySelector(".menu1");
 const menuTwo = document.querySelector(".menu2");
 const menuThree = document.querySelector(".menu3");
