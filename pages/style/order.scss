@@ -13,16 +13,16 @@ $blackCoralbs: #5c667259;
 
 @font-face {
   font-family: "montserat";
-  src: url("../assets/Montserrat-Regular.otf");
+  src: url("../../assets/Montserrat-Regular.otf");
 }
 
 @font-face {
   font-family: "bold";
-  src: url("../assets/Montserrat-SemiBold.otf");
+  src: url("../../assets/Montserrat-SemiBold.otf");
 }
 @font-face {
   font-family: "nimbus";
-  src: url("../assets/NimbusSanL-Reg.otf");
+  src: url("../../assets/NimbusSanL-Reg.otf");
 }
 * {
 }
@@ -226,7 +226,7 @@ main {
     justify-content: space-between;
     gap: 1.5rem;
     li {
-      flex-basis: 30%;
+      flex-basis: 22%;
       align-items: center;
       background-color: $white;
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -259,9 +259,9 @@ main {
   }
   .menuGrid {
     display: grid;
-    grid-auto-rows: 85px;
-    gap: 2em 1.5em;
-    height: 45vh;
+    grid-auto-rows: 1fr;
+    gap: 1em 1.5em;
+    height: 40vh;
     overflow-y: auto;
     padding: 6px 1rem 6px 0.2rem;
     .item {
@@ -338,8 +338,7 @@ footer {
     flex-basis: 48%;
   }
   .orderContainer {
-    max-height: 55vh;
-    min-height: 55vh;
+    height: 55vh;
     overflow-y: auto;
     padding: 0 1rem;
     .qty {
@@ -520,10 +519,24 @@ footer {
       padding: 0;
     }
   }
+  .categories {
+    ul {
+      li {
+        flex-basis: 30%;
+      }
+    }
+  }
 }
 @media screen and (min-width: 1300px) {
   .menuGrid {
     grid-template-columns: repeat(3, minmax(10px, 1fr));
+  }
+  .categories {
+    ul {
+      li {
+        flex-basis: 22%;
+      }
+    }
   }
 }
 @media screen and (min-width: 1500px) {
