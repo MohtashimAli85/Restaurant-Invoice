@@ -1,35 +1,21 @@
-import { tables } from "./tables.js";
-import { backBtnArr, footer, orderNowBtnArr } from "./reset.js";
-import {
-  assignTables,
-  car,
-  orderNowBtn,
-  reserveTableBtn,
-  tableOrder,
-  carOrder,
-  takeAway,
-  categories,
-  orderSelection,
-} from "./reset.js";
-
+import { footer, orderNowBtnArr } from "./reset.js";
+import { orderNowBtn, takeAway } from "./reset.js";
+import { updatePrice, display } from "./function.js";
+import { addBtn } from "./menu.js";
 let delBtns = document.querySelectorAll(".delImg");
 let cancelBtn = document.querySelector(".cancel");
-let backBtn = document.querySelector(".backBtn");
 const orderContainer = document.querySelector(".orderContainer");
 let orderItem = document.querySelectorAll(".orderItem");
 let items = document.querySelector(".items");
-let bill = document.querySelector(".bill");
-let totals = document.querySelectorAll(".total");
-let input = document.querySelector(".form__field");
-let label = document.querySelector(".form__label");
-let btns = document.querySelectorAll(".btn");
+export let bill = document.querySelector(".bill");
+export let totals = document.querySelectorAll(".total");
 let main = document.querySelector("main");
 let body = document.querySelector("body");
 let menuGrid = "";
-let order = [];
-let item = "",
-  allcircles = "",
-  allTables = "";
+let orderArray = localStorage.getItem('takeAway')
+  ? JSON.parse(localStorage.getItem('takeAway'))
+  : [];
+let item = "";
 
 item = "";
 let name = "",
@@ -37,24 +23,24 @@ let name = "",
   qty = "",
   newItem = "",
   tBill = 0;
-const addBtn = document.querySelectorAll(".addBtn");
-document.querySelector(".menu1").click();
-print();
+// addBtn = document.querySelectorAll(".addBtn");
+if (document.querySelector(".menu1")) {
+  document.querySelector(".menu1").click();
+  console.log(document.querySelector(".menu1"));
+}
+// console.log(addBtn);
 addBtn.forEach((e) => {
 
   e.addEventListener("click", (e) => {
-    menuGrid = document.querySelector(".menuGrid");
-    menuGrid.classList.add("col-3");
     footer.style.display = "block";
-    footer.style.flexBasis = "35%";
-    main.style.flexBasis = "65%";
+    footer.style.flexBasis = "40%";
+    main.style.flexBasis = "60%";
 
     item = e.target.previousElementSibling;
     name = item.children[1].children[0].innerHTML;
     price = item.children[1].children[1].innerHTML;
     price = price.split(".");
     if (name.includes("PD")) {
-      // console.log(price);
       price[1] = Math.round(Number(price[1]) / 12);
     }
     orderItem = document.querySelectorAll(".orderItem");
@@ -66,7 +52,6 @@ addBtn.forEach((e) => {
           let qty = e.children[1].children[0].children[0];
           qty.innerHTML = (1 + Number(qty.innerHTML));
           match = true;
-          // qty = document.querySelectorAll(".qty")
           updatePrice(qty);
         }
       });
@@ -112,13 +97,8 @@ addBtn.forEach((e) => {
     item = "";
     delBtns.forEach((e) => {
       e.addEventListener("click", (e) => {
-
         e.target.parentNode.parentNode.classList.add("orderItemAnimationR");
-
-
-
         setTimeout(() => {
-
           e.target.parentNode.parentNode.remove();
           totals = document.querySelectorAll(".total");
           qty = document.querySelectorAll(".qty");
@@ -131,21 +111,17 @@ addBtn.forEach((e) => {
           totals.forEach((e) => {
             tBill += Number(e.innerHTML);
           });
-          // console.log(tBill);
           bill.innerHTML = tBill;
           if (tBill == 0) {
             footer.style.flexBasis = "0%";
-            footer.style.display = "none";
             main.style.flexBasis = "100%";
-            menuGrid = document.querySelector(".menuGrid");
-            menuGrid.classList.remove("col-3");
+            footer.style.display = "none";
           }
         }, 500);
       });
     });
 
     qty = document.querySelectorAll(".qty");
-
     qty.forEach((e) => {
       e.addEventListener("click", () => {
         pastEdit = document.querySelector(".edit");
@@ -184,82 +160,19 @@ orderNowBtn.addEventListener("click", () => {
       let name = "";
       orderItem = document.querySelectorAll(".orderItem");
       orderItem.forEach((e) => {
-        console.log(e.children[1].children[0].children[1]);
         name += `${e.children[0].children[0].innerHTML} ${e.children[1].children[0].children[0].innerHTML}, `;
       });
       name = name.slice(0, -2);
-      order.push({
+      orderArray.push({
         description: name,
         amount: Number(bill.innerHTML),
       });
-      localStorage.setItem("takeAway", JSON.stringify(order));
-      print();
+      localStorage.setItem("takeAway", JSON.stringify(orderArray));
+      console.log(localStorage.getItem("takeAway"));
     }
   }
 });
 
-backBtn.addEventListener("click", (e) => {
-  backBtnArr.forEach((e) => {
-    display(e.vname, e.value, e.command, e.class);
-  });
-  document.querySelector(".menu1").click();
-});
-
-assignTables.addEventListener("click", (e) => {
-  categoriesSelection(car, carOrder);
-  if (takeAway.classList.contains("active")) {
-    takeAway.classList.remove("active");
-  }
-  assignTables.classList.add("active");
-  display(tableOrder, "grid", "add", "animation");
-  display(reserveTableBtn, "block", "add", "reserveActive");
-  orderNowBtn.style.display = "none";
-  let item = "";
-  tables.forEach((e) => {
-    item += `<div class="d-flex table">
-    <img src="../assets/order.svg" alt="order">
-    <h5>Table ${e.tableNo}</h5>
-    <img src="../assets/circle-w.png" alt="circle" class="circle">
-  </div>`;
-  });
-  tableOrder.innerHTML = item;
-  item = "";
-  allcircles = document.querySelectorAll(".circle");
-  allTables = document.querySelectorAll(".table");
-  allcircles.forEach((e) => {
-    e.addEventListener("click", (e) => {
-      let img = e.target;
-      allTables.forEach((t) => {
-        if (t.classList.contains("checked")) {
-          t.children[2].src = "../assets/circle-w.png";
-          t.classList.remove("checked");
-        } else {
-          img.src = "../assets/circle-o.png";
-          img.parentNode.classList.add("checked");
-          img.parentNode.classList.add("new");
-        }
-      });
-    });
-  });
-});
-
-car.addEventListener("click", (e) => {
-  categoriesSelection(assignTables, tableOrder);
-  if (takeAway.classList.contains("active")) {
-    takeAway.classList.remove("active");
-  }
-  car.classList.add("active");
-  display(carOrder, "block", "add", "animation");
-  label.innerHTML = "Car Number";
-});
-
-takeAway.addEventListener("click", (e) => {
-  categoriesSelection(car, carOrder);
-  categoriesSelection(assignTables, tableOrder);
-  takeAway.classList.add("active");
-  reserveTableBtn.style.display = "none";
-  orderNowBtn.style.display = "block";
-});
 
 let array = [];
 let itemNames = "";
@@ -267,92 +180,3 @@ let itemPrice = "";
 let itemqty = "";
 let amount = "";
 let totalAmount = "";
-
-reserveTableBtn.addEventListener("click", (e) => {
-  allTables.forEach((t) => {
-    if (t.classList.contains("new")) {
-    }
-  });
-});
-btns.forEach((e) => {
-  e.addEventListener("click", (e) => {
-    let qty = document.querySelector(".edit");
-    let eClass = e.target.classList;
-    let eText = e.target.textContent;
-    if (!eClass.contains("pressedBtn")) {
-      eClass.add("pressedBtn");
-    }
-    setTimeout(() => {
-      eClass.remove("pressedBtn");
-    }, 600);
-    if (qty != null) {
-      if (Number(eText)) {
-        qtyEdit(qty, eText);
-      }
-      if (eText == "0") {
-        qtyEdit(qty, eText);
-      }
-      if (eText == "Del") {
-        let value = qty.innerHTML;
-        value = value.slice(0, -1);
-        if (value == "") value = 0;
-        qty.innerHTML = value;
-      }
-      if (eText == "Enter") {
-        qty.classList.remove("once");
-        qty.classList.remove("edit");
-      }
-      updatePrice(qty);
-    }
-  });
-});
-function print() {
-  if (localStorage.getItem("takeAway")) {
-    console.log(localStorage.getItem("takeAway"));
-  } else {
-    console.log('empty');
-  }
-}
-function updatePrice(qty) {
-  let price = qty.parentElement.nextElementSibling.children[0].innerHTML;
-  price = price.split("x");
-  price = Number(price[1]);
-  let tPrice = qty.parentElement.nextElementSibling.children[1];
-  tPrice.innerHTML = price * Number(qty.innerHTML);
-  tBill = 0;
-  totals.forEach((e) => {
-    tBill += Number(e.innerHTML);
-  });
-  bill.innerHTML = tBill;
-}
-
-function categoriesSelection(category, order) {
-  if (category.classList.contains("active")) {
-    category.classList.remove("active");
-    order.style.display = "none";
-  }
-}
-function qtyEdit(e, x) {
-  if (e.classList.contains("once")) {
-    e.innerHTML += x;
-  }
-  if (!e.classList.contains("once")) {
-    e.classList.add("once");
-    e.innerHTML = x;
-  }
-}
-function display(variableName, value, command, cName) {
-  if (value != null) {
-    if (command == "flexBasis") {
-      variableName.style.flexBasis = value;
-    } else {
-      variableName.style.display = value;
-    }
-  }
-  if (command == "add") {
-    variableName.classList.add(cName);
-  }
-  if (command == "remove") {
-    variableName.classList.remove(cName);
-  }
-}
