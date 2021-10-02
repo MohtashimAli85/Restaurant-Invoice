@@ -23,12 +23,10 @@ let name = "",
   qty = "",
   newItem = "",
   tBill = 0;
-// addBtn = document.querySelectorAll(".addBtn");
 if (document.querySelector(".menu1")) {
   document.querySelector(".menu1").click();
   console.log(document.querySelector(".menu1"));
 }
-// console.log(addBtn);
 addBtn.forEach((e) => {
 
   e.addEventListener("click", (e) => {
