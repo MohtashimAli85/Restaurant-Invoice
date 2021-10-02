@@ -77,7 +77,7 @@ header {
 }
 
 .col-3 {
-  grid-template-columns: repeat(3, minmax(10px, 1fr)) !important;
+  grid-template-columns: repeat(2, minmax(10px, 1fr)) !important;
 }
 
 .decorations {
