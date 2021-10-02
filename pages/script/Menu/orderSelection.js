@@ -1,6 +1,6 @@
 import { tables } from "../Data/tables.js";
 import { backBtnArr, assignTables, car, orderNowBtn, reserveTableBtn, tableOrder, carOrder, takeAway } from "../Component/reset.js";
-import { categoriesSelection, display } from "../function/function.js";
+import { categoriesSelection, display } from "../functions/function.js";
 let backBtn = document.querySelector(".backBtn");
 let input = document.querySelector(".form__field");
 let label = document.querySelector(".form__label");
