@@ -1,4 +1,4 @@
-import { updatePrice, qtyEdit } from "../functions/function";
+import { updatePrice, qtyEdit } from "../functions/function.js";
 let btns = document.querySelectorAll(".btn");
 
 btns.forEach((e) => {
