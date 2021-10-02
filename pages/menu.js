@@ -1,11 +1,12 @@
 import { muttonMenu } from "./mutton.js";
 import { chickenMenu } from "./chicken.js";
 import { sideOrderMenu } from "./sideOrder.js";
-import { menuSelection, selectedMenu, activeChecker } from "./function.js";
+import { menuSelection, selectedMenu, validateActive } from "./function.js";
 const menuOne = document.querySelector(".menu1");
 const menuTwo = document.querySelector(".menu2");
 const menuThree = document.querySelector(".menu3");
 const menuFour = document.querySelector(".menu4");
+
 const mutton = document.getElementById("mutton");
 const chicken = document.getElementById("chicken");
 const drinks = document.getElementById("drinks");
@@ -115,15 +116,7 @@ menuFour.addEventListener("click", () => {
 });
 orderNowBtn.addEventListener("click", () => {
     if (items.innerHTML != "0") {
-        if (menuOne.classList.contains("active")) {
-            activeChecker(menuOne, "#menu1");
-        } else if (menuTwo.classList.contains("active")) {
-            activeChecker(menuTwo, "#menu2");
-        } else if (menuThree.classList.contains("active")) {
-            activeChecker(menuThree, "#menu3");
-        } else if (menuFour.classList.contains("active")) {
-            activeChecker(menuFour, "#menu4");
-        }
+        validateActive(menuOne, menuTwo, menuThree, menuFour);
     }
 });
 
