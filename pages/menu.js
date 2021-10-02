@@ -1,8 +1,7 @@
-import { tables } from "./tables.js";
 import { muttonMenu } from "./mutton.js";
 import { chickenMenu } from "./chicken.js";
 import { sideOrderMenu } from "./sideOrder.js";
-
+import { menuSelection, selectedMenu, activeChecker } from "./function.js";
 const menuOne = document.querySelector(".menu1");
 const menuTwo = document.querySelector(".menu2");
 const menuThree = document.querySelector(".menu3");
@@ -128,20 +127,4 @@ orderNowBtn.addEventListener("click", () => {
     }
 });
 
-function menuSelection(menu, id) {
-    if (menu.classList.contains("active")) {
-        document.querySelector(`${id}`).style.display = "none";
-        menu.classList.remove("active");
-    }
-}
-
-function selectedMenu(menu, id) {
-    document.querySelector(id).style.display = "block";
-    document.querySelector(id).classList.add("menuAnimation");
-    menu.classList.add("active");
-}
-
-function activeChecker(menu, id) {
-    document.querySelector(id).style.display = "none";
-    menu.classList.remove("active");
-}
+export let addBtn = document.querySelectorAll('.addBtn');
