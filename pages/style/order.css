@@ -1,0 +1,474 @@
+@font-face {
+  font-family: "montserat";
+  src: url("../assets/Montserrat-Regular.otf");
+}
+@font-face {
+  font-family: "bold";
+  src: url("../assets/Montserrat-SemiBold.otf");
+}
+@font-face {
+  font-family: "nimbus";
+  src: url("../assets/NimbusSanL-Reg.otf");
+}
+main,
+footer {
+  transition: flex-basis 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+main {
+  margin: 10px 1rem 0;
+  flex-basis: 100%;
+}
+main .home {
+  margin-bottom: 10px;
+}
+main .homeBtn {
+  background-color: #ffffff;
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+  padding: 5px;
+  text-align: center;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+main .homeBtn a img {
+  max-width: 50px;
+}
+main .homeBtn:hover {
+  border: 2px solid #ff6243;
+  box-shadow: 0px 15px 13px -7px rgba(255, 141, 107, 0.75);
+}
+main .orderSelection {
+  display: none;
+}
+main .orderSelection .orderTitle {
+  align-items: center;
+  margin-bottom: 1rem;
+}
+main .orderSelection .orderTitle h1 {
+  font-family: "bold", sans-serif;
+  margin: 0 1rem;
+}
+main .orderSelection .orderTitle .backBtn {
+  background: #ff8d6b;
+  border-radius: 15px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
+}
+main .orderSelection .orderType {
+  padding: 10px 0 25px;
+}
+main .orderSelection .orderType .options {
+  align-items: center;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  flex-basis: 100%;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+main .orderSelection .orderType .options img {
+  padding: 1rem;
+  max-width: 100px;
+}
+main .orderSelection .orderType .options h5 {
+  font-family: "nimbus", sans-serif;
+  font-size: 1.2rem;
+}
+main .orderSelection .orderType .options + .options {
+  margin-left: 1.5rem;
+}
+main .orderSelection .orderType .active {
+  background-color: #ff8d6b !important;
+  color: #fff;
+}
+main .orderSelection .carOrder {
+  display: none;
+  padding: 1rem;
+  /* reset input */
+}
+main .orderSelection .carOrder .form__group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 50%;
+}
+main .orderSelection .carOrder .form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #1b1a1aa2;
+  outline: 0;
+  font-size: 1.3rem;
+  color: #1b1a1aa2;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+main .orderSelection .carOrder .form__field::placeholder {
+  color: transparent;
+}
+main .orderSelection .carOrder .form__field:placeholder-shown ~ .form__label {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 20px;
+}
+main .orderSelection .carOrder .form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #1b1a1aa2;
+}
+main .orderSelection .carOrder .form__field:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #ff8d6b, #efeff1);
+  border-image-slice: 1;
+}
+main .orderSelection .carOrder .form__field:focus ~ .form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #ff8d6b;
+  font-weight: 700;
+}
+main .orderSelection .carOrder .form__field:required, main .orderSelection .carOrder .form__field:invalid {
+  box-shadow: none;
+}
+main .orderSelection .tableOrder {
+  display: none;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: 85px;
+  gap: 2em 1.5em;
+  height: 55vh;
+  overflow-y: auto;
+  padding: 2rem 1rem 0px 0.2rem;
+}
+main .orderSelection .tableOrder .table {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  align-items: center;
+}
+main .orderSelection .tableOrder .table img {
+  padding: 1rem;
+  padding-right: 0.5rem;
+  max-width: 80px;
+}
+main .orderSelection .tableOrder .table h5 {
+  font-family: "montserat", sans-serif;
+  font-size: 1.2rem;
+}
+main .orderSelection .tableOrder .table .circle {
+  max-width: 80px;
+  cursor: pointer;
+}
+
+.categories h1 {
+  margin-bottom: 15px;
+  font-family: "bold", sans-serif;
+}
+.categories ul {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.categories ul li {
+  flex-basis: 30%;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+}
+.categories ul li img {
+  padding: 1rem;
+  max-width: 80px;
+}
+.categories ul li h5 {
+  font-family: "bold", sans-serif;
+}
+.categories ul .active {
+  color: #fff;
+}
+.active {
+  color: #000000;
+}
+
+.menu h1 {
+  margin: 2rem 0 1rem;
+  font-family: "bold", sans-serif;
+}
+.menu .menuGrid {
+  display: grid;
+  grid-auto-rows: 85px;
+  gap: 2em 1.5em;
+  height: 45vh;
+  overflow-y: auto;
+  padding: 6px 1rem 6px 0.2rem;
+}
+.menu .menuGrid .item {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: rgba(141, 67, 67, 0.24) 0px 3px 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+.menu .menuGrid .item img {
+  padding: 1rem;
+  padding-right: 0.5rem;
+  max-width: 66px;
+}
+.menu .menuGrid .item h5,
+.menu .menuGrid .item span,
+.menu .menuGrid .item p {
+  font-family: "montserat";
+}
+.menu .menuGrid .item h6 {
+  font-size: 12.5px;
+}
+.menu .menuGrid .item span,
+.menu .menuGrid .item p {
+  font-size: 13px;
+}
+
+li,
+.addIcon {
+  cursor: pointer;
+}
+
+.addIcon {
+  padding: 0 !important;
+  width: 40px;
+  margin: 1rem;
+  border: 2px solid transparent;
+}
+
+.addIcon:hover {
+  border: 2px solid #7c7c8d;
+  border-radius: 8px;
+}
+
+#menu1,
+#menu2,
+#menu3,
+#menu4 {
+  display: none;
+}
+
+footer {
+  padding: 0.5rem 0.5rem 0;
+  flex-basis: 40%;
+  justify-content: space-between;
+  display: none;
+}
+footer .footerCss {
+  flex-basis: 30%;
+  padding: 0 1rem;
+}
+footer h1 {
+  text-align: center;
+  font-family: "bold", sans-serif;
+}
+footer .order,
+footer .receipt {
+  flex-basis: 48%;
+}
+footer .orderContainer {
+  max-height: 55vh;
+  min-height: 55vh;
+  overflow-y: auto;
+  padding: 0 1rem;
+}
+footer .orderContainer .qty {
+  border: 2px solid transparent;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+footer .orderContainer .edit {
+  border: 2px solid #ff6c47;
+}
+footer .orderContainer .orderItem {
+  border-bottom: 1px solid black;
+  padding-bottom: 3px;
+}
+footer .orderContainer .orderItem .orderName {
+  justify-content: space-between;
+  align-items: center;
+}
+footer .orderContainer .orderItem .orderName h5 {
+  font-family: "montserat", sans-serif;
+  font-size: 14px;
+}
+footer .orderContainer .orderItem .orderName img {
+  max-width: 35px;
+  cursor: pointer;
+}
+footer .orderContainer .orderItem .orderPrice {
+  margin-top: 15px;
+  justify-content: space-between;
+}
+footer .orderContainer .orderItem .orderPrice img {
+  max-width: 24px;
+  cursor: pointer;
+}
+footer .orderContainer .orderItem .orderPrice .count p {
+  font-family: "nimbus", sans-serif;
+  background-color: #fff;
+  color: #000000;
+  border-radius: 5px;
+  padding: 3px 10px;
+  margin: 0 2px;
+  font-weight: 800;
+}
+footer .orderContainer .orderItem .orderPrice .calculation {
+  justify-content: space-between;
+  flex-basis: 80%;
+  align-items: center;
+}
+footer .orderContainer .orderItem .orderPrice .calculation .price {
+  font-family: "bold", sans-serif;
+  word-spacing: 3px;
+}
+footer .orderContainer .orderItem .orderPrice .calculation .total {
+  font-family: "nimbus", sans-serif;
+  border-radius: 5px;
+  background-color: #ff6c47;
+  color: #fff;
+  padding: 3px 10px;
+  font-weight: 800;
+}
+footer .receipt h2 {
+  text-align: center;
+}
+footer .receipt h2,
+footer .receipt h5 {
+  font-family: "bold", sans-serif;
+}
+footer .receipt h5 {
+  font-size: 1rem;
+}
+footer .receipt .container {
+  margin-top: 1rem;
+}
+footer .receipt .container div + div {
+  margin-top: 1rem;
+}
+footer .receipt .container p {
+  font-family: "montserat", sans-serif;
+}
+footer .receipt .container .cancel,
+footer .receipt .container .orderNow,
+footer .receipt .container .reserveTable {
+  background-color: #ffffff;
+  border: 0;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  color: #111827;
+  font-family: "nimbus", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  text-decoration: none #d1d5db solid;
+  text-decoration-thickness: auto;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+footer .receipt .container .cancel:hover {
+  background-color: #f9fafb;
+}
+footer .receipt .container .cancel:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+footer .receipt .container .cancel:focus-visible {
+  box-shadow: none;
+}
+footer .receipt .container .orderNow:focus,
+footer .receipt .container .reserveTable:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+footer .receipt .container .orderNow:focus-visible {
+  box-shadow: none;
+}
+footer .receipt .container .orderNow:hover,
+footer .receipt .container .reserveTable:hover {
+  background-color: #ce5d41;
+}
+footer .receipt .container .orderNow,
+footer .receipt .container .reserveTable {
+  background-color: #ff6c47;
+  color: #fff;
+}
+footer .receipt .container .reserveTable {
+  display: none;
+}
+footer .numPad {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 10rem));
+  grid-auto-rows: 1fr;
+  grid-gap: 1rem;
+  padding: 0.2rem 1rem 0;
+  border-radius: 10px;
+  text-align: center;
+}
+footer .numPad .btn {
+  font-family: "nimbus", sans-serif;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border: none;
+  background-color: #ff6c47;
+  border-radius: 5px;
+  box-shadow: 0px 5px 0px 0px #ce5d41;
+  height: 45px;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.orderItem + .orderItem {
+  margin-top: 1rem;
+}
+
+@media screen and (min-width: 900px) {
+  .menuGrid {
+    grid-template-columns: repeat(2, minmax(10px, 1fr));
+  }
+
+  footer .orderContainer {
+    padding: 0;
+  }
+}
+@media screen and (min-width: 1300px) {
+  .menuGrid {
+    grid-template-columns: repeat(3, minmax(10px, 1fr));
+  }
+}
+@media screen and (min-width: 1500px) {
+  .menuGrid {
+    grid-template-columns: repeat(4, minmax(10px, 1fr));
+  }
+}
