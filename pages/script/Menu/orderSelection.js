@@ -1,6 +1,6 @@
 import { tables } from "../Data/tables.js";
 import { backBtnArr, assignTables, car, orderNowBtn, reserveTableBtn, tableOrder, carOrder, takeAway } from "../Component/reset.js";
-import { categoriesSelection, display } from "../functions/function.js";
+import { categoriesSelection, display, takeAwayfn } from "../functions/function.js";
 let backBtn = document.querySelector(".backBtn");
 let input = document.querySelector(".form__field");
 let label = document.querySelector(".form__label");
@@ -12,14 +12,11 @@ backBtn.addEventListener("click", (e) => {
     });
     document.querySelector(".menu1").click();
     orderContainer.style.height = "55vh";
-
 });
 
 assignTables.addEventListener("click", (e) => {
     categoriesSelection(car, carOrder);
-    if (takeAway.classList.contains("active")) {
-        takeAway.classList.remove("active");
-    }
+    takeAwayfn(takeAway);
     assignTables.classList.add("active");
     display(tableOrder, "grid", "add", "animation");
     display(reserveTableBtn, "block", "add", "reserveActive");
@@ -55,9 +52,7 @@ assignTables.addEventListener("click", (e) => {
 
 car.addEventListener("click", (e) => {
     categoriesSelection(assignTables, tableOrder);
-    if (takeAway.classList.contains("active")) {
-        takeAway.classList.remove("active");
-    }
+    takeAwayfn(takeAway);
     car.classList.add("active");
     display(carOrder, "block", "add", "animation");
     label.innerHTML = "Car Number";
@@ -73,6 +68,7 @@ takeAway.addEventListener("click", (e) => {
 reserveTableBtn.addEventListener("click", (e) => {
     allTables.forEach((t) => {
         if (t.classList.contains("new")) {
+            console.log(t);
         }
     });
 });
