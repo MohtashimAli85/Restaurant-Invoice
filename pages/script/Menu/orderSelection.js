@@ -4,12 +4,15 @@ import { categoriesSelection, display } from "../functions/function.js";
 let backBtn = document.querySelector(".backBtn");
 let input = document.querySelector(".form__field");
 let label = document.querySelector(".form__label");
+const orderContainer = document.querySelector(".orderContainer");
 let allcircles = "", allTables = "";
 backBtn.addEventListener("click", (e) => {
     backBtnArr.forEach((e) => {
         display(e.vname, e.value, e.command, e.class);
     });
     document.querySelector(".menu1").click();
+    orderContainer.style.height = "55vh";
+
 });
 
 assignTables.addEventListener("click", (e) => {
