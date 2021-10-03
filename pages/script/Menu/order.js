@@ -1,36 +1,30 @@
 import { footer, orderNowBtnArr, orderNowBtn, takeAway } from "../Component/reset.js";
 import { updatePrice, display } from "../functions/function.js";
 import { addBtn } from "./menu.js";
+
 export let bill = document.querySelector(".bill");
 export let totals = document.querySelectorAll(".total");
-let delBtns = document.querySelectorAll(".delImg");
-let cancelBtn = document.querySelector(".cancel");
+
 const orderContainer = document.querySelector(".orderContainer");
-let orderItem = document.querySelectorAll(".orderItem");
-let items = document.querySelector(".items");
-
-let main = document.querySelector("main");
-let body = document.querySelector("body");
-let menuGrid = "";
-let orderArray = localStorage.getItem('takeAway')
-  ? JSON.parse(localStorage.getItem('takeAway'))
-  : [];
-let item = "";
-
-item = "";
-let name = "",
-  price = "",
-  qty = "",
-  newItem = "",
-  tBill = 0;
+let delBtns = document.querySelectorAll(".delImg"),
+  cancelBtn = document.querySelector(".cancel"),
+  orderItem = document.querySelectorAll(".orderItem"),
+  items = document.querySelector(".items"),
+  main = document.querySelector("main"),
+  body = document.querySelector("body"),
+  menuGrid = "",
+  orderArray = localStorage.getItem('takeAway')
+    ? JSON.parse(localStorage.getItem('takeAway'))
+    : [],
+  item = "", name = "", price = "", qty = "", newItem = "", tBill = 0;
 if (document.querySelector(".menu1")) {
   document.querySelector(".menu1").click();
 }
+
 addBtn.forEach((e) => {
 
   e.addEventListener("click", (e) => {
-    footer.style.display = "block";
-    footer.style.flexBasis = "40%";
+    display(footer, "40%", "flexBasis", "block");
     main.style.flexBasis = "60%";
 
     item = e.target.previousElementSibling;
@@ -110,9 +104,8 @@ addBtn.forEach((e) => {
           });
           bill.innerHTML = tBill;
           if (tBill == 0) {
-            footer.style.flexBasis = "0%";
+            display(footer, "0%", "flexBasis", "none");
             main.style.flexBasis = "100%";
-            footer.style.display = "none";
           }
         }, 500);
       });
@@ -144,9 +137,8 @@ cancelBtn.addEventListener("click", () => {
   orderContainer.innerHTML = "";
   items.innerHTML = 0;
   bill.innerHTML = 0;
-  footer.style.flexBasis = "0%";
+  display(footer, "0%", "flexBasis", "none");
   main.style.flexBasis = "100%";
-  footer.style.display = "none";
   menuGrid = document.querySelector(".menuGrid");
   menuGrid.classList.remove("col-3");
 
