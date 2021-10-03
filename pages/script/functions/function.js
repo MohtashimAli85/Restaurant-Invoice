@@ -53,12 +53,13 @@ function selectedMenu(menu, id) {
     document.querySelector(id).style.display = "block";
     document.querySelector(id).classList.add("menuAnimation");
     menu.classList.add("active");
+
 }
 
 export function activeChecker(menu, id) {
     document.querySelector(id).style.display = "none";
     menu.classList.remove("active");
-    console.log(id);
+
 }
 export function validateActive(m1, m2, m3, m4) {
     let arr = [
@@ -72,11 +73,11 @@ export function validateActive(m1, m2, m3, m4) {
         },
         {
             Vname: m3,
-            id: "#menu1"
+            id: "#menu3"
         },
         {
             Vname: m4,
-            id: "#menu1"
+            id: "#menu4"
         }];
     arr.forEach(e => {
         if (e.Vname.classList.contains("active")) {
