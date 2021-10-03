@@ -1,13 +1,14 @@
 import { footer, orderNowBtnArr, orderNowBtn, takeAway } from "../Component/reset.js";
 import { updatePrice, display } from "../functions/function.js";
 import { addBtn } from "./menu.js";
+export let bill = document.querySelector(".bill");
+export let totals = document.querySelectorAll(".total");
 let delBtns = document.querySelectorAll(".delImg");
 let cancelBtn = document.querySelector(".cancel");
 const orderContainer = document.querySelector(".orderContainer");
 let orderItem = document.querySelectorAll(".orderItem");
 let items = document.querySelector(".items");
-export let bill = document.querySelector(".bill");
-export let totals = document.querySelectorAll(".total");
+
 let main = document.querySelector("main");
 let body = document.querySelector("body");
 let menuGrid = "";
