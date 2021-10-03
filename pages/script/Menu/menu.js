@@ -3,7 +3,7 @@ import { menuListenerArr } from "../Data/eventListeners.js";
 import { validateActive, menuFn, fillingData } from "../functions/function.js";
 
 let orderNowBtn = document.querySelector(".orderNow");
-let items = document.querySelector(".items").innerHTML;
+let items = document.querySelector(".items");
 let args = [];
 
 fillDataArr.forEach(e => {
@@ -23,7 +23,7 @@ menuListenerArr.forEach(e => {
 });
 
 orderNowBtn.addEventListener("click", () => {
-    if (items != "0") {
+    if (items.innerHTML != "0") {
         validateActive(args[0], args[1], args[2], args[3]);
     }
 });
