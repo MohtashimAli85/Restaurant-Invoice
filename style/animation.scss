@@ -1,0 +1,71 @@
+$coral: #ff8d6bff;
+$cultured: #efeff1ff;
+$black: #070600ff;
+$citrine: #d8cc34ff;
+$black-coral: #5c6672ff;
+$white: #fff;
+
+body {
+  opacity: 0;
+  animation: fadeInAnimation cubic-bezier(0.175, 0.885, 0.32, 1.275) 3.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: 0.3s;
+}
+
+.animation {
+  opacity: 0;
+  animation: fadeInAnimation cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: 0.4s;
+}
+.orderItemAnimation {
+  opacity: 0;
+  animation: fadeInAnimation cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.orderItemAnimationR {
+  animation: fade cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.menuAnimation {
+  opacity: 0;
+  animation: fadeInAnimation cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.pressedBtn {
+  animation: scale cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+  animation-iteration-count: 1;
+  // animation-fill-mode:backwards;
+}
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
