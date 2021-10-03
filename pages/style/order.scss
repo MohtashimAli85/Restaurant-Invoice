@@ -197,7 +197,9 @@ main {
         border-radius: 5px;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         align-items: center;
-
+        flex-basis: 100%;
+        justify-content: space-between;
+        padding: 0 13px;
         img {
           padding: 1rem;
           padding-right: 0.5rem;
@@ -261,7 +263,7 @@ main {
     display: grid;
     grid-auto-rows: 1fr;
     gap: 1em 1.5em;
-    height: 40vh;
+    max-height: 40vh;
     overflow-y: auto;
     padding: 6px 1rem 6px 0.2rem;
     .item {
