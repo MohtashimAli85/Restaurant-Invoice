@@ -18,6 +18,11 @@ export function categoriesSelection(category, order) {
         order.style.display = "none";
     }
 }
+export function takeAwayfn(takeAway) {
+    if (takeAway.classList.contains("active")) {
+        takeAway.classList.remove("active");
+    }
+}
 export function qtyEdit(e, x) {
     if (e.classList.contains("once")) {
         e.innerHTML += x;
@@ -33,6 +38,9 @@ export function display(variableName, value, command, cName) {
             variableName.style.flexBasis = value;
         } else {
             variableName.style.display = value;
+        }
+        if (cName == "block" || cName == "none") {
+            variableName.style.display = cName;
         }
     }
     if (command == "add") {
