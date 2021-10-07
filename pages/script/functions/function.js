@@ -123,3 +123,69 @@ export function fillingData(Vname, item, img, imgName, menu) {
 export function fillData() {
 
 }
+export function getOrderItem(item, command) {
+    let name = "";
+    if (command == "takeAway") {
+        item.forEach((e) => {
+            // console.log(e.children[0].children[0]);
+            name += `${e.children[0].children[0].innerHTML} ${e.children[1].children[0].children[0].innerHTML}, `;
+        });
+        name = name.slice(0, -2);
+    }
+    if (command == "reserved") {
+        name = []
+        item.forEach(e => {
+            name.push({
+                itemName: e.children[0].children[0].innerHTML,
+                qty: e.children[1].children[0].children[0].innerHTML,
+                price: e.children[1].children[1].children[0].innerHTML,
+                total: e.children[1].children[1].children[1].innerHTML
+            });
+        });
+    }
+    // console.log(name);
+    return name;
+}
+
+export function pdCal(arg, result) {
+    if (arg.includes("PD")) {
+        result = Math.round(Number(result) / 12);
+    }
+    return result;
+}
+
+export function delButtons(delBtns, totals, qty, items, tBill, bill, footer, main) {
+    delBtns.forEach((e) => {
+        e.addEventListener("click", (e) => {
+            e.target.parentNode.parentNode.classList.add("orderItemAnimationR");
+            setTimeout(() => {
+                e.target.parentNode.parentNode.remove();
+                totals = document.querySelectorAll(".total");
+                qty = document.querySelectorAll(".qty");
+                let count = 0;
+                qty.forEach((e) => {
+                    count += Number(e.innerHTML);
+                });
+                items.innerHTML = count;
+                tBill = 0;
+                totals.forEach((e) => {
+                    tBill += Number(e.innerHTML);
+                });
+                bill.innerHTML = tBill;
+                if (tBill == 0) {
+                    display(footer, "0%", "flexBasis", "none");
+                    main.style.flexBasis = "100%";
+                }
+            }, 500);
+        });
+    });
+}
+export function qtyListener(qty, pastEdit) {
+    qty.forEach((e) => {
+        e.addEventListener("click", () => {
+            pastEdit = document.querySelector(".edit");
+            if (pastEdit != null) pastEdit.classList.remove("edit");
+            e.classList.add("edit");
+        });
+    });
+}
