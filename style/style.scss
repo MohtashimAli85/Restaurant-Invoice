@@ -98,9 +98,7 @@ ul {
       border-radius: 10px;
       width: 65px;
       margin: 0 auto;
-      box-shadow: rgba(255, 98, 67, 0.4) 0px 0px 0px 2px,
-        rgba(255, 98, 67, 0.65) 0px 4px 6px -1px,
-        rgba(255, 98, 67, 0.08) 0px 1px 0px inset;
+
       a {
         display: block;
         padding: 0.5rem;
@@ -110,6 +108,11 @@ ul {
           max-width: 45px;
         }
       }
+    }
+    .activeLink {
+      box-shadow: rgba(255, 98, 67, 0.4) 0px 0px 0px 2px,
+        rgba(255, 98, 67, 0.65) 0px 4px 6px -1px,
+        rgba(255, 98, 67, 0.08) 0px 1px 0px inset;
     }
   }
 }
@@ -210,7 +213,7 @@ footer {
       font-family: "bold", sans-serif;
       padding: 0.5rem 1rem;
       border-radius: 5px;
-      letter-spacing: 5px;
+      letter-spacing: 3px;
       box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
         rgba(17, 17, 26, 0.1) 0px 0px 8px;
     }
