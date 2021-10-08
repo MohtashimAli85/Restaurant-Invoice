@@ -11,7 +11,9 @@ let delBtns = document.querySelectorAll(".delImg"),
   orderItem = document.querySelectorAll(".orderItem"),
   items = document.querySelector(".items"),
   main = document.querySelector("main"),
+  header = document.querySelector("header"),
   body = document.querySelector("body"),
+  menuIcon = document.querySelector(".restaurantMenu"),
   menuGrid = "",
   orderArray = localStorage.getItem('takeAway')
     ? JSON.parse(localStorage.getItem('takeAway'))
@@ -28,15 +30,21 @@ if (tableOrder) {
   });
 }
 if (tableClick.tableClicked) {
+
   item = "";
   tableOrder = localStorage.getItem('tableOrder') ?
     JSON.parse(localStorage.getItem('tableOrder')) : [];
+  console.log(tableOrder);
+  console.log(tableClick.tableNo);
   let tableOrderItem = [];
   if (tableOrder) {
     tableOrder.forEach(e => {
-      e.description.forEach(e => {
-        tableOrderItem.push(e);
-      });
+      if (e.tableNum == tableClick.tableNo) {
+        e.description.forEach(e => {
+
+          tableOrderItem.push(e);
+        });
+      }
     });
   }
   tableOrderItem.forEach(e => {
@@ -58,6 +66,8 @@ if (tableClick.tableClicked) {
   });
 
   orderContainer.innerHTML = item;
+  display(header, "0%", "flexBasis", "none");
+  menuIcon.style.opacity = 1;
   display(footer, "40%", "flexBasis", "block");
   main.style.flexBasis = "60%";
   qty = document.querySelector(".qty");
@@ -93,6 +103,8 @@ if (document.querySelector(".menu1")) {
 addBtn.forEach((e) => {
   e.addEventListener("click", (e) => {
     display(footer, "40%", "flexBasis", "block");
+    display(header, "0%", "flexBasis", "none");
+    menuIcon.style.opacity = 1;
     main.style.flexBasis = "60%";
     item = e.target.previousElementSibling;
     name = item.children[1].children[0].innerHTML;
@@ -167,7 +179,9 @@ cancelBtn.addEventListener("click", () => {
   items.innerHTML = 0;
   bill.innerHTML = 0;
   display(footer, "0%", "flexBasis", "none");
-  main.style.flexBasis = "100%";
+  display(header, "10%", "flexBasis", "block");
+
+  main.style.flexBasis = "90%";
   menuGrid = document.querySelector(".menuGrid");
   menuGrid.classList.remove("col-3");
 
@@ -182,15 +196,22 @@ orderNowBtn.addEventListener("click", () => {
     orderContainer.style.height = "66vh";
     if (takeAway.classList.contains("active")) {
       orderItem = document.querySelectorAll(".orderItem");
-      getOrderItem(orderItem, "takeAway");
+      name = getOrderItem(orderItem, "takeAway");
       orderArray.push({
         description: name,
         amount: Number(bill.innerHTML),
       });
       localStorage.setItem("takeAway", JSON.stringify(orderArray));
+      window.location.href = "../../index.html";
     }
   }
 });
+menuIcon.addEventListener("click", () => {
+  menuIcon.style.opacity = 0;
+  display(footer, "0%", "flexBasis", "none");
+  display(header, "10%", "flexBasis", "block");
+  main.style.flexBasis = "90%";
+})
 let array = [];
 let itemNames = "";
 let itemPrice = "";
