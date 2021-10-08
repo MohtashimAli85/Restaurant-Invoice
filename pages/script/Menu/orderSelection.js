@@ -58,15 +58,16 @@ assignTables.addEventListener("click", (e) => {
         e.addEventListener("click", (e) => {
             let img = e.target;
             allTables.forEach((t) => {
-                if (t.classList.contains("checked")) {
+                if (t.classList.contains("new")) {
                     t.children[2].src = "../assets/circle-w.png";
-                    t.classList.remove("checked");
+                    t.classList.remove("new");
+
                 } else {
                     img.src = "../assets/circle-o.png";
-                    img.parentNode.classList.add("checked");
                     img.parentNode.classList.add("new");
                 }
             });
+            console.log(allTables);
         });
     });
 });
@@ -90,11 +91,12 @@ reserveTableBtn.addEventListener("click", (e) => {
     // reserveOrderArray.forEach(e => {
     //     if (e.tableNum == updateTable) { }
     // })
+
     allTables.forEach((t) => {
         if (t.classList.contains("new")) {
             let orderItem = document.querySelectorAll(".orderItem");
             let i = t.children[1].innerHTML;
-            i = Number(i[6]);
+            i = Number(i.substr(-2));
             console.log(i);
             tables[i - 1].reserved = true;
             name = getOrderItem(orderItem, "reserved");
@@ -109,11 +111,12 @@ reserveTableBtn.addEventListener("click", (e) => {
             localStorage.setItem("tables", JSON.stringify(tables));
             // console.log(localStorage.getItem("tables"));
             console.log(localStorage.getItem("tableOrder"));
+            window.location.href = "../../index.html";
         }
     });
     if (tableClick != "") {
         updateTable = tableClick.tableNo;
-        updateTable = Number(updateTable.slice(-1));
+        // updateTable = Number(updateTable.slice(-1));
         // console.log("🚀 ~ file: orderSelection.js ~ line 26 ~ assignTables.addEventListener ~ updateTable", updateTable);
         let orderItem = document.querySelectorAll(".orderItem");
         // tables[updateTable - 1].reserved = false;
@@ -133,6 +136,7 @@ reserveTableBtn.addEventListener("click", (e) => {
         localStorage.setItem("tables", JSON.stringify(tables));
         // console.log(localStorage.getItem("tables"));
         console.log(localStorage.getItem("tableOrder"));
+        window.location.href = "../../index.html";
     }
 });
 
