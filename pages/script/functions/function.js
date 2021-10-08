@@ -129,6 +129,7 @@ export function getOrderItem(item, command) {
         item.forEach((e) => {
             // console.log(e.children[0].children[0]);
             name += `${e.children[0].children[0].innerHTML} ${e.children[1].children[0].children[0].innerHTML}, `;
+            // console.log(e.children[1].children[0].children[0].innerHTML);
         });
         name = name.slice(0, -2);
     }
