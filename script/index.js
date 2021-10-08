@@ -9,6 +9,8 @@ let orders = document.querySelector("#orders"),
     reservedTable = document.querySelectorAll(".reservedTable");
 let rows = "", item = "", tableClick = false;
 let orderId = 1;
+console.log("🚀 ~ file: index.js ~ line 3 ~ orderArray", orderArray);
+
 if (orderArray.length != 0) {
     orderArray.forEach(e => {
         rows += `<tr>
@@ -20,7 +22,6 @@ if (orderArray.length != 0) {
               </tr>`;
         orderId++;
     })
-    console.log(rows);
     orders.innerHTML = rows;
     // console.log(orderArray);
 } else {
@@ -51,9 +52,11 @@ console.log("🚀 ~ file: index.js ~ line 49 ~ reservedTable", reservedTable);
 
 reservedTable.forEach(e => {
     e.addEventListener("click", () => {
+        let tableNum = e.innerHTML;
+        tableNum = Number(tableNum.substr(-2));
         tableClick = {
             tableClicked: true,
-            tableNo: e.innerHTML
+            tableNo: tableNum
         }
         console.log(tableClick);
         window.location.href = "pages/order.html";
