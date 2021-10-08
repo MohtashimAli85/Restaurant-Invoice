@@ -27,41 +27,28 @@ $blackCoralbs: #5c667259;
 * {
 }
 main,
-footer {
+footer,
+header {
   transition: flex-basis 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 main {
   margin: 10px 1rem 0;
-  flex-basis: 100%;
-  .home {
+  flex-basis: 90%;
+  .restaurantMenu {
     margin-bottom: 10px;
-  }
-  .homeBtn {
-    background-color: #ffffff;
-    border: 2px solid transparent;
-    border-radius: 0.5rem;
-    padding: 5px;
-    text-align: center;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    a {
-      img {
-        max-width: 50px;
-      }
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    img {
+      max-width: 50px;
     }
-    // &:focus {
-    //   outline: 2px solid transparent;
-    //   outline-offset: 2px;
-    // }
-    &:hover {
-      // background-color: $orange;
-      border: 2px solid $orange2;
-      box-shadow: 0px 15px 13px -7px rgba(255, 141, 107, 0.75);
+    div {
+      flex-basis: 60%;
+    }
+    .logo {
+      max-width: 160px;
     }
   }
+
   .orderSelection {
     display: none;
     .orderTitle {
