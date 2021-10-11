@@ -34,8 +34,6 @@ if (tableClick.tableClicked) {
   item = "";
   tableOrder = localStorage.getItem('tableOrder') ?
     JSON.parse(localStorage.getItem('tableOrder')) : [];
-  console.log(tableOrder);
-  console.log(tableClick.tableNo);
   let tableOrderItem = [];
   if (tableOrder) {
     tableOrder.forEach(e => {
@@ -66,10 +64,11 @@ if (tableClick.tableClicked) {
   });
 
   orderContainer.innerHTML = item;
-  display(header, "0%", "flexBasis", "none");
-  menuIcon.style.opacity = 1;
-  display(footer, "40%", "flexBasis", "block");
-  main.style.flexBasis = "60%";
+  setTimeout(() => {
+    changeLayout(1, "40%", "block", "0%", "none", "60%");
+
+  }, 1500)
+
   qty = document.querySelector(".qty");
   newItem = document.querySelector(".new");
   delBtns = document.querySelectorAll(".delImg");
@@ -102,10 +101,7 @@ if (document.querySelector(".menu1")) {
 }
 addBtn.forEach((e) => {
   e.addEventListener("click", (e) => {
-    display(footer, "40%", "flexBasis", "block");
-    display(header, "0%", "flexBasis", "none");
-    menuIcon.style.opacity = 1;
-    main.style.flexBasis = "60%";
+    changeLayout(1, "40%", "block", "0%", "none", "60%");
     item = e.target.previousElementSibling;
     name = item.children[1].children[0].innerHTML;
     price = item.children[1].children[1].innerHTML;
@@ -178,10 +174,7 @@ cancelBtn.addEventListener("click", () => {
   orderContainer.innerHTML = "";
   items.innerHTML = 0;
   bill.innerHTML = 0;
-  display(footer, "0%", "flexBasis", "none");
-  display(header, "10%", "flexBasis", "block");
-
-  main.style.flexBasis = "90%";
+  changeLayout(1, "0%", "none", "10%", "block", "90%");
   menuGrid = document.querySelector(".menuGrid");
   menuGrid.classList.remove("col-3");
 
@@ -207,10 +200,7 @@ orderNowBtn.addEventListener("click", () => {
   }
 });
 menuIcon.addEventListener("click", () => {
-  menuIcon.style.opacity = 0;
-  display(footer, "0%", "flexBasis", "none");
-  display(header, "10%", "flexBasis", "block");
-  main.style.flexBasis = "90%";
+  changeLayout(0, "0%", "none", "10%", "block", "90%");
 })
 let array = [];
 let itemNames = "";
@@ -218,3 +208,11 @@ let itemPrice = "";
 let itemqty = "";
 let amount = "";
 let totalAmount = "";
+
+
+function changeLayout(val1, val2, val3, val4, val5, val6) {
+  menuIcon.style.opacity = val1;
+  display(footer, val2, "flexBasis", val3);
+  display(header, val4, "flexBasis", val5);
+  main.style.flexBasis = val6;
+}
