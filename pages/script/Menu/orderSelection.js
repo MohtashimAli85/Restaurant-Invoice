@@ -8,10 +8,11 @@ let label = document.querySelector(".form__label"),
     tableClick = sessionStorage.getItem("tableClick") ?
         JSON.parse(sessionStorage.getItem("tableClick")) : "";
 const orderContainer = document.querySelector(".orderContainer");
-let allcircles = "", allTables = "", name = "", newTables = "", updateTable = "";
+let allcircles = "", allTables = "", name = "", selectedTables = "", updateTable = "";
 let reserveOrderArray = localStorage.getItem('tableOrder')
     ? JSON.parse(localStorage.getItem('tableOrder'))
     : [];
+
 backBtn.addEventListener("click", (e) => {
     backBtnArr.forEach((e) => {
         display(e.vname, e.value, e.command, e.class);
@@ -21,12 +22,7 @@ backBtn.addEventListener("click", (e) => {
 });
 
 assignTables.addEventListener("click", (e) => {
-    // if (tableClick != "") {
-    //     updateTable = tableClick.tableNo;
-    //     updateTable = Number(updateTable.slice(-1));
-    //     console.log("🚀 ~ file: orderSelection.js ~ line 26 ~ assignTables.addEventListener ~ updateTable", updateTable);
-    //     tables[updateTable - 1].reserved = false;
-    // }
+
     categoriesSelection(car, carOrder);
     takeAwayfn(takeAway);
     assignTables.classList.add("active");
@@ -37,14 +33,14 @@ assignTables.addEventListener("click", (e) => {
     tables.forEach((e) => {
         if (!e.reserved) {
             item += `<div class="d-flex table tableUnselected">
-                                <img src="../assets/order.svg" alt="order">
+                                <img src="../assets/restaurant-table.png" alt="order">
                                 <h5>Table ${e.tableNo}</h5>
                                 <img src="../assets/circle-w.png" alt="circle" class="circle">
                             </div>`;
         }
         else {
             item += `<div class="d-flex table tableSelected ">
-                        <img src="../assets/order.svg" alt="order">
+                        <img src="../assets/restaurant-table.png" alt="order">
                         <h5>Table ${e.tableNo}</h5>
                         <img src="../assets/circle-o.png" alt="circle" class="circle">
                     </div>`;
@@ -54,6 +50,7 @@ assignTables.addEventListener("click", (e) => {
     item = "";
     allcircles = document.querySelectorAll(".circle");
     allTables = document.querySelectorAll(".tableUnselected");
+    selectedTables = document.querySelectorAll(".tableSelected")
     allcircles.forEach((e) => {
         e.addEventListener("click", (e) => {
             let img = e.target;
@@ -61,15 +58,29 @@ assignTables.addEventListener("click", (e) => {
                 if (t.classList.contains("new")) {
                     t.children[2].src = "../assets/circle-w.png";
                     t.classList.remove("new");
-
-                } else {
-                    img.src = "../assets/circle-o.png";
-                    img.parentNode.classList.add("new");
                 }
+                // console.log("inside");
             });
-            console.log(allTables);
+            img.src = "../assets/circle-o.png";
+            img.parentNode.classList.add("new");
+            console.log(img.parentNode)
+            // console.log(allTables);
+            // console.log("clicked");
         });
     });
+    if (tableClick.tableClicked) {
+        reserveTableBtn.innerHTML = "Update";
+        updateTable = tableClick.tableNo;
+        selectedTables.forEach(t => {
+            let tableNum = t.children[1].innerHTML;
+            tableNum = Number(tableNum.substr(-2));
+            if (updateTable == tableNum) {
+                t.classList.add("update");
+                // t.children[0].src = "../assets/restaurant-table-update.png"
+            }
+        });
+    }
+
 });
 
 car.addEventListener("click", (e) => {
@@ -115,7 +126,7 @@ reserveTableBtn.addEventListener("click", (e) => {
         }
     });
     if (tableClick != "") {
-        updateTable = tableClick.tableNo;
+
         // updateTable = Number(updateTable.slice(-1));
         // console.log("🚀 ~ file: orderSelection.js ~ line 26 ~ assignTables.addEventListener ~ updateTable", updateTable);
         let orderItem = document.querySelectorAll(".orderItem");
