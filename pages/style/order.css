@@ -81,6 +81,8 @@ main .orderSelection .orderType .options img {
 main .orderSelection .orderType .options h5 {
   font-family: "nimbus", sans-serif;
   font-size: 1.2rem;
+  flex-basis: 45%;
+  text-align: center;
 }
 main .orderSelection .orderType .options + .options {
   margin-left: 1.5rem;
@@ -159,7 +161,7 @@ main .orderSelection .tableOrder {
 main .orderSelection .tableOrder .table {
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.14) 0px 3px 8px;
   align-items: center;
   flex-basis: 100%;
   justify-content: space-between;
@@ -177,6 +179,9 @@ main .orderSelection .tableOrder .table h5 {
 main .orderSelection .tableOrder .table .circle {
   max-width: 80px;
   cursor: pointer;
+}
+main .orderSelection .tableOrder .update {
+  background-color: #a5abb280;
 }
 
 .categories h1 {

@@ -24,8 +24,7 @@ $blackCoralbs: #5c667259;
   font-family: "nimbus";
   src: url("../../assets/NimbusSanL-Reg.otf");
 }
-* {
-}
+
 main,
 footer,
 header {
@@ -88,6 +87,7 @@ main {
         border-radius: 5px;
         font-size: 1.2rem;
         cursor: pointer;
+
         img {
           padding: 1rem;
           max-width: 100px;
@@ -95,6 +95,8 @@ main {
         h5 {
           font-family: "nimbus", sans-serif;
           font-size: 1.2rem;
+          flex-basis: 45%;
+          text-align: center;
         }
       }
       .options + .options {
@@ -182,7 +184,7 @@ main {
       .table {
         background-color: $white;
         border-radius: 5px;
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        box-shadow: rgba(0, 0, 0, 0.14) 0px 3px 8px;
         align-items: center;
         flex-basis: 100%;
         justify-content: space-between;
@@ -200,6 +202,10 @@ main {
           max-width: 80px;
           cursor: pointer;
         }
+      }
+      .update {
+        background-color: #a5abb280;
+        // color: $white;
       }
     }
   }
