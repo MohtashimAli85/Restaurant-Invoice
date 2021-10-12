@@ -25,6 +25,9 @@ export function takeAwayfn(takeAway) {
 }
 export function qtyEdit(e, x) {
     if (e.classList.contains("once")) {
+        if (e.innerHTML == "0") {
+            e.innerHTML = "";
+        }
         e.innerHTML += x;
     }
     if (!e.classList.contains("once")) {
