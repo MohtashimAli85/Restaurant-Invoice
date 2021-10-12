@@ -40,7 +40,7 @@ footer {
 
 main {
   flex-basis: 70%;
-  margin: 2rem 1rem 0;
+  margin: 1.63rem 1rem 0;
 }
 
 img {
@@ -174,6 +174,9 @@ table thead th {
   padding: 10px;
   color: #fff;
 }
+table tbody tr:nth-child(odd) {
+  background-color: #efeff1ff;
+}
 table tbody td {
   padding: 10px;
   border-bottom: 1px solid #5c6672ff;
@@ -185,7 +188,7 @@ table tbody .orderID {
 }
 
 footer {
-  padding: 1rem;
+  padding: 1.63rem 1rem;
 }
 footer h1 {
   font-size: 1.63rem;

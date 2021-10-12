@@ -47,7 +47,7 @@ footer {
 }
 main {
   flex-basis: 70%;
-  margin: 2rem 1rem 0;
+  margin: 1.63rem 1rem 0;
 }
 img {
   width: 100%;
@@ -183,10 +183,12 @@ table {
     }
   }
   tbody {
+    tr:nth-child(odd) {
+      background-color: $cultured;
+    }
     td {
       padding: 10px;
       border-bottom: 1px solid $black-coral;
-      //   border-bottom: 1px solid $black-coral;
       font-family: "montserat", sans-serif;
       font-size: 14px;
     }
@@ -197,7 +199,7 @@ table {
 }
 
 footer {
-  padding: 1rem;
+  padding: 1.63rem 1rem;
   h1 {
     font-size: 1.63rem;
     margin: 0rem 0 1rem;
