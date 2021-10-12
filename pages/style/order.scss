@@ -31,10 +31,9 @@ header {
   transition: flex-basis 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 main {
-  margin: 10px 1rem 0;
+  margin: 0px 1rem 0;
   flex-basis: 90%;
   .restaurantMenu {
-    margin-bottom: 10px;
     opacity: 0;
     transition: opacity 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     img {
@@ -517,7 +516,7 @@ footer {
   .categories {
     ul {
       li {
-        flex-basis: 30%;
+        // flex-basis: 30%;
       }
     }
   }
