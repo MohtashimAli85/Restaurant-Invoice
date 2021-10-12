@@ -30,7 +30,6 @@ if (tableOrder) {
   });
 }
 if (tableClick.tableClicked) {
-
   item = "";
   tableOrder = localStorage.getItem('tableOrder') ?
     JSON.parse(localStorage.getItem('tableOrder')) : [];
@@ -39,7 +38,6 @@ if (tableClick.tableClicked) {
     tableOrder.forEach(e => {
       if (e.tableNum == tableClick.tableNo) {
         e.description.forEach(e => {
-
           tableOrderItem.push(e);
         });
       }
@@ -174,7 +172,7 @@ cancelBtn.addEventListener("click", () => {
   orderContainer.innerHTML = "";
   items.innerHTML = 0;
   bill.innerHTML = 0;
-  changeLayout(1, "0%", "none", "10%", "block", "90%");
+  changeLayout(0, "0%", "none", "10%", "block", "90%");
   menuGrid = document.querySelector(".menuGrid");
   menuGrid.classList.remove("col-3");
 
@@ -197,6 +195,9 @@ orderNowBtn.addEventListener("click", () => {
       localStorage.setItem("takeAway", JSON.stringify(orderArray));
       window.location.href = "../../index.html";
     }
+    if (car.classList.contains("active")) {
+      console.log(input.value);
+    }
   }
 });
 menuIcon.addEventListener("click", () => {
@@ -212,7 +213,7 @@ let totalAmount = "";
 
 function changeLayout(val1, val2, val3, val4, val5, val6) {
   menuIcon.style.opacity = val1;
+  main.style.flexBasis = val6;
   display(footer, val2, "flexBasis", val3);
   display(header, val4, "flexBasis", val5);
-  main.style.flexBasis = val6;
 }
