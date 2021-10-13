@@ -85,6 +85,33 @@
       <h1>Reserved Table</h1>
       <ul class="reservedList"></ul>
     </footer>
+
+    <div class="modal d-flex v-center">
+      <div class="modal-wrap d-flex">
+        <button class="btn updateBtn">Update</button>
+        <button class="btn printBtn">Print</button>
+        <div class="closeBtn">
+          <img src="assets/close-icon.png" alt="close icon" />
+        </div>
+      </div>
+    </div>
+    <div class="billInvoice">
+      <table class="">
+        <!-- <colgroup>
+          <col width="65%" />
+          <col width="20%" />
+          <col width="20%" />
+        </colgroup> -->
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Qty</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody class="invoice"></tbody>
+      </table>
+    </div>
     <!-- <script type="module" src="pages/order.js"></script> -->
     <script defer type="module" src="script/index.js"></script>
   </body>
