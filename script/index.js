@@ -1,12 +1,20 @@
 import { tables } from "../pages/script/Data/tables.js";
 let orderArray = localStorage.getItem('takeAway')
     ? JSON.parse(localStorage.getItem('takeAway'))
-    : [];
+    : [],
+    tableOrder = localStorage.getItem('tableOrder') ?
+        JSON.parse(localStorage.getItem('tableOrder')) : [];
 sessionStorage.setItem("tableClick", "");
 
 let orders = document.querySelector("#orders"),
     reservedList = document.querySelector(".reservedList"),
-    reservedTable = document.querySelectorAll(".reservedTable");
+    reservedTable = document.querySelectorAll(".reservedTable"),
+    modal = document.querySelector(".modal"),
+    updateBtn = document.querySelector(".updateBtn"),
+    printBtn = document.querySelector(".printBtn"),
+    closeBtn = document.querySelector(".closeBtn"),
+    invoice = document.querySelector(".invoice"),
+    billInvoice = document.querySelector(".billInvoice");
 let rows = "", item = "", tableClick = false;
 let orderId = 1;
 console.log("🚀 ~ file: index.js ~ line 3 ~ orderArray", orderArray);
@@ -58,8 +66,50 @@ reservedTable.forEach(e => {
             tableClicked: true,
             tableNo: tableNum
         }
+        modal.style.display = 'flex';
         console.log(tableClick);
-        window.location.href = "pages/order.html";
         sessionStorage.setItem("tableClick", JSON.stringify(tableClick));
+
+        // window.location.href = "pages/order.html";
+        // sessionStorage.setItem("tableClick", JSON.stringify(tableClick));
     });
 });
+
+closeBtn.addEventListener("click", () => {
+    tableClick = "";
+    modal.style.display = "none";
+});
+
+updateBtn.addEventListener("click", () => {
+    // console.log(tableClick);
+    window.location.href = "pages/order.html";
+});
+printBtn.addEventListener("click", () => {
+    let tableOrderItem = [];
+    billInvoice.style.display = "block";
+
+    item = "";
+    if (tableOrder) {
+        tableOrder.forEach(e => {
+            if (e.tableNum == tableClick.tableNo) {
+                e.description.forEach(e => {
+                    tableOrderItem.push(e);
+                });
+            }
+        });
+    }
+    if (tableOrderItem) {
+        tableOrderItem.forEach(e => {
+            item += `<tr>
+                        <td>${e.itemName}</td>
+                        <td>${e.qty}</td>
+                        <td>${e.total}</td>
+                    </tr>`
+        });
+        invoice.innerHTML = item;
+    }
+
+
+
+
+})
