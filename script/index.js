@@ -14,7 +14,8 @@ let orders = document.querySelector("#orders"),
     printBtn = document.querySelector(".printBtn"),
     closeBtn = document.querySelector(".closeBtn"),
     invoice = document.querySelector(".invoice"),
-    billInvoice = document.querySelector(".billInvoice");
+    billInvoice = document.querySelector(".billInvoice"),
+    totalInvoice = document.querySelector(".totalInvoice");
 let rows = "", item = "", tableClick = false;
 let orderId = 1;
 console.log("🚀 ~ file: index.js ~ line 3 ~ orderArray", orderArray);
@@ -77,6 +78,7 @@ reservedTable.forEach(e => {
 
 closeBtn.addEventListener("click", () => {
     tableClick = "";
+    sessionStorage.setItem("tableClick", "");
     modal.style.display = "none";
 });
 
@@ -99,14 +101,20 @@ printBtn.addEventListener("click", () => {
         });
     }
     if (tableOrderItem) {
+        totalAmount = 0;
         tableOrderItem.forEach(e => {
+            let price = e.price;
+            price = price.substr(2);
             item += `<tr>
                         <td>${e.itemName}</td>
                         <td>${e.qty}</td>
+                        <td>${price}</td>
                         <td>${e.total}</td>
                     </tr>`
+            totalAmount += Number(e.total);
         });
         invoice.innerHTML = item;
+        totalInvoice.innerHTML = totalAmount;
     }
 
 
