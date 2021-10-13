@@ -212,6 +212,83 @@ footer ul li + li {
   margin-top: 10px;
 }
 
+.modal {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: #5c66727d;
+  justify-content: center;
+}
+.modal .modal-wrap {
+  position: relative;
+  background-color: #efeff1ff;
+  width: 350px;
+  height: 150px;
+  border-radius: 1rem;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.modal .modal-wrap .btn {
+  background-color: #ffffff;
+  border: 0;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  color: #111827;
+  font-family: "nimbus", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  text-decoration: none #d1d5db solid;
+  text-decoration-thickness: auto;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.modal .modal-wrap .updateBtn {
+  background-color: #ff6c47;
+  color: #fff;
+}
+.modal .modal-wrap .updateBtn:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.modal .modal-wrap .updateBtn:focus-visible {
+  box-shadow: none;
+}
+.modal .modal-wrap .updateBtn:hover {
+  background-color: #ce5d41;
+}
+.modal .modal-wrap .closeBtn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+.modal .modal-wrap .closeBtn img {
+  width: 45px;
+}
+
+.billInvoice {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+}
+.billInvoice table {
+  border: 1px solid #070600ff;
+}
+.billInvoice table .invoice tr:nth-child(odd) {
+  background-color: unset;
+}
+.billInvoice table tr td {
+  border: 1px solid #070600ff;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;

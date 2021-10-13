@@ -6,6 +6,7 @@
 $coral: #ff8d6bff;
 $cultured: #efeff1ff;
 $outrageousOrange: #ff6c47;
+$orangeBs: #ce5d41;
 $black: #070600ff;
 $citrine: #d8cc34ff;
 $black-coral: #5c6672ff;
@@ -221,6 +222,90 @@ footer {
     }
     li + li {
       margin-top: 10px;
+    }
+  }
+}
+
+.modal {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: #5c66727d;
+  justify-content: center;
+  .modal-wrap {
+    position: relative;
+    background-color: $cultured;
+    width: 350px;
+    height: 150px;
+    border-radius: 1rem;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    .btn {
+      background-color: #ffffff;
+      border: 0;
+      border-radius: 0.5rem;
+      box-sizing: border-box;
+      color: #111827;
+      font-family: "nimbus", sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.25rem;
+      padding: 0.75rem 1rem;
+      text-align: center;
+      text-decoration: none #d1d5db solid;
+      text-decoration-thickness: auto;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+        0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+    .updateBtn {
+      background-color: $outrageousOrange;
+      color: $white;
+      &:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+      }
+
+      &:focus-visible {
+        box-shadow: none;
+      }
+      &:hover {
+        background-color: $orangeBs;
+      }
+    }
+    .printBtn {
+    }
+    .closeBtn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+      img {
+        width: 45px;
+      }
+    }
+  }
+}
+.billInvoice {
+  display: none;
+  position: absolute;
+  background-color: $white;
+  table {
+    border: 1px solid $black;
+    .invoice {
+      tr:nth-child(odd) {
+        background-color: unset;
+      }
+    }
+    tr {
+      td {
+        border: 1px solid $black;
+      }
     }
   }
 }
