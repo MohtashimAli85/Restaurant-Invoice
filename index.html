@@ -10,7 +10,7 @@
     <title>Amin Kabab House</title>
   </head>
   <body>
-    <header>
+    <header class="no-print">
       <div class="decorations d-flex col">
         <img src="assets/meal-icon.png" alt="meal icon" class="meal" />
         <img src="assets/logo.svg" alt="logo icon" class="icon logo" />
@@ -39,49 +39,99 @@
       </div>
     </header>
     <main>
-      <h1>Sales</h1>
-      <div class="homeTable">
-        <table class="salesTable">
+      <div class="main no-print">
+        <h1>Sales</h1>
+        <div class="homeTable">
+          <table class="salesTable">
+            <colgroup>
+              <col width="20%" />
+              <col width="65%" />
+              <col width="20%" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th class="br-t-l">Order ID</th>
+                <th>Description</th>
+                <th class="br-t-r">Amount</th>
+              </tr>
+            </thead>
+
+            <tbody id="orders">
+              <tr>
+                <td class="orderID">#1</td>
+                <td>
+                  1 Mutton Kabab Handi, 1 Mutton Karahi, 30 Roti, 2 1.5ltr
+                  Drinks, 1 Water Bottle
+                </td>
+                <td>1850</td>
+              </tr>
+            </tbody>
+            <!-- 
+            <tfoot></tfoot> -->
+          </table>
+        </div>
+        <table class="tfoot">
           <colgroup>
             <col width="20%" />
             <col width="65%" />
             <col width="20%" />
           </colgroup>
-          <thead>
-            <tr>
-              <th class="br-t-l">Order ID</th>
-              <th>Description</th>
-              <th class="br-t-r">Amount</th>
-            </tr>
-          </thead>
-
-          <tbody id="orders">
-            <tr>
-              <td class="orderID">#1</td>
-              <td>
-                1 Mutton Kabab Handi, 1 Mutton Karahi, 30 Roti, 2 1.5ltr Drinks,
-                1 Water Bottle
-              </td>
-              <td>1850</td>
-            </tr>
-          </tbody>
-
-          <tfoot></tfoot>
+          <tr>
+            <td colspan="2">Total</td>
+            <td class="total">1850</td>
+          </tr>
         </table>
       </div>
-      <table class="tfoot">
-        <colgroup>
-          <col width="20%" />
-          <col width="65%" />
-          <col width="20%" />
-        </colgroup>
-        <tr>
-          <td colspan="2">Total</td>
-          <td class="total">1850</td>
-        </tr>
-      </table>
+      <div class="billInvoice">
+        <div class="d-flex orderTitle no-print">
+          <button class="backBtn">
+            <img src="assets/arrow-forward.svg" alt="" />
+          </button>
+          <h1>Print Order</h1>
+        </div>
+        <div class="receipt-container d-flex">
+          <div class="no-print">
+            <h3>Enter Received Cash</h3>
+            <input type="input" />
+          </div>
+          <div class="receipt print">
+            <img src="assets/logo.svg" alt="logo" />
+            <div class="invoicetable">
+              <table class="">
+                <colgroup>
+                  <col width="60%" />
+                  <col width="10%" />
+                  <col width="15%" />
+                  <col width="15%" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>Product Detail</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody class="invoice"></tbody>
+              </table>
+            </div>
+            <table class="tfoot">
+              <colgroup>
+                <col width="60%" />
+                <col width="10%" />
+                <col width="15%" />
+                <col width="15%" />
+              </colgroup>
+              <tr>
+                <td colspan="3">Total</td>
+                <td class="totalInvoice"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
     </main>
-    <footer>
+    <footer class="no-print">
       <h1>Reserved Table</h1>
       <ul class="reservedList"></ul>
     </footer>
@@ -89,30 +139,13 @@
     <div class="modal d-flex v-center">
       <div class="modal-wrap d-flex">
         <button class="btn updateBtn">Update</button>
-        <button class="btn printBtn">Print</button>
+        <button class="btn invoiceBtn">Invoice</button>
         <div class="closeBtn">
           <img src="assets/close-icon.png" alt="close icon" />
         </div>
       </div>
     </div>
-    <div class="billInvoice">
-      <img src="assets/logo.svg" alt="logo" />
-      <table class="">
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Qty</th>
-            <th>Price</th>
-            <th>Amount</th>
-          </tr>
-        </thead>
-        <tbody class="invoice"></tbody>
-        <tr>
-          <td colspan="3">Total</td>
-          <td class="totalInvoice"></td>
-        </tr>
-      </table>
-    </div>
+
     <!-- <script type="module" src="pages/order.js"></script> -->
     <script defer type="module" src="script/index.js"></script>
   </body>
