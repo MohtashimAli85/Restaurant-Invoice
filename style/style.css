@@ -95,6 +95,14 @@ ul {
   list-style-type: none;
 }
 
+.print {
+  display: none;
+}
+
+.no-print {
+  display: block;
+}
+
 .tabs ul {
   text-align: center;
 }
@@ -136,7 +144,7 @@ main .homeTable {
   height: 500px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 main .homeTable ::-webkit-scrollbar-track {
   margin: 40px 0 0;
@@ -276,23 +284,62 @@ footer ul li + li {
 
 .billInvoice {
   display: none;
-  position: absolute;
+}
+.billInvoice .orderTitle {
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.billInvoice .orderTitle h1 {
+  font-family: "bold", sans-serif;
+  margin: 0 1rem;
+}
+.billInvoice .orderTitle .backBtn {
+  background-color: #ff8d6bff;
+  border-radius: 15px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
+}
+.billInvoice .receipt-container {
+  align-items: center;
+}
+.billInvoice .receipt {
+  margin: auto;
   background-color: #fff;
   text-align: center;
   width: 315px;
 }
-.billInvoice img {
+.billInvoice .receipt img {
   max-width: 170px;
   margin-bottom: 1rem;
 }
-.billInvoice table {
+.billInvoice .receipt table {
   border: 1px solid #070600ff;
 }
-.billInvoice table .invoice tr:nth-child(odd) {
+.billInvoice .receipt table thead {
+  position: sticky;
+}
+.billInvoice .receipt table .invoice tr:nth-child(odd) {
   background-color: unset;
 }
-.billInvoice table tr td {
+.billInvoice .receipt table tr td {
   border: 1px solid #070600ff;
+}
+.billInvoice .receipt .tfoot {
+  width: 100%;
+}
+.billInvoice .receipt .tfoot td {
+  border-top: none;
 }
 
 ::-webkit-scrollbar {
@@ -314,4 +361,22 @@ footer ul li + li {
   margin: 40px 0 0;
   border-radius: 30px;
   box-shadow: inset 0px 0px 0px 0px #f0f0f0;
+}
+
+@media print {
+  .no-print {
+    display: none;
+  }
+
+  .print {
+    display: block;
+  }
+
+  html {
+    width: 315px;
+  }
+
+  body {
+    width: 315px;
+  }
 }

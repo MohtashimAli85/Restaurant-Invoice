@@ -31,6 +31,7 @@ body {
   height: 100vh;
   background-color: $white;
   user-select: none;
+  // overflow: hidden;
 }
 header,
 footer {
@@ -91,6 +92,12 @@ header {
 ul {
   list-style-type: none;
 }
+.print {
+  display: none;
+}
+.no-print {
+  display: block;
+}
 .tabs {
   ul {
     text-align: center;
@@ -141,7 +148,7 @@ main {
     height: 500px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    overflow-y: scroll;
+    overflow-y: auto;
     ::-webkit-scrollbar-track {
       margin: 40px 0 0;
     }
@@ -293,24 +300,71 @@ footer {
 }
 .billInvoice {
   display: none;
-  position: absolute;
-  background-color: $white;
-  text-align: center;
-  width: 315px;
-  img {
-    max-width: 170px;
+  .orderTitle {
+    align-items: center;
     margin-bottom: 1rem;
+    h1 {
+      font-family: "bold", sans-serif;
+      margin: 0 1rem;
+    }
+    .backBtn {
+      background-color: $coral;
+      border-radius: 15px;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+        0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      box-sizing: border-box;
+      color: #ffffff;
+      cursor: pointer;
+      opacity: 1;
+      outline: 0 solid transparent;
+      padding: 8px 18px;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      width: fit-content;
+      word-break: break-word;
+      border: 0;
+    }
   }
-  table {
-    border: 1px solid $black;
-    .invoice {
-      tr:nth-child(odd) {
-        background-color: unset;
+  .receipt-container {
+    // justify-content: center;
+    align-items: center;
+  }
+  .receipt {
+    margin: auto;
+    background-color: $white;
+    text-align: center;
+    // display: none;
+    // opacity: 0;
+    width: 315px;
+    img {
+      max-width: 170px;
+      margin-bottom: 1rem;
+    }
+    table {
+      border: 1px solid $black;
+      thead {
+        position: sticky;
+      }
+      .invoice {
+        tr:nth-child(odd) {
+          background-color: unset;
+        }
+      }
+      tr {
+        td {
+          border: 1px solid $black;
+        }
+      }
+      tbody {
+        // height: 350px;
+        // overflow: auto;
       }
     }
-    tr {
+    .tfoot {
+      width: 100%;
       td {
-        border: 1px solid $black;
+        border-top: none;
       }
     }
   }
@@ -331,4 +385,23 @@ footer {
   margin: 40px 0 0;
   border-radius: 30px;
   box-shadow: inset 0px 0px 0px 0px #f0f0f0;
+}
+
+@media print {
+  .no-print {
+    display: none;
+  }
+  .print {
+    display: block;
+  }
+  .receipt {
+    // display: flex;
+    // opacity: 1;
+  }
+  html {
+    width: 315px;
+  }
+  body {
+    width: 315px;
+  }
 }
