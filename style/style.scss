@@ -11,6 +11,7 @@ $black: #070600ff;
 $citrine: #d8cc34ff;
 $black-coral: #5c6672ff;
 $white: #fff;
+@import "../pages/style/order.scss";
 @font-face {
   font-family: "montserat";
   src: url("../assets/Montserrat-Regular.otf");
@@ -61,6 +62,9 @@ header {
 .d-flex {
   display: flex;
 }
+.d-flexi {
+  display: flex !important;
+}
 .justify-content-sp {
   justify-content: space-between;
 }
@@ -68,16 +72,19 @@ header {
   flex-direction: column;
 }
 .br-t-l {
-  border-top-left-radius: 9px;
+  border-top-left-radius: 10px;
 }
 .br-t-r {
-  border-top-right-radius: 9px;
+  border-top-right-radius: 10px;
 }
 .v-center {
   align-items: center;
 }
 .col-3 {
   grid-template-columns: repeat(2, minmax(10px, 1fr)) !important;
+}
+.border-focus {
+  border: 1px solid #ff8d6bff !important;
 }
 .decorations {
   align-items: center;
@@ -97,6 +104,9 @@ ul {
 }
 .no-print {
   display: block;
+}
+.no-printf {
+  display: flex;
 }
 .tabs {
   ul {
@@ -162,10 +172,17 @@ main {
   width: 99%;
 
   tr {
+    // border-top: 1px solid $black-coral;
     td {
       border: 0;
       padding: 10px;
       font-family: "bold", sans-serif;
+    }
+    .totalfoot {
+      border-bottom-left-radius: 10px;
+    }
+    .total {
+      border-bottom-right-radius: 10px;
     }
   }
 }
@@ -194,6 +211,10 @@ table {
     tr:nth-child(odd) {
       background-color: $cultured;
     }
+    // tr:nth-child(even) {
+    //   background-color: $black-coral;
+    //   color: $white;
+    // }
     td {
       padding: 10px;
       border-bottom: 1px solid $black-coral;
@@ -216,6 +237,8 @@ footer {
   ul {
     list-style-type: none;
     text-align: center;
+    height: 70vh;
+    overflow: auto;
     li {
       background-color: $white;
       color: #000000;
@@ -229,6 +252,42 @@ footer {
     }
     li + li {
       margin-top: 10px;
+    }
+  }
+
+  .printBtns {
+    display: none;
+    justify-content: space-between;
+    margin: 1rem 0 0;
+  }
+  .btn {
+    @include buttonCss;
+  }
+  .printBtn {
+    padding: 0.75rem 1.5rem;
+    background-color: $outrageousOrange;
+    color: $white;
+    &:hover {
+      background-color: $orangeBs;
+    }
+    &:focus {
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+    }
+    &:focus-visible {
+      box-shadow: none;
+    }
+  }
+  .enterBtn {
+    &:hover {
+      background-color: #f9fafb;
+    }
+    &:focus {
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+    }
+    &:focus-visible {
+      box-shadow: none;
     }
   }
 }
@@ -329,6 +388,8 @@ footer {
   .receipt-container {
     // justify-content: center;
     align-items: center;
+    flex-direction: column;
+    // height: 500px;
   }
   .receipt {
     margin: auto;
@@ -342,7 +403,6 @@ footer {
       margin-bottom: 1rem;
     }
     table {
-      border: 1px solid $black;
       thead {
         position: sticky;
       }
@@ -368,6 +428,22 @@ footer {
       }
     }
   }
+  .npreceipt {
+    width: 100%;
+    .invoicetable {
+      height: 60vh;
+      overflow: auto;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    .invoice {
+      // height: 350px;
+      // overflow: auto;
+    }
+  }
+}
+.cashRcvd {
+  align-self: flex-start;
 }
 ::-webkit-scrollbar {
   width: 8px;
@@ -403,5 +479,8 @@ footer {
   }
   body {
     width: 315px;
+  }
+  .no-printf {
+    display: none;
   }
 }
