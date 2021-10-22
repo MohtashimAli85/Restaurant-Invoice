@@ -16,9 +16,12 @@ let orders = document.querySelector("#orders"),
     closeBtn = document.querySelector(".closeBtn"),
     backBtn = document.querySelector(".backBtn"),
     invoice = document.querySelector(".invoice"),
+    invoicep = document.querySelector(".invoicep"),
     billInvoice = document.querySelector(".billInvoice"),
-    totalInvoice = document.querySelector(".totalInvoice"),
-    salesTable = document.querySelector(".main");
+    invoiceTfoot = document.querySelector(".invoiceTfoot"),
+    invoicepTfoot = document.querySelector(".invoicepTfoot"),
+    salesTable = document.querySelector(".main"),
+    printBtns = document.querySelector(".printBtns");
 let rows = "", item = "", tableClick = false;
 let orderId = 1;
 console.log("🚀 ~ file: index.js ~ line 3 ~ orderArray", orderArray);
@@ -113,20 +116,39 @@ invoiceBtn.addEventListener("click", () => {
                     </tr>`;
             totalAmount += Number(e.total);
         });
-        serviceTax = Math.round(totalAmount * 0.03);
-        item += `<tr>
-                        <td colspan="3">Service Tax</td>
-                        
-                        <td>${serviceTax}</td>
-                </tr>`;
-        item += `<tr>
-                    <td colspan="3">Received Cash</td>
-                    <td class="cashrcvd"></td>
-                </tr>`;
-        totalAmount += serviceTax;
         invoice.innerHTML = item;
-        totalInvoice.innerHTML = totalAmount;
+        invoicep.innerHTML = item;
+        item = ""
+        serviceTax = Math.round(totalAmount * 0.03);
+        totalAmount += serviceTax;
+        item += `<colgroup>
+                <col width="60%" />
+                <col width="10%" />
+                <col width="15%" />
+                <col width="15%" />
+              </colgroup>
+              <tr>
+                        <td colspan="3">Service Tax</td>
+
+                        <td>${serviceTax}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Received Cash</td>
+                    <td class="cashrcvd border-focus"></td>
+                </tr>
+                <tr>
+                        <td colspan="3">Total</td>
+
+                        <td>${totalAmount}</td>
+                </tr>`;
+
+        invoiceTfoot.innerHTML = item;
+        invoicepTfoot.innerHTML = item;
+        // item = invoice.innerHTML;
+        // totalInvoicep.innerHTML = totalAmount;
         modal.style.display = "none";
+        printBtns.classList.add("d-flexi");
+
     }
 });
 backBtn.addEventListener("click", () => {
