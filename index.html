@@ -77,25 +77,21 @@
             <col width="20%" />
           </colgroup>
           <tr>
-            <td colspan="2">Total</td>
+            <td class="totalfoot" colspan="2">Total</td>
             <td class="total">1850</td>
           </tr>
         </table>
       </div>
       <div class="billInvoice">
-        <div class="d-flex orderTitle no-print">
+        <div class="orderTitle no-printf">
           <button class="backBtn">
             <img src="assets/arrow-forward.svg" alt="" />
           </button>
           <h1>Print Order</h1>
         </div>
         <div class="receipt-container d-flex">
-          <div class="no-print">
-            <h3>Enter Received Cash</h3>
-            <input type="input" />
-          </div>
-          <div class="receipt print">
-            <img src="assets/logo.svg" alt="logo" />
+          <div class="no-print npreceipt">
+            <!-- <img src="assets/logo.svg" alt="logo" /> -->
             <div class="invoicetable">
               <table class="">
                 <colgroup>
@@ -115,18 +111,34 @@
                 <tbody class="invoice"></tbody>
               </table>
             </div>
-            <table class="tfoot">
-              <colgroup>
-                <col width="60%" />
-                <col width="10%" />
-                <col width="15%" />
-                <col width="15%" />
-              </colgroup>
-              <tr>
-                <td colspan="3">Total</td>
-                <td class="totalInvoice"></td>
-              </tr>
-            </table>
+            <table class="tfoot invoiceTfoot"></table>
+          </div>
+          <!-- <div class="no-print cashRcvd">
+            <h3>Enter Received Cash</h3>
+            <input type="input" />
+          </div> -->
+          <div class="receipt print">
+            <img src="assets/logo.svg" alt="logo" />
+            <div class="invoicetable">
+              <table class="">
+                <colgroup>
+                  <col width="60%" />
+                  <col width="10%" />
+                  <col width="15%" />
+                  <col width="15%" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>Product Detail</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody class="invoice invoicep"></tbody>
+              </table>
+            </div>
+            <table class="tfoot invoicepTfoot"></table>
           </div>
         </div>
       </div>
@@ -134,6 +146,11 @@
     <footer class="no-print">
       <h1>Reserved Table</h1>
       <ul class="reservedList"></ul>
+
+      <div class="printBtns">
+        <button class="enterBtn btn">Enter</button>
+        <button class="printBtn btn">Print</button>
+      </div>
     </footer>
 
     <div class="modal d-flex v-center">
