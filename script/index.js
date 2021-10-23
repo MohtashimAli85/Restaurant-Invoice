@@ -1,4 +1,4 @@
-import { tables } from "../pages/script/Data/tables.js";
+import { tables } from "../pages/Order/script/Data/tables.js";
 let orderArray = localStorage.getItem('takeAway')
     ? JSON.parse(localStorage.getItem('takeAway'))
     : [],
@@ -6,25 +6,16 @@ let orderArray = localStorage.getItem('takeAway')
         JSON.parse(localStorage.getItem('tableOrder')) : [];
 sessionStorage.setItem("tableClick", "");
 
-let orders = document.querySelector("#orders"),
-    reservedList = document.querySelector(".reservedList"),
-    reservedTable = document.querySelectorAll(".reservedTable"),
-    modal = document.querySelector(".modal"),
-    modalw = document.querySelector(".modal-wrap"),
-    updateBtn = document.querySelector(".updateBtn"),
-    invoiceBtn = document.querySelector(".invoiceBtn"),
-    closeBtn = document.querySelector(".closeBtn"),
-    backBtn = document.querySelector(".backBtn"),
-    invoice = document.querySelector(".invoice"),
-    invoicep = document.querySelector(".invoicep"),
-    billInvoice = document.querySelector(".billInvoice"),
-    invoiceTfoot = document.querySelector(".invoiceTfoot"),
-    invoicepTfoot = document.querySelector(".invoicepTfoot"),
-    salesTable = document.querySelector(".main"),
-    printBtns = document.querySelector(".printBtns");
-let rows = "", item = "", tableClick = false;
-let orderId = 1;
-console.log("🚀 ~ file: index.js ~ line 3 ~ orderArray", orderArray);
+let orders = document.querySelector("#orders"), reservedList = document.querySelector(".reservedList"),
+    reservedTable = document.querySelectorAll(".reservedTable"), modal = document.querySelector(".modal"), modalw = document.querySelector(".modal-wrap"),
+    updateBtn = document.querySelector(".updateBtn"), invoiceBtn = document.querySelector(".invoiceBtn"), closeBtn = document.querySelector(".closeBtn"),
+    backBtn = document.querySelector(".backBtn"), invoice = document.querySelector(".invoice"),
+    invoicep = document.querySelector(".invoicep"), billInvoice = document.querySelector(".billInvoice"),
+    invoiceTfoot = document.querySelector(".invoiceTfoot"), invoicepTfoot = document.querySelector(".invoicepTfoot"),
+    salesTable = document.querySelector(".main"), cashrcvd = "", cashReturn = "",
+    printBtns = document.querySelector(".printBtns"),
+    printBtn = document.querySelector(".printBtn"), enterBtn = document.querySelector(".enterBtn"),
+    rows = "", item = "", tableClick = false, orderId = 1;
 
 if (orderArray.length != 0) {
     orderArray.forEach(e => {
@@ -39,9 +30,7 @@ if (orderArray.length != 0) {
     })
     orders.innerHTML = rows;
 }
-let amount = document.querySelectorAll('.amount');
-let total = document.querySelector('.total');
-let totalAmount = 0;
+let amount = document.querySelectorAll('.amount'), total = document.querySelector('.total'), totalAmount = 0;
 amount.forEach(e => {
     totalAmount += Number(e.innerHTML);
 });
@@ -58,7 +47,6 @@ if (item && reservedList) {
 }
 
 reservedTable = document.querySelectorAll(".reservedTable");
-console.log("🚀 ~ file: index.js ~ line 49 ~ reservedTable", reservedTable);
 
 reservedTable.forEach(e => {
     e.addEventListener("click", () => {
@@ -70,7 +58,6 @@ reservedTable.forEach(e => {
         }
         modal.style.display = 'flex';
         modalw.classList.add("pressedBtn");
-        console.log(tableClick);
         sessionStorage.setItem("tableClick", JSON.stringify(tableClick));
     });
 });
@@ -85,8 +72,9 @@ closeBtn.addEventListener("click", () => {
 });
 
 updateBtn.addEventListener("click", () => {
-    // console.log(tableClick);
-    window.location.href = "pages/order.html";
+    let updateClick = true;
+    sessionStorage.setItem("updateClick", JSON.stringify(updateClick));
+    window.location.href = "pages/Order/order.html";
 });
 invoiceBtn.addEventListener("click", () => {
     sessionStorage.setItem("tableClick", "");
@@ -132,14 +120,19 @@ invoiceBtn.addEventListener("click", () => {
 
                         <td>${serviceTax}</td>
                 </tr>
-                <tr>
+                <tr class="border-focus">
                     <td colspan="3">Received Cash</td>
-                    <td class="cashrcvd border-focus"></td>
+                    <td class="cashrcvd"></td>
                 </tr>
                 <tr>
                         <td colspan="3">Total</td>
 
                         <td>${totalAmount}</td>
+                </tr>
+                <tr>
+                        <td colspan="3">Return</td>
+
+                        <td class="cashReturn"></td>
                 </tr>`;
 
         invoiceTfoot.innerHTML = item;
@@ -148,11 +141,40 @@ invoiceBtn.addEventListener("click", () => {
         // totalInvoicep.innerHTML = totalAmount;
         modal.style.display = "none";
         printBtns.classList.add("d-flexi");
-
+        cashrcvd = document.querySelector(".cashrcvd");
+        cashReturn = document.querySelector(".cashReturn");
+        cashrcvd.contentEditable = true;
     }
 });
 backBtn.addEventListener("click", () => {
     billInvoice.style.display = "none";
     salesTable.style.display = "block";
 
+});
+enterBtn.addEventListener("click", () => {
+    let cashRcvd = Number(cashrcvd.innerHTML);
+    if (cashRcvd) {
+        if (cashRcvd < totalAmount) {
+            alert("Kindly Enter Valid Received Cash");
+            cashrcvd.innerHTML = "";
+        } else {
+            cashrcvd.parentNode.classList.remove("border-focus");
+            cashrcvd.style.border = "none";
+            let rs = cashRcvd - totalAmount;
+            cashReturn.innerHTML = rs;
+            cashrcvd = document.querySelectorAll(".cashrcvd");
+            cashReturn = document.querySelectorAll(".cashReturn");
+            cashrcvd.forEach(e => {
+                e.innerHTML = cashRcvd
+            });
+            cashReturn.forEach(e => {
+                e.innerHTML = rs;
+            });
+        }
+    } else {
+        alert("Enter Received Cash");
+    }
+});
+printBtn.addEventListener("click", () => {
+    window.print();
 })
