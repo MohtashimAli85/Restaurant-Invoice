@@ -483,6 +483,10 @@ footer .numPad .btn {
   font-family: "bold";
   src: url("../assets/Montserrat-SemiBold.otf");
 }
+@font-face {
+  font-family: "nimbus";
+  src: url("../assets/NimbusSanL-Reg.otf");
+}
 * {
   margin: 0;
   padding: 0;
@@ -562,7 +566,8 @@ header {
 }
 
 .border-focus {
-  border: 1px solid #ff8d6bff !important;
+  border: 1px solid #ff8d6bff;
+  border-color: #ff8d6bff;
 }
 
 .decorations {
@@ -871,13 +876,10 @@ footer .enterBtn:focus-visible {
   max-width: 170px;
   margin-bottom: 1rem;
 }
-.billInvoice .receipt table thead {
-  position: sticky;
-}
 .billInvoice .receipt table .invoice tr:nth-child(odd) {
   background-color: unset;
 }
-.billInvoice .receipt table tr td {
+.billInvoice .receipt table tr {
   border: 1px solid #000000;
 }
 .billInvoice .receipt .tfoot {
@@ -895,8 +897,8 @@ footer .enterBtn:focus-visible {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
-.cashRcvd {
-  align-self: flex-start;
+.billInvoice .npreceipt .invoiceTfoot .cashrcvd {
+  border-left: 1px solid #ff8d6b;
 }
 
 ::-webkit-scrollbar {
