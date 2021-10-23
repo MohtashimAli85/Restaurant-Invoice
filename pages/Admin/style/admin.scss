@@ -1,0 +1,53 @@
+@import "../../Order/style/order.scss";
+main,
+footer,
+header {
+  transition: flex-basis 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+main {
+  margin: 0px 1rem 0;
+  flex-basis: 90%;
+  .restaurantMenu {
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    img {
+      max-width: 50px;
+    }
+    div {
+      flex-basis: 60%;
+    }
+    .logo {
+      max-width: 160px;
+    }
+  }
+}
+.categories {
+  h1 {
+    margin-bottom: 15px;
+    font-family: "bold", sans-serif;
+  }
+
+  ul {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.5rem;
+    li {
+      flex-basis: 22%;
+      align-items: center;
+      background-color: $white;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      img {
+        padding: 1rem;
+        max-width: 80px;
+      }
+      h5 {
+        font-family: "bold", sans-serif;
+      }
+    }
+    .active {
+      color: $white;
+    }
+  }
+}
