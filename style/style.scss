@@ -11,7 +11,7 @@ $black: #070600ff;
 $citrine: #d8cc34ff;
 $black-coral: #5c6672ff;
 $white: #fff;
-@import "../pages/style/order.scss";
+@import "../pages/Order/style/order.scss";
 @font-face {
   font-family: "montserat";
   src: url("../assets/Montserrat-Regular.otf");
@@ -20,6 +20,10 @@ $white: #fff;
 @font-face {
   font-family: "bold";
   src: url("../assets/Montserrat-SemiBold.otf");
+}
+@font-face {
+  font-family: "nimbus";
+  src: url("../assets/NimbusSanL-Reg.otf");
 }
 * {
   margin: 0;
@@ -84,7 +88,8 @@ header {
   grid-template-columns: repeat(2, minmax(10px, 1fr)) !important;
 }
 .border-focus {
-  border: 1px solid #ff8d6bff !important;
+  border: 1px solid #ff8d6bff;
+  border-color: #ff8d6bff;
 }
 .decorations {
   align-items: center;
@@ -404,7 +409,7 @@ footer {
     }
     table {
       thead {
-        position: sticky;
+        // position: sticky;
       }
       .invoice {
         tr:nth-child(odd) {
@@ -412,9 +417,7 @@ footer {
         }
       }
       tr {
-        td {
-          border: 1px solid $black;
-        }
+        border: 1px solid $black;
       }
       tbody {
         // height: 350px;
@@ -440,11 +443,14 @@ footer {
       // height: 350px;
       // overflow: auto;
     }
+    .invoiceTfoot {
+      .cashrcvd {
+        border-left: 1px solid #ff8d6b;
+      }
+    }
   }
 }
-.cashRcvd {
-  align-self: flex-start;
-}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
