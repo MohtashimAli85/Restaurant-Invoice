@@ -1,6 +1,7 @@
 import { fillDataArr } from "../Data/fillData.js";
 import { menuListenerArr } from "../Data/eventListeners.js";
-import { validateActive, menuFn, fillingData } from "../functions/function.js";
+import { validateActive, fillingData } from "../functions/function.js";
+import { menuFn } from "../functions/menuFunctions.js"
 
 let orderNowBtn = document.querySelector(".orderNow");
 let items = document.querySelector(".items");
