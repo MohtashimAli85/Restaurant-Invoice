@@ -53,19 +53,7 @@ export function display(variableName, value, command, cName) {
         variableName.classList.remove(cName);
     }
 }
-function menuSelection(menu, id) {
-    if (menu.classList.contains("active")) {
-        document.querySelector(`${id}`).style.display = "none";
-        menu.classList.remove("active");
-    }
-}
 
-function selectedMenu(menu, id) {
-    document.querySelector(id).style.display = "block";
-    document.querySelector(id).classList.add("menuAnimation");
-    menu.classList.add("active");
-
-}
 
 export function activeChecker(menu, id) {
     document.querySelector(id).style.display = "none";
@@ -97,12 +85,7 @@ export function validateActive(m1, m2, m3, m4) {
     })
 
 }
-export function menuFn(menu1, id1, menu2, id2, menu3, id3, menu4, id4) {
-    menuSelection(menu1, id1);
-    menuSelection(menu2, id2);
-    menuSelection(menu3, id3);
-    selectedMenu(menu4, id4);
-}
+
 function dataProvider(name, type, price, img, imgName) {
     return (`<div class="item d-flex">
     <div class="d-flex v-center">
@@ -134,10 +117,10 @@ export function getOrderItem(item, command) {
             name += `${e.children[0].children[0].innerHTML} ${e.children[1].children[0].children[0].innerHTML}, `;
             // console.log(e.children[1].children[0].children[0].innerHTML);
         });
-        name = name.slice(0, -2);
+        // name = name.slice(0, -2);
     }
     if (command == "reserved") {
-        name = []
+        name = [];
         item.forEach(e => {
             name.push({
                 itemName: e.children[0].children[0].innerHTML,
@@ -147,6 +130,7 @@ export function getOrderItem(item, command) {
             });
         });
     }
+
     // console.log(name);
     return name;
 }
