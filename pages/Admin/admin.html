@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="../../style/style.min.css" />
-    <link rel="stylesheet" href="style/admin.min.css" />
+    <link rel="stylesheet" href="../Order/style/order.min.css" />
     <link rel="stylesheet" href="../../style/animation.min.css" />
+    <link rel="stylesheet" href="style/admin.min.css" />
     <title>Amin Kabab House</title>
   </head>
 
@@ -25,7 +26,7 @@
             /></a>
           </li>
           <li>
-            <a href="order.html"
+            <a href="../Order/order.html"
               ><img src="../../assets/orderIcon.png" alt="order icon"
             /></a>
           </li>
@@ -45,7 +46,7 @@
       </div>
     </header>
     <main>
-      <div class="restaurantMenu d-flex justify-content-sp v-center">
+      <!-- <div class="restaurantMenu d-flex justify-content-sp v-center">
         <img
           src="../../assets/restaurant-menu-icon.png"
           alt="restaurantMenu icon"
@@ -53,63 +54,71 @@
         <div>
           <img src="../../assets/logo.svg" alt="logo icon" class="icon logo" />
         </div>
-      </div>
+      </div> -->
       <div class="categories">
         <h1>Categories</h1>
         <ul class="d-flex">
-          <li class="d-flex menu1">
+          <li class="d-flex amenu1">
             <img src="../../assets/rack-of-lamb.png" alt="mutton img" />
             <h5>Mutton</h5>
           </li>
-          <li class="d-flex menu2">
+          <li class="d-flex amenu2">
             <img src="../../assets/chicken-leg.png" alt="img" />
             <h5>Chicken</h5>
           </li>
-          <li class="d-flex menu3">
+          <li class="d-flex amenu3">
             <img src="../../assets/soda-bottle.png" alt="img" />
             <h5>Drinks</h5>
           </li>
-          <li class="d-flex menu4">
+          <li class="d-flex amenu4">
             <img src="../../assets/menu.png" alt="img" />
             <h5>Sides</h5>
           </li>
         </ul>
       </div>
-      <div class="menu" id="menu1">
+      <div class="menu" id="adminMenu1">
         <h1>Mutton Menu</h1>
-        <div class="menuGrid" id="mutton"></div>
+        <div class="menu admin_inputs">
+        
+        </div>
       </div>
-      <div class="menu" id="menu2">
+      <div class="menu" id="adminMenu2">
         <h1>Chicken Menu</h1>
-        <div class="menuGrid" id="chicken"></div>
+        
+        </div>
       </div>
-      <div class="menu" id="menu3">
+      <div class="menu" id="adminMenu3">
         <h1>Drinks Menu</h1>
-        <div class="menuGrid" id="drinks"></div>
+      
       </div>
-      <div class="menu" id="menu4">
+      <div class="menu" id="adminMenu4">
         <h1>Sides Menu</h1>
-        <div class="menuGrid" id="sides"></div>
+        
+        </div>
       </div>
+      <div class="d-flex">
+<div class="Input">
+    <input type="text" id="name" class="Input-text" placeholder="Enter Item Name, e.g. Mutton Karahi">
+    <label for="name" class="Input-label">Item Name</label>
+  </div>
+  <div class="Input">
+    <input type="number" id="price" class="Input-text" placeholder="Enter Price, e.g. 500">
+    <label for="price" class="Input-label">Price</label>
+  </div>
+      </div>
+  <div class="d-flex">
+    <div class="Input">
+    <input type="text" id="input" class="Input-text" placeholder="Enter Type, e.g. F  note: F means Full">
+    <label for="input" class="Input-label">Type</label>
+  </div>
+  <div class="Input">
+    <button class="addBtn btn d-flex ">Add<img src="../../assets/add-product.png"> </button>
+  </div>
+</div>    
+  
     </main>
-    <footer>
-      <div class="numPad">
-        <button class="btn">7</button>
-        <button class="btn">8</button>
-        <button class="btn">9</button>
-        <button class="btn">4</button>
-        <button class="btn">5</button>
-        <button class="btn">6</button>
-        <button class="btn">1</button>
-        <button class="btn">2</button>
-        <button class="btn">3</button>
-        <button class="btn">0</button>
-        <button class="btn">Del</button>
-        <button class="btn">Enter</button>
-      </div>
-    </footer>
-    <!-- <script type="module" src="script/Component/keyPad.js"></script> -->
+    <footer></footer>
 
-    <!-- <script type="module" src="mutton.js"></script> -->
+    <script async type="module" src="script/adminMenu.js"></script>
   </body>
 </html>
