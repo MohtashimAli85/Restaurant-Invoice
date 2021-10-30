@@ -13,16 +13,16 @@ $blackCoralbs: #5c667259;
 
 @font-face {
   font-family: "montserat";
-  src: url("../../assets/Montserrat-Regular.otf");
+  src: url("../../../assets/Montserrat-Regular.otf");
 }
 
 @font-face {
   font-family: "bold";
-  src: url("../../assets/Montserrat-SemiBold.otf");
+  src: url("../../../assets/Montserrat-SemiBold.otf");
 }
 @font-face {
   font-family: "nimbus";
-  src: url("../../assets/NimbusSanL-Reg.otf");
+  src: url("../../../assets/NimbusSanL-Reg.otf");
 }
 @mixin buttonCss {
   background-color: #ffffff;
@@ -128,67 +128,67 @@ main {
     .carOrder {
       display: none;
       padding: 1rem;
-      .form__group {
-        position: relative;
-        padding: 15px 0 0;
-        margin-top: 10px;
-        width: 50%;
+    }
+    .form__group {
+      position: relative;
+      padding: 15px 0 0;
+      margin-top: 10px;
+      width: 50%;
+    }
+
+    .form__field {
+      font-family: inherit;
+      width: 100%;
+      border: 0;
+      border-bottom: 2px solid $black2;
+      outline: 0;
+      font-size: 1.3rem;
+      color: $black2;
+      padding: 7px 0;
+      background: transparent;
+      transition: border-color 0.2s;
+
+      &::placeholder {
+        color: transparent;
       }
 
-      .form__field {
-        font-family: inherit;
-        width: 100%;
-        border: 0;
-        border-bottom: 2px solid $black2;
-        outline: 0;
+      &:placeholder-shown ~ .form__label {
         font-size: 1.3rem;
-        color: $black2;
-        padding: 7px 0;
-        background: transparent;
-        transition: border-color 0.2s;
-
-        &::placeholder {
-          color: transparent;
-        }
-
-        &:placeholder-shown ~ .form__label {
-          font-size: 1.3rem;
-          cursor: text;
-          top: 20px;
-        }
+        cursor: text;
+        top: 20px;
       }
+    }
 
-      .form__label {
+    .form__label {
+      position: absolute;
+      top: 0;
+      display: block;
+      transition: 0.2s;
+      font-size: 1rem;
+      color: $black2;
+    }
+
+    .form__field:focus {
+      ~ .form__label {
         position: absolute;
         top: 0;
         display: block;
         transition: 0.2s;
         font-size: 1rem;
-        color: $black2;
-      }
-
-      .form__field:focus {
-        ~ .form__label {
-          position: absolute;
-          top: 0;
-          display: block;
-          transition: 0.2s;
-          font-size: 1rem;
-          color: $orange;
-          font-weight: 700;
-        }
-        padding-bottom: 6px;
+        color: $orange;
         font-weight: 700;
-        border-width: 3px;
-        border-image: linear-gradient(to right, $orange, $gray);
-        border-image-slice: 1;
       }
-      /* reset input */
-      .form__field {
-        &:required,
-        &:invalid {
-          box-shadow: none;
-        }
+      padding-bottom: 6px;
+      font-weight: 700;
+      border-width: 3px;
+      border-image: linear-gradient(to right, $orange, $gray);
+      border-image-slice: 1;
+    }
+    /* reset input */
+    .form__field {
+      &:required,
+      &:invalid {
+        box-shadow: none;
       }
     }
     .tableOrder {

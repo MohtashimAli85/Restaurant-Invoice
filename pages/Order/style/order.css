@@ -1,14 +1,14 @@
 @font-face {
   font-family: "montserat";
-  src: url("../../assets/Montserrat-Regular.otf");
+  src: url("../../../assets/Montserrat-Regular.otf");
 }
 @font-face {
   font-family: "bold";
-  src: url("../../assets/Montserrat-SemiBold.otf");
+  src: url("../../../assets/Montserrat-SemiBold.otf");
 }
 @font-face {
   font-family: "nimbus";
-  src: url("../../assets/NimbusSanL-Reg.otf");
+  src: url("../../../assets/NimbusSanL-Reg.otf");
 }
 main,
 footer,
@@ -35,6 +35,7 @@ main .restaurantMenu .logo {
 }
 main .orderSelection {
   display: none;
+  /* reset input */
 }
 main .orderSelection .orderTitle {
   align-items: center;
@@ -93,15 +94,14 @@ main .orderSelection .orderType .active {
 main .orderSelection .carOrder {
   display: none;
   padding: 1rem;
-  /* reset input */
 }
-main .orderSelection .carOrder .form__group {
+main .orderSelection .form__group {
   position: relative;
   padding: 15px 0 0;
   margin-top: 10px;
   width: 50%;
 }
-main .orderSelection .carOrder .form__field {
+main .orderSelection .form__field {
   font-family: inherit;
   width: 100%;
   border: 0;
@@ -113,15 +113,15 @@ main .orderSelection .carOrder .form__field {
   background: transparent;
   transition: border-color 0.2s;
 }
-main .orderSelection .carOrder .form__field::placeholder {
+main .orderSelection .form__field::placeholder {
   color: transparent;
 }
-main .orderSelection .carOrder .form__field:placeholder-shown ~ .form__label {
+main .orderSelection .form__field:placeholder-shown ~ .form__label {
   font-size: 1.3rem;
   cursor: text;
   top: 20px;
 }
-main .orderSelection .carOrder .form__label {
+main .orderSelection .form__label {
   position: absolute;
   top: 0;
   display: block;
@@ -129,14 +129,14 @@ main .orderSelection .carOrder .form__label {
   font-size: 1rem;
   color: #1b1a1aa2;
 }
-main .orderSelection .carOrder .form__field:focus {
+main .orderSelection .form__field:focus {
   padding-bottom: 6px;
   font-weight: 700;
   border-width: 3px;
   border-image: linear-gradient(to right, #ff8d6b, #efeff1);
   border-image-slice: 1;
 }
-main .orderSelection .carOrder .form__field:focus ~ .form__label {
+main .orderSelection .form__field:focus ~ .form__label {
   position: absolute;
   top: 0;
   display: block;
@@ -145,7 +145,7 @@ main .orderSelection .carOrder .form__field:focus ~ .form__label {
   color: #ff8d6b;
   font-weight: 700;
 }
-main .orderSelection .carOrder .form__field:required, main .orderSelection .carOrder .form__field:invalid {
+main .orderSelection .form__field:required, main .orderSelection .form__field:invalid {
   box-shadow: none;
 }
 main .orderSelection .tableOrder {
