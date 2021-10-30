@@ -18,7 +18,7 @@ let delBtns = document.querySelectorAll(".delImg"),
   orderArray = localStorage.getItem('takeAway')
     ? JSON.parse(localStorage.getItem('takeAway'))
     : [],
-  item = "", name = "", price = "", qty = "", newItem = "", tBill = 0;
+  item = "", name = "", price = "", qty = "", newItem = "", tBill = 0, takeAwayOrder = [];
 let tableOrder = localStorage.getItem('tableOrder') ?
   JSON.parse(localStorage.getItem('tableOrder')) : [],
   tableClick = sessionStorage.getItem("tableClick") ?
@@ -200,7 +200,12 @@ orderNowBtn.addEventListener("click", () => {
         amount: Number(bill.innerHTML),
       });
       localStorage.setItem("takeAway", JSON.stringify(orderArray));
+      name = getOrderItem(orderItem, "reserved");
+      // takeAwayOrder.push(name);
+      localStorage.setItem("takeAwayPrint", JSON.stringify(name));
       window.location.href = "../../index.html";
+      // window.print();
+
     }
     if (car.classList.contains("active")) {
     }
