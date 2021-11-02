@@ -113,11 +113,8 @@ export function getOrderItem(item, command) {
     let name = "";
     if (command == "takeAway") {
         item.forEach((e) => {
-            // console.log(e.children[0].children[0]);
             name += `${e.children[0].children[0].innerHTML} ${e.children[1].children[0].children[0].innerHTML}, `;
-            // console.log(e.children[1].children[0].children[0].innerHTML);
         });
-        // name = name.slice(0, -2);
     }
     if (command == "reserved") {
         name = [];
@@ -131,7 +128,6 @@ export function getOrderItem(item, command) {
         });
     }
 
-    // console.log(name);
     return name;
 }
 
