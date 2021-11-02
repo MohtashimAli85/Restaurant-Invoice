@@ -22,7 +22,6 @@ backBtn.addEventListener("click", (e) => {
 });
 
 assignTables.addEventListener("click", (e) => {
-
     categoriesSelection(car, carOrder);
     takeAwayfn(takeAway);
     assignTables.classList.add("active");
@@ -46,8 +45,7 @@ assignTables.addEventListener("click", (e) => {
                     </div>`;
         }
     });
-    tableOrder.innerHTML = item;
-    item = "";
+    tableOrder.innerHTML = item; item = "";
     allcircles = document.querySelectorAll(".circle");
     allTables = document.querySelectorAll(".tableUnselected");
     selectedTables = document.querySelectorAll(".tableSelected");
@@ -60,13 +58,9 @@ assignTables.addEventListener("click", (e) => {
                         t.children[2].src = "../../assets/circle-w.png";
                         t.classList.remove("new");
                     }
-                    // console.log("inside");
                 });
                 img.src = "../../assets/circle-o.png";
                 img.parentNode.classList.add("new");
-                console.log(img.parentNode)
-                // console.log(allTables);
-                // console.log("clicked");
             });
         });
     }
@@ -78,64 +72,47 @@ assignTables.addEventListener("click", (e) => {
             tableNum = Number(tableNum.substr(-2));
             if (updateTable == tableNum) {
                 t.classList.add("update");
-                // t.children[0].src = "../assets/restaurant-table-update.png"
             }
         });
     }
-
 });
-
-car.addEventListener("click", (e) => {
+car.addEventListener("click", () => {
     categoriesSelection(assignTables, tableOrder);
     takeAwayfn(takeAway);
     car.classList.add("active");
     display(carOrder, "block", "add", "animation");
     label.innerHTML = "Car Number";
 });
-
-takeAway.addEventListener("click", (e) => {
+takeAway.addEventListener("click", () => {
     categoriesSelection(car, carOrder);
     categoriesSelection(assignTables, tableOrder);
     takeAway.classList.add("active");
     reserveTableBtn.style.display = "none";
     orderNowBtn.style.display = "block";
 });
-reserveTableBtn.addEventListener("click", (e) => {
-    // reserveOrderArray.forEach(e => {
-    //     if (e.tableNum == updateTable) { }
-    // })
-
+reserveTableBtn.addEventListener("click", () => {
+    let isTableSelected = false;
     allTables.forEach((t) => {
         if (t.classList.contains("new")) {
             let orderItem = document.querySelectorAll(".orderItem");
             let i = t.children[1].innerHTML;
             i = Number(i.substr(-2));
-            console.log(i);
             tables[i - 1].reserved = true;
             name = getOrderItem(orderItem, "reserved");
-            // console.log(name);
             reserveOrderArray.push({
                 description: name,
                 total: Number(bill.innerHTML),
                 tableNum: i
             });
-            // console.log(reserveOrderArray);
             localStorage.setItem("tableOrder", JSON.stringify(reserveOrderArray));
             localStorage.setItem("tables", JSON.stringify(tables));
-            // console.log(localStorage.getItem("tables"));
-            console.log(localStorage.getItem("tableOrder"));
+            isTableSelected = true;
             window.location.href = "../../../index.html";
         }
     });
     if (tableClick != "") {
-
-        // updateTable = Number(updateTable.slice(-1));
-        // console.log("🚀 ~ file: orderSelection.js ~ line 26 ~ assignTables.addEventListener ~ updateTable", updateTable);
         let orderItem = document.querySelectorAll(".orderItem");
-        // tables[updateTable - 1].reserved = false;
         name = getOrderItem(orderItem, "reserved");
-        console.log(reserveOrderArray);
-        // console.log("🚀 ~ file: orderSelection.js ~ line 119 ~ allTables.forEach ~ name", name);
         reserveOrderArray.forEach(e => {
             console.log(e.tableNum);
             if (e.tableNum == updateTable) {
@@ -144,15 +121,11 @@ reserveTableBtn.addEventListener("click", (e) => {
                 console.log("done");
             }
         });
-        console.log(reserveOrderArray);
         localStorage.setItem("tableOrder", JSON.stringify(reserveOrderArray));
         localStorage.setItem("tables", JSON.stringify(tables));
-        // console.log(localStorage.getItem("tables"));
-        console.log(localStorage.getItem("tableOrder"));
         window.location.href = "../../../index.html";
+    } else if (!isTableSelected) {
+        alert("Kindly select table to reserve order.")
     }
 });
-
 export { allTables };
-// console.log(tables[0].reserved);
-// console.log(tables[0].tableNo);
