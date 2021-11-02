@@ -15,7 +15,7 @@ fillDataArr.forEach(e => {
 
 menuListenerArr.forEach(e => {
     e.Vname.addEventListener("click", () => {
-        menuFn(e.args[0], e.args[1], e.args[2], e.args[3], e.args[4], e.args[5], e.args[6], e.args[7]);
+        menuFn(...e.args)
     });
 });
 
@@ -25,7 +25,7 @@ menuListenerArr.forEach(e => {
 
 orderNowBtn.addEventListener("click", () => {
     if (items.innerHTML != "0") {
-        validateActive(args[0], args[1], args[2], args[3]);
+        validateActive(...args);
     }
 });
 export let addBtn = document.querySelectorAll('.addBtn');
