@@ -1,4 +1,5 @@
 import { tables } from "../pages/Order/script/Data/tables.js";
+import { fillPrintData } from "./printdata.js"
 let orderArray = localStorage.getItem('takeAway')
     ? JSON.parse(localStorage.getItem('takeAway'))
     : [],
@@ -34,46 +35,7 @@ if (orderArray.length != 0) {
 }
 if (takeAwayPrint.length != 0) {
     item = ""; totalAmount = 0;
-    takeAwayPrint.forEach(e => {
-        let price = e.price;
-        // console.log(e.price);
-        price = price.substr(2);
-        item += `<tr>
-                        <td>${e.itemName}</td>
-                        <td>${e.qty}</td>
-                        <td>${price}</td>
-                        <td>${e.total}</td>
-                    </tr>`;
-        totalAmount += Number(e.total);
-    })
-    invoice.innerHTML = item;
-    invoicep.innerHTML = item;
-    item = "";
-    // serviceTax = Math.round(totalAmount * 0.03);
-    totalAmount += serviceTax;
-    item += `<colgroup>
-                <col width="60%" />
-                <col width="10%" />
-                <col width="15%" />
-                <col width="15%" />
-              </colgroup>
-                <tr class="border-focus">
-                    <td colspan="3">Received Cash</td>
-                    <td class="cashrcvd"></td>
-                </tr>
-                <tr>
-                        <td colspan="3">Total</td>
-
-                        <td class="tkta">${totalAmount}</td>
-                </tr>
-                <tr>
-                        <td colspan="3">Return</td>
-
-                        <td class="cashReturn"></td>
-                </tr>`;
-
-    invoiceTfoot.innerHTML = item;
-    invoicepTfoot.innerHTML = item;
+    fillPrintData(takeAwayPrint, invoice, invoicep, invoiceTfoot, invoicepTfoot)
     // item = invoice.innerHTML;
     // totalInvoicep.innerHTML = totalAmount;
     // modal.style.display = "none";
@@ -81,7 +43,7 @@ if (takeAwayPrint.length != 0) {
     cashrcvd = document.querySelector(".cashrcvd");
     cashReturn = document.querySelector(".cashReturn");
     cashrcvd.contentEditable = true;
-    // localStorage.setItem("takeAwayPrint", "");
+    localStorage.setItem("takeAwayPrint", "");
     billInvoice.style.display = "block";
     salesTable.style.display = "none";
     item = "";
@@ -150,51 +112,7 @@ invoiceBtn.addEventListener("click", () => {
     }
     if (tableOrderItem) {
         salesTable.style.display = "none";
-        totalAmount = 0;
-        tableOrderItem.forEach(e => {
-            let price = e.price;
-            price = price.substr(2);
-            item += `<tr>
-                        <td>${e.itemName}</td>
-                        <td>${e.qty}</td>
-                        <td>${price}</td>
-                        <td>${e.total}</td>
-                    </tr>`;
-            totalAmount += Number(e.total);
-        });
-        invoice.innerHTML = item;
-        invoicep.innerHTML = item;
-        item = ""
-        serviceTax = Math.round(totalAmount * 0.03);
-        totalAmount += serviceTax;
-        item += `<colgroup>
-                <col width="60%" />
-                <col width="10%" />
-                <col width="15%" />
-                <col width="15%" />
-              </colgroup>
-              <tr>
-                        <td colspan="3">Service Tax</td>
-
-                        <td>${serviceTax}</td>
-                </tr>
-                <tr class="border-focus">
-                    <td colspan="3">Received Cash</td>
-                    <td class="cashrcvd"></td>
-                </tr>
-                <tr>
-                        <td colspan="3">Total</td>
-
-                        <td>${totalAmount}</td>
-                </tr>
-                <tr>
-                        <td colspan="3">Return</td>
-
-                        <td class="cashReturn"></td>
-                </tr>`;
-
-        invoiceTfoot.innerHTML = item;
-        invoicepTfoot.innerHTML = item;
+        fillPrintData(tableOrderItem, invoice, invoicep, invoiceTfoot, invoicepTfoot)
         // item = invoice.innerHTML;
         // totalInvoicep.innerHTML = totalAmount;
         modal.style.display = "none";
@@ -211,9 +129,7 @@ backBtn.addEventListener("click", () => {
 });
 enterBtn.addEventListener("click", () => {
     let cashRcvd = Number(cashrcvd.innerHTML);
-    console.log(cashRcvd);
     let totalAmount = Number(document.querySelector(".tkta").innerHTML);
-    console.log(totalAmount);
 
     if (cashRcvd) {
         if (cashRcvd < totalAmount) {
