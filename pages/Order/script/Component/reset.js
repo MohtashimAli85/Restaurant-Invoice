@@ -11,6 +11,7 @@ export let numPad = document.querySelector(".numPad");
 export let footerContainer = document.querySelector(".footer");
 export let footer = document.querySelector("footer");
 export let main = document.querySelector("main");
+
 export let backBtnArr = [
   {
     vname: categories,
