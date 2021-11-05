@@ -7,22 +7,31 @@ export const amenuOne = document.querySelector(".amenu1"),
     amenuTwo = document.querySelector(".amenu2"),
     amenuThree = document.querySelector(".amenu3"),
     amenuFour = document.querySelector(".amenu4");
+export let muttonDB = [], chickenDB = [], drinksDB = [], sideOrderDB = [];
 export let menuListenerArr = [
     {
         Vname: menuOne,
-        args: [menuTwo, "#menu2", menuThree, "#menu3", menuFour, "#menu4", menuOne, "#menu1"]
+        args: [menuTwo, "#menu2", menuThree, "#menu3", menuFour, "#menu4", menuOne, "#menu1"],
+        menuName: "mutton",
+        menuArr: muttonDB
     },
     {
         Vname: menuTwo,
-        args: [menuOne, "#menu1", menuThree, "#menu3", menuFour, "#menu4", menuTwo, "#menu2"]
+        args: [menuOne, "#menu1", menuThree, "#menu3", menuFour, "#menu4", menuTwo, "#menu2"],
+        menuName: "chicken",
+        menuArr: chickenDB
     },
     {
         Vname: menuThree,
-        args: [menuOne, "#menu1", menuTwo, "#menu2", menuFour, "#menu4", menuThree, "#menu3"]
+        args: [menuOne, "#menu1", menuTwo, "#menu2", menuFour, "#menu4", menuThree, "#menu3"],
+        menuName: "drinks",
+        menuArr: drinksDB
     },
     {
         Vname: menuFour,
-        args: [menuOne, "#menu1", menuTwo, "#menu2", menuThree, "#menu3", menuFour, "#menu4"]
+        args: [menuOne, "#menu1", menuTwo, "#menu2", menuThree, "#menu3", menuFour, "#menu4"],
+        menuName: "sideOrder",
+        menuArr: sideOrderDB
     }
 ];
 
