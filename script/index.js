@@ -1,5 +1,5 @@
 import { tables } from "../pages/Order/script/Data/tables.js";
-import { fillPrintData } from "./printdata.js"
+import { fillPrintData } from "./printdata.js";
 let orderArray = localStorage.getItem('takeAway')
     ? JSON.parse(localStorage.getItem('takeAway'))
     : [],
@@ -35,7 +35,7 @@ if (orderArray.length != 0) {
 }
 if (takeAwayPrint.length != 0) {
     item = ""; totalAmount = 0;
-    fillPrintData(takeAwayPrint, invoice, invoicep, invoiceTfoot, invoicepTfoot)
+    fillPrintData(takeAwayPrint, invoice, invoicep, invoiceTfoot, invoicepTfoot, "takeAway");
     // item = invoice.innerHTML;
     // totalInvoicep.innerHTML = totalAmount;
     // modal.style.display = "none";
@@ -112,7 +112,7 @@ invoiceBtn.addEventListener("click", () => {
     }
     if (tableOrderItem) {
         salesTable.style.display = "none";
-        fillPrintData(tableOrderItem, invoice, invoicep, invoiceTfoot, invoicepTfoot)
+        fillPrintData(tableOrderItem, invoice, invoicep, invoiceTfoot, invoicepTfoot, "tableOrder");
         // item = invoice.innerHTML;
         // totalInvoicep.innerHTML = totalAmount;
         modal.style.display = "none";
@@ -125,7 +125,7 @@ invoiceBtn.addEventListener("click", () => {
 backBtn.addEventListener("click", () => {
     billInvoice.style.display = "none";
     salesTable.style.display = "block";
-
+    printBtns.classList.remove("d-flexi");
 });
 enterBtn.addEventListener("click", () => {
     let cashRcvd = Number(cashrcvd.innerHTML);

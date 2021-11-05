@@ -17,8 +17,13 @@ backBtn.addEventListener("click", (e) => {
     backBtnArr.forEach((e) => {
         display(e.vname, e.value, e.command, e.class);
     });
-    document.querySelector(".menu1").click();
+    // document.querySelector(".menu1").click();
     orderContainer.style.height = "55vh";
+    setTimeout(() => {
+        if (document.querySelector(".menu1")) {
+            document.querySelector(".menu1").click();
+        }
+    }, 1000);
 });
 
 assignTables.addEventListener("click", (e) => {
