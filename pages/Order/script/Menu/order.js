@@ -187,7 +187,7 @@ export function executeOrder() {
       }
       if (isNotZero) {
         menuIcon.removeEventListener("click", function () { });
-        document.querySelector(".tables").click();
+
         if (takeAway.classList.contains("active")) {
           orderItem = document.querySelectorAll(".orderItem");
           name = getOrderItem(orderItem, "takeAway");
