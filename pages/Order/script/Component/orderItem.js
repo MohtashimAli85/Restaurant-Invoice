@@ -1,4 +1,4 @@
-export function orderItemComponent(name, price, total) {
+export function orderItemComponent(name, qty, price, total) {
     return `<div class="orderItem orderItemAnimation">
         <div class="orderName d-flex">
             <h5>${name}</h5>
@@ -6,7 +6,7 @@ export function orderItemComponent(name, price, total) {
         </div>
         <div class="orderPrice d-flex">
             <div class="count d-flex">
-                <p class="qty new">1</p>
+                <p class="qty new">${qty}</p>
             </div>
             <div class="calculation d-flex">
                 <p class="price">x ${price}</p>
