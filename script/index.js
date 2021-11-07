@@ -36,9 +36,6 @@ if (orderArray.length != 0) {
 if (takeAwayPrint.length != 0) {
     item = ""; totalAmount = 0;
     fillPrintData(takeAwayPrint, invoice, invoicep, invoiceTfoot, invoicepTfoot, "takeAway");
-    // item = invoice.innerHTML;
-    // totalInvoicep.innerHTML = totalAmount;
-    // modal.style.display = "none";
     printBtns.classList.add("d-flexi");
     cashrcvd = document.querySelector(".cashrcvd");
     cashReturn = document.querySelector(".cashReturn");
@@ -47,8 +44,6 @@ if (takeAwayPrint.length != 0) {
     billInvoice.style.display = "block";
     salesTable.style.display = "none";
     item = "";
-    // window.print();
-
 }
 let amount = document.querySelectorAll('.amount'), total = document.querySelector('.total');
 amount.forEach(e => {
@@ -113,8 +108,6 @@ invoiceBtn.addEventListener("click", () => {
     if (tableOrderItem) {
         salesTable.style.display = "none";
         fillPrintData(tableOrderItem, invoice, invoicep, invoiceTfoot, invoicepTfoot, "tableOrder");
-        // item = invoice.innerHTML;
-        // totalInvoicep.innerHTML = totalAmount;
         modal.style.display = "none";
         printBtns.classList.add("d-flexi");
         cashrcvd = document.querySelector(".cashrcvd");
@@ -128,31 +121,42 @@ backBtn.addEventListener("click", () => {
     printBtns.classList.remove("d-flexi");
 });
 enterBtn.addEventListener("click", () => {
+    cashrcvd = document.querySelector(".cashrcvd");
     let cashRcvd = Number(cashrcvd.innerHTML);
     let totalAmount = Number(document.querySelector(".tkta").innerHTML);
 
     if (cashRcvd) {
         if (cashRcvd < totalAmount) {
             alert("Kindly Enter Valid Received Cash");
-            cashrcvd.innerHTML = "";
+            // cashrcvd.innerHTML = "";
+            enterCash('', '', "", '');
         } else {
-            cashrcvd.parentNode.classList.remove("border-focus");
-            cashrcvd.style.border = "none";
             let rs = cashRcvd - totalAmount;
-            cashReturn.innerHTML = rs;
-            cashrcvd = document.querySelectorAll(".cashrcvd");
-            cashReturn = document.querySelectorAll(".cashReturn");
-            cashrcvd.forEach(e => {
-                e.innerHTML = cashRcvd
-            });
-            cashReturn.forEach(e => {
-                e.innerHTML = rs;
-            });
+            enterCash('none', rs, 'remove', cashRcvd);
         }
     } else {
+        console.log(cashRcvd);
+        enterCash('', "", '', '');
         alert("Enter Received Cash");
     }
 });
 printBtn.addEventListener("click", () => {
     window.print();
-})
+});
+
+function enterCash(borderVal, rs, cmd, cash) {
+    let cashrcvd = document.querySelectorAll(".cashrcvd"),
+        cashReturn = document.querySelectorAll(".cashReturn");
+    cashrcvd.forEach(e => {
+        e.innerHTML = cash;
+        if (cmd == "remove") {
+            e.parentNode.classList.remove("border-focus");
+        } else {
+            e.parentNode.classList.add("border-focus");
+        }
+        e.style.border = borderVal;
+    });
+    cashReturn.forEach(e => {
+        e.innerHTML = rs;
+    });
+}
