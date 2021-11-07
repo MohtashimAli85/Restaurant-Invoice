@@ -114,16 +114,21 @@
   transition: transform var(--inputTransitionDuration), visibility 0ms,
     z-index 0ms;
 }
+.Input-text:not(:placeholder-shown) {
+  background-color: #e8f0fe;
+}
 
 .btn {
   @include buttonCss;
-  width: 100%;
+  width: 30%;
   background-color: $outrageousOrange;
   color: $white;
   padding: 0.1rem 1rem;
   justify-content: center;
   align-items: center;
   font-size: 1.43rem;
+  height: 100%;
+  margin: auto;
   img {
     max-width: 40px;
     margin: 0 0.3rem 0.1rem;
