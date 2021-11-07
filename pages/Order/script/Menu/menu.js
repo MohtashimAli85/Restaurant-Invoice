@@ -22,7 +22,6 @@ let args = [], filled = false;
 //     window.msIDBTransaction;
 // window.IDBKeyRange =
 //     window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
-
 if (!window.indexedDB) {
     window.alert(
         "Your browser doesn't support a stable version of IndexedDB."
@@ -30,7 +29,6 @@ if (!window.indexedDB) {
 }
 let db, request = window.indexedDB.open("AminKababHouse", 2);
 request.onupgradeneeded = function (e) {
-    console.log(e);
 
     let db = request.result;
     switch (e.oldVersion) {
@@ -60,14 +58,13 @@ request.onupgradeneeded = function (e) {
             break;
     }
 }
-request.onsuccess = function (e) {
+request.onsuccess = async function (e) {
     db = request.result;
     console.log("success", db);
     document.querySelector(".menu1").click();
 
 };
 function read(menu, menuArr) {
-    console.log(menu);
     try {
         let objectStore = db.transaction(menu).objectStore(menu);
         objectStore.openCursor().onsuccess = function (e) {
@@ -98,7 +95,6 @@ function read(menu, menuArr) {
                 }
                 cursor.continue();
             } else {
-                console.log("line");
                 fillDataArr.forEach(e => {
                     fillingData(menuArr, e.item, e.img, e.imgName, e.menu);
                     e.item = "";
@@ -115,13 +111,11 @@ menuListenerArr.forEach(e => {
     let mn = e.menuName, mr = e.menuArr;
     e.Vname.addEventListener("click", () => {
         menuFn(...e.args);
-        console.log("line 132");
         read(mn, mr);
     });
 });
 if (document.querySelector(".menu1")) {
     document.querySelector(".menu1").click();
-
 }
 menuListenerArr.forEach(e => {
     args.push(e.Vname);
@@ -133,4 +127,3 @@ orderNowBtn.addEventListener("click", () => {
     }
 });
 export let addBtn = document.querySelectorAll('.addBtn');
-console.log(addBtn);
