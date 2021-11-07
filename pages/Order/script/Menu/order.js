@@ -1,5 +1,5 @@
 
-import { footer, orderNowBtnArr, orderNowBtn, takeAway, car } from "../Component/reset.js";
+import { footer, orderNowBtnArr, orderNowBtn, takeAway, car, assignTables } from "../Component/reset.js";
 import { updatePrice, display, getOrderItem, pdCal, delButtons, qtyListener } from "../functions/function.js";
 // import { addBtn } from "./menu.js";
 import { orderItemComponent } from "../Component/orderItem.js";
@@ -27,16 +27,8 @@ let tableOrder = localStorage.getItem('tableOrder') ?
   updateClicked = sessionStorage.getItem("updateClick") ?
     JSON.parse(sessionStorage.getItem("updateClick")) : "";
 let tableOrderItem = [];
-if (document.querySelector(".menu1")) {
 
-}
 export function executeOrder() {
-
-  // if (document.querySelector(".menu1")) {
-  //   document.querySelector(".menu1").click();
-
-  // }
-
   let addBtn = document.querySelectorAll(".addBtn");
   if (tableOrder) {
     tableOrder.forEach(e => {
@@ -58,7 +50,10 @@ export function executeOrder() {
       });
     }
     tableOrderItem.forEach(e => {
-      item += orderItemComponent(e.itemName, e.price, e.total);
+      let price = e.price;
+      price = price.split("x");
+      price = Number(price[1]);
+      item += orderItemComponent(e.itemName, e.qty, price, e.total);
     });
 
     orderContainer.innerHTML = item;
@@ -83,10 +78,8 @@ export function executeOrder() {
 
     item = "";
     delButtons(delBtns, totals, qty, items, tBill, bill, footer, main);
-
     qty = document.querySelectorAll(".qty");
     qtyListener(qty, pastEdit);
-
     items.innerHTML = qty.length;
     tBill = 0;
     totals.forEach((e) => {
@@ -94,7 +87,6 @@ export function executeOrder() {
     });
     bill.innerHTML = tBill;
   }
-
 
   addBtn.forEach((e) => {
     e.addEventListener("click", (e) => {
@@ -117,7 +109,7 @@ export function executeOrder() {
         });
       }
       if (!match) {
-        item = orderItemComponent(name, price[1], price[1]);
+        item = orderItemComponent(name, 1, price[1], price[1]);
         orderContainer.innerHTML += item;
         match = false;
       }
@@ -163,15 +155,17 @@ export function executeOrder() {
   });
 
   orderNowBtn.addEventListener("click", () => {
-    qty = document.querySelectorAll(".qty");
     let isZero = false, isNotZero = false;
+    console.log("🚀 ~ file: order.js ~ line 159 ~ orderNowBtn.addEventListener ~ isZero", isZero);
+    let isAlert = false;
+    qty = document.querySelectorAll(".qty");
     if (qty) {
       qty.forEach(e => {
         let num = Number(e.innerHTML);
-        if (num == 0) {
+        if (num == 0 && !isZero) {
           isZero = true;
         }
-      })
+      });
     }
     if (items.innerHTML != "0") {
       if (!isZero) {
@@ -183,11 +177,17 @@ export function executeOrder() {
         isNotZero = true;
 
       } else {
-        alert("Kindly Enter Valid Number ");
+        isZero = false;
+        if (document.querySelector(".menu1")) {
+          document.querySelector(".menu1").click();
+        }
+
       }
       if (isNotZero) {
-        menuIcon.removeEventListener("click", function () { });
-
+        menuIcon.style.pointerEvents = "none";
+        if (tableClick.tableClicked) {
+          assignTables.click();
+        }
         if (takeAway.classList.contains("active")) {
           orderItem = document.querySelectorAll(".orderItem");
           name = getOrderItem(orderItem, "takeAway");
