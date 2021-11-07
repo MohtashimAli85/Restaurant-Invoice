@@ -187,6 +187,11 @@ export function executeOrder() {
         menuIcon.style.pointerEvents = "none";
         if (tableClick.tableClicked) {
           assignTables.click();
+          takeAway.style.pointerEvents = "none";
+          car.style.pointerEvents = "none";
+        } else {
+          car.style.pointerEvents = "auto";
+          takeAway.style.pointerEvents = "auto";
         }
         if (takeAway.classList.contains("active")) {
           orderItem = document.querySelectorAll(".orderItem");
