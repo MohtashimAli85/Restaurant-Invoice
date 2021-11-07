@@ -5,6 +5,7 @@ import { bill } from "./order.js";
 let backBtn = document.querySelector(".backBtn");
 let input = document.querySelector(".form__field");
 let label = document.querySelector(".form__label"),
+    menuIcon = document.querySelector(".restaurantMenu"),
     tableClick = sessionStorage.getItem("tableClick") ?
         JSON.parse(sessionStorage.getItem("tableClick")) : "";
 const orderContainer = document.querySelector(".orderContainer");
@@ -14,6 +15,8 @@ let reserveOrderArray = localStorage.getItem('tableOrder')
     : [];
 
 backBtn.addEventListener("click", (e) => {
+    menuIcon.style.pointerEvents = "auto";
+
     backBtnArr.forEach((e) => {
         display(e.vname, e.value, e.command, e.class);
     });
@@ -123,7 +126,6 @@ reserveTableBtn.addEventListener("click", () => {
             if (e.tableNum == updateTable) {
                 e.description = name;
                 e.total = Number(bill.innerHTML);
-                console.log("done");
             }
         });
         localStorage.setItem("tableOrder", JSON.stringify(reserveOrderArray));
@@ -133,4 +135,6 @@ reserveTableBtn.addEventListener("click", () => {
         alert("Kindly select table to reserve order.")
     }
 });
+
+
 export { allTables };
