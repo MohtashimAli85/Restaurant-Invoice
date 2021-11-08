@@ -16,7 +16,7 @@ let orders = document.querySelector("#orders"), reservedList = document.querySel
     invoicep = document.querySelector(".invoicep"), billInvoice = document.querySelector(".billInvoice"),
     invoiceTfoot = document.querySelector(".invoiceTfoot"), invoicepTfoot = document.querySelector(".invoicepTfoot"),
     salesTable = document.querySelector(".main"), cashrcvd = "", cashReturn = "",
-    printBtns = document.querySelector(".printBtns"),
+    printBtns = document.querySelector(".printBtns"), printInfo = document.querySelector(".printInfo"),
     printBtn = document.querySelector(".printBtn"), enterBtn = document.querySelector(".enterBtn"),
     rows = "", item = "", tableClick = false, orderId = 1, totalAmount = 0, serviceTax = 0;
 console.log(takeAwayPrint);
@@ -82,8 +82,8 @@ closeBtn.addEventListener("click", () => {
     sessionStorage.setItem("tableClick", "");
     modalw.classList.remove("pressedBtn");
     modal.style.display = "none";
-    salesTable.style.display = "block";
-
+    // salesTable.style.display = "block";
+    // billInvoice.style.display = 'none';
 });
 
 updateBtn.addEventListener("click", () => {
@@ -108,6 +108,11 @@ invoiceBtn.addEventListener("click", () => {
     if (tableOrderItem) {
         salesTable.style.display = "none";
         fillPrintData(tableOrderItem, invoice, invoicep, invoiceTfoot, invoicepTfoot, "tableOrder");
+        orderId = document.querySelectorAll('.orderID');
+        console.log(orderId);
+        let dt = new Date();
+        printInfo.innerHTML = `<h4>Order ID: ${orderId.length > 0 ? orderId.length : orderId.length + 1}</h4>
+                               <h4>Date: ${String(dt.getDay()).length > 1 ? dt.getDay() : '0' + dt.getDay()}/${dt.getMonth()}/${dt.getFullYear()}</h4>`;
         modal.style.display = "none";
         printBtns.classList.add("d-flexi");
         cashrcvd = document.querySelector(".cashrcvd");
