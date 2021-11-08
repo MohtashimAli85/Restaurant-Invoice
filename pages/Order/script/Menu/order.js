@@ -87,8 +87,6 @@ if (tableClick.tableClicked) {
 }
 export function executeOrder() {
   let addBtn = document.querySelectorAll(".addBtn");
-
-
   addBtn.forEach((e) => {
     e.addEventListener("click", (e) => {
       changeLayout(1, "40%", "block", "0%", "none", "60%");
