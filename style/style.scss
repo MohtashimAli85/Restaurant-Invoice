@@ -46,21 +46,14 @@ header,
 footer {
   height: 100vh;
 }
-header {
-  flex-basis: 10%;
-}
-footer {
-  flex-basis: 20%;
-}
-main {
-  flex-basis: 70%;
-  margin: 1.63rem 1rem 0;
-}
+
 img {
   width: 100%;
   height: auto;
 }
 header {
+  flex-basis: 10%;
+
   padding: 1.63rem 1.63rem 0;
 }
 .d-flex {
@@ -156,6 +149,8 @@ ul {
 }
 
 main {
+  flex-basis: 70%;
+  margin: 1.63rem 1rem 0;
   h1 {
     margin-bottom: 1rem;
   }
@@ -233,6 +228,8 @@ table {
 }
 
 footer {
+  flex-basis: 20%;
+
   padding: 1.63rem 1rem;
   h1 {
     font-size: 1.63rem;
