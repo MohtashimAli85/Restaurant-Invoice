@@ -27,66 +27,67 @@ let tableOrder = localStorage.getItem('tableOrder') ?
   updateClicked = sessionStorage.getItem("updateClick") ?
     JSON.parse(sessionStorage.getItem("updateClick")) : "";
 let tableOrderItem = [];
-
-export function executeOrder() {
-  let addBtn = document.querySelectorAll(".addBtn");
+let once = false;
+if (tableOrder) {
+  tableOrder.forEach(e => {
+    tableOrderItem.push(e.name);
+  });
+}
+if (tableClick.tableClicked) {
+  item = "";
+  tableOrder = localStorage.getItem('tableOrder') ?
+    JSON.parse(localStorage.getItem('tableOrder')) : [];
+  let tableOrderItem = [];
   if (tableOrder) {
     tableOrder.forEach(e => {
-      tableOrderItem.push(e.name);
-    });
-  }
-  if (tableClick.tableClicked) {
-    item = "";
-    tableOrder = localStorage.getItem('tableOrder') ?
-      JSON.parse(localStorage.getItem('tableOrder')) : [];
-    let tableOrderItem = [];
-    if (tableOrder) {
-      tableOrder.forEach(e => {
-        if (e.tableNum == tableClick.tableNo) {
-          e.description.forEach(e => {
-            tableOrderItem.push(e);
-          });
-        }
-      });
-    }
-    tableOrderItem.forEach(e => {
-      let price = e.price;
-      price = price.split("x");
-      price = Number(price[1]);
-      item += orderItemComponent(e.itemName, e.qty, price, e.total);
-    });
-
-    orderContainer.innerHTML = item;
-    setTimeout(() => {
-      changeLayout(1, "40%", "block", "0%", "none", "60%");
-
-    }, 500)
-
-    qty = document.querySelector(".qty");
-    newItem = document.querySelector(".new");
-    delBtns = document.querySelectorAll(".delImg");
-    totals = document.querySelectorAll(".total");
-    orderItem = document.querySelectorAll(".orderItem");
-    let pastEdit = document.querySelector(".edit");
-    if (newItem) {
-      newItem.classList.add("edit");
-      newItem.classList.remove("new");
-      if (pastEdit != null) {
-        pastEdit.classList.remove("edit");
+      if (e.tableNum == tableClick.tableNo) {
+        e.description.forEach(e => {
+          tableOrderItem.push(e);
+        });
       }
-    }
-
-    item = "";
-    delButtons(delBtns, totals, qty, items, tBill, bill, footer, main);
-    qty = document.querySelectorAll(".qty");
-    qtyListener(qty, pastEdit);
-    items.innerHTML = qty.length;
-    tBill = 0;
-    totals.forEach((e) => {
-      tBill += Number(e.innerHTML);
     });
-    bill.innerHTML = tBill;
   }
+  tableOrderItem.forEach(e => {
+    let price = e.price;
+    price = price.split("x");
+    price = Number(price[1]);
+    item += orderItemComponent(e.itemName, e.qty, price, e.total);
+  });
+
+  orderContainer.innerHTML = item;
+  setTimeout(() => {
+    changeLayout(1, "40%", "block", "0%", "none", "60%");
+
+  }, 500)
+
+  qty = document.querySelector(".qty");
+  newItem = document.querySelector(".new");
+  delBtns = document.querySelectorAll(".delImg");
+  totals = document.querySelectorAll(".total");
+  orderItem = document.querySelectorAll(".orderItem");
+  let pastEdit = document.querySelector(".edit");
+  if (newItem) {
+    newItem.classList.add("edit");
+    newItem.classList.remove("new");
+    if (pastEdit != null) {
+      pastEdit.classList.remove("edit");
+    }
+  }
+
+  item = "";
+  delButtons(delBtns, totals, qty, items, tBill, bill, footer, main);
+  qty = document.querySelectorAll(".qty");
+  qtyListener(qty, pastEdit);
+  items.innerHTML = qty.length;
+  tBill = 0;
+  totals.forEach((e) => {
+    tBill += Number(e.innerHTML);
+  });
+  bill.innerHTML = tBill;
+}
+export function executeOrder() {
+  let addBtn = document.querySelectorAll(".addBtn");
+
 
   addBtn.forEach((e) => {
     e.addEventListener("click", (e) => {
