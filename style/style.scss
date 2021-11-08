@@ -400,28 +400,26 @@ footer {
     margin: auto;
     background-color: $white;
     text-align: center;
-    // display: none;
-    // opacity: 0;
     width: 315px;
     img {
       max-width: 170px;
       margin-bottom: 1rem;
     }
-    table {
-      thead {
-        // position: sticky;
+    .printInfo {
+      padding: 8px 11px;
+    }
+    .houseInfo {
+      padding: 8px 11px;
+      text-align: left;
+      h5 + h5 {
+        margin-top: 10px;
       }
+    }
+    table {
       .invoice {
         tr:nth-child(odd) {
           background-color: unset;
         }
-      }
-      tr {
-        border: 1px solid $black;
-      }
-      tbody {
-        // height: 350px;
-        // overflow: auto;
       }
     }
     .tfoot {
