@@ -6,22 +6,11 @@ import { sideOrderMenu } from '../Data/sideOrder.js';
 import { executeOrder } from "../Menu/order.js"
 import { menuListenerArr, muttonDB } from "../Data/eventListeners.js";
 import { validateActive, fillingData } from "../functions/function.js";
-import { menuFn } from "../functions/menuFunctions.js"
+import { menuFn } from "../functions/menuFunctions.js";
 let orderNowBtn = document.querySelector(".orderNow");
 let items = document.querySelector(".items");
 let args = [], filled = false;
 
-// fillDataArr.forEach(e => {
-//     fillingData(e.Vname, e.item, e.img, e.imgName, e.menu);
-//     e.Vname.innerHTML = e.item;
-//     e.item = "";
-// });
-// window.IDBTransaction =
-//     window.IDBTransaction ||
-//     window.webkitIDBTransaction ||
-//     window.msIDBTransaction;
-// window.IDBKeyRange =
-//     window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
 if (!window.indexedDB) {
     window.alert(
         "Your browser doesn't support a stable version of IndexedDB."
