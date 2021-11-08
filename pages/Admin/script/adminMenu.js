@@ -40,12 +40,13 @@ submitBtn.addEventListener("submit", (e) => {
         let newItem = {
             id: count + 1,
             name: name.value,
-            price: price.value,
+            price: Number(price.value),
             type: type.value,
         };
         request = items.add(newItem); // (3)
         request.onsuccess = function () { // (4)
-            alert(`New Item added to the ${selectedDB}`, request.result);
+            alert(`New Item added to the ${selectedDB.toUpperCase()}`, request.result);
+            name.value = ""; price.value = ""; type.value = "";
         };
 
         request.onerror = function () {
