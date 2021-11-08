@@ -40,11 +40,8 @@ body {
 }
 header,
 footer {
-  background-color: $cultured;
-}
-header,
-footer {
   height: 100vh;
+  background-color: $cultured;
 }
 
 img {
@@ -53,7 +50,6 @@ img {
 }
 header {
   flex-basis: 10%;
-
   padding: 1.63rem 1.63rem 0;
 }
 .d-flex {
@@ -94,9 +90,7 @@ header {
     width: 100px;
   }
 }
-ul {
-  list-style-type: none;
-}
+
 .print {
   display: none;
 }
@@ -108,6 +102,7 @@ ul {
 }
 .tabs {
   ul {
+    list-style-type: none;
     text-align: center;
     li {
       background-color: $white;
@@ -130,19 +125,14 @@ ul {
         rgba(255, 98, 67, 0.65) 0px 4px 6px -1px,
         rgba(255, 98, 67, 0.08) 0px 1px 0px inset;
     }
-  }
-}
-.tabs {
-  ul {
     li + li {
       margin-top: 1.63rem;
     }
   }
 }
+
 .active {
   background-color: $coral !important;
-}
-.active {
   a {
     color: $white !important;
   }
