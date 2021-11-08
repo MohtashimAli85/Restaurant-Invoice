@@ -136,5 +136,4 @@ reserveTableBtn.addEventListener("click", () => {
     }
 });
 
-
 export { allTables };
