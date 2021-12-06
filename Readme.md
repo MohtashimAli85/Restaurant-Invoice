@@ -30,8 +30,13 @@ It is a simple invoice desktop app having the following features:
 
 ### Screenshot
 
-![](./screenshot/Screenshot (35).png)
-![](./screenshot/Screenshot (37).png)
+![](./screenshot/Screenshot1.png)
+![](./screenshot/Screenshot2.png)
+![](./screenshot/Screenshot4.png)
+![](./screenshot/Screenshot5.png)
+![](./screenshot/Screenshot6.png)
+![](./screenshot/Screenshot7.png)
+![](./screenshot/Screenshot8.png)
 
 ### Links
 
