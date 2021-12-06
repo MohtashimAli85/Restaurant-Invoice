@@ -1,5 +1,5 @@
 import { tables } from "../pages/Order/script/Data/tables.js";
-import { fillPrintData } from "./printdata.js";
+import { fillPrintData, printInfofn } from "./printdata.js";
 let orderArray = localStorage.getItem('takeAway')
     ? JSON.parse(localStorage.getItem('takeAway'))
     : [],
@@ -12,46 +12,175 @@ let takeAwayPrint = localStorage.getItem('takeAwayPrint') ?
 let orders = document.querySelector("#orders"), reservedList = document.querySelector(".reservedList"),
     reservedTable = document.querySelectorAll(".reservedTable"), modal = document.querySelector(".modal"), modalw = document.querySelector(".modal-wrap"),
     updateBtn = document.querySelector(".updateBtn"), invoiceBtn = document.querySelector(".invoiceBtn"), closeBtn = document.querySelector(".closeBtn"),
-    backBtn = document.querySelector(".backBtn"), invoice = document.querySelector(".invoice"),
+    backBtn = document.querySelector(".backBtn"),
     invoicep = document.querySelector(".invoicep"), billInvoice = document.querySelector(".billInvoice"),
     invoiceTfoot = document.querySelector(".invoiceTfoot"), invoicepTfoot = document.querySelector(".invoicepTfoot"),
     salesTable = document.querySelector(".main"), cashrcvd = "", cashReturn = "",
     printBtns = document.querySelector(".printBtns"), printInfo = document.querySelector(".printInfo"),
     printBtn = document.querySelector(".printBtn"), enterBtn = document.querySelector(".enterBtn"),
-    rows = "", item = "", tableClick = false, orderId = 1, totalAmount = 0, serviceTax = 0;
+    clearBtn = document.querySelector(".clearBtn"), downloadBtn = document.querySelector(".downloadBtn"),
+    clearSalesBtn = document.querySelector(".clearSalesBtn"), homeTable = document.querySelector(".homeTable"),
+    dineIn = document.querySelector("#dineIn"), takeAway = document.querySelector("#takeAway"),
+    serviceTax = document.querySelector(".serviceTax"),
+    yesBtn = document.querySelector(".yesBtn"), noBtn = document.querySelector(".noBtn"),
+    msg = document.querySelector(".msg"),
+    rows = "", item = "", tableClick = false, orderId = 1, totalAmount = 0, tax = 0;
 console.log(takeAwayPrint);
-if (orderArray.length != 0) {
-    orderArray.forEach(e => {
-        rows += `<tr>
-        <td class="orderID">#${orderId}</td>
-              <td>
-                ${e.description}
-              </td>
-              <td class="amount">${e.amount}</td>
-              </tr>`;
-        orderId++;
-    })
-    orders.innerHTML = rows;
-}
-if (takeAwayPrint.length != 0) {
-    item = ""; totalAmount = 0;
-    fillPrintData(takeAwayPrint, invoice, invoicep, invoiceTfoot, invoicepTfoot, "takeAway");
-    printBtns.classList.add("d-flexi");
-    cashrcvd = document.querySelector(".cashrcvd");
-    cashReturn = document.querySelector(".cashReturn");
-    cashrcvd.contentEditable = true;
-    localStorage.setItem("takeAwayPrint", "");
-    billInvoice.style.display = "block";
-    salesTable.style.display = "none";
-    item = "";
-}
-let amount = document.querySelectorAll('.amount'), total = document.querySelector('.total');
-amount.forEach(e => {
-    totalAmount += Number(e.innerHTML);
+console.log(orderArray);
+dineIn.addEventListener("click", () => {
+    sessionStorage.setItem("DineInClicked", JSON.stringify(true));
 });
-if (totalAmount) {
-    total.innerHTML = totalAmount;
+takeAway.addEventListener("click", () => {
+    sessionStorage.setItem("TakeAwayClicked", JSON.stringify(true));
+});
+
+let invoice = [];
+let amount = document.querySelectorAll('.amount'), total = document.querySelector('.total');
+let db, objectStore, request = window.indexedDB.open("AminKababHouse", 2);
+request.onsuccess = function () {
+    db = request.result;
+    console.log("success", db);
+    objectStore = db.transaction("serviceTax").objectStore("serviceTax");
+    let req = objectStore.openCursor();
+    req.onsuccess = function (e) {
+        console.log(objectStore);
+
+        let cursor = e.target.result;
+        if (cursor) {
+            tax += Number(cursor.value.service);
+            cursor.continue();
+        } else {
+            if (tax == 0) {
+                serviceTax.innerHTML = 0;
+            } else {
+                serviceTax.innerHTML = tax;
+            }
+        }
+    }
+    objectStore = db.transaction("invoice").objectStore("invoice");
+    req = objectStore.openCursor();
+    req.onsuccess = function (e) {
+        let cursor = e.target.result;
+        if (cursor) {
+            // console.log(cursor);
+            if (cursor.value.takeAway != undefined) {
+                invoice.push(cursor.value.takeAway)
+            }
+            if (cursor.value.table != undefined) {
+                invoice.push(cursor.value.table)
+            }
+            cursor.continue();
+        } else {
+            console.log(invoice);
+            invoice.forEach(e => {
+                let str = "Take Away", total = 0;
+
+                e.forEach(e => {
+                    console.log(e.itemName);
+                    if (Number(e.tableNo)) {
+                        str = "Table " + e.tableNo;
+                    } else {
+                        str = "TakeAway";
+                    }
+                    total += Number(e.total);
+                    console.log(total);
+                });
+                rows += `<tr>
+                <td class="orderID">#${orderId}</td>
+              <td>
+                ${str}
+              </td>
+              <td class="amount">${total}</td>
+              </tr>`;
+                orderId++;
+
+            })
+            orders.innerHTML = rows;
+            homeTable.scrollTo(0, homeTable.scrollHeight);
+            amount = document.querySelectorAll(".amount");
+            amount.forEach(e => {
+                totalAmount += Number(e.innerHTML);
+            });
+            if (totalAmount) {
+                total.innerHTML = totalAmount;
+            }
+
+        }
+    }
 }
+clearBtn.addEventListener("click", () => {
+    modal.style.display = "flex";
+    modalw.classList.add("printClicked")
+    modalw.classList.add("pressedBtn");
+    yesBtn.classList.add("clearService");
+    msg.innerHTML = 'Do you want to clear Service Tax?';
+});
+clearSalesBtn.addEventListener("click", () => {
+    modal.style.display = "flex";
+    modalw.classList.add("printClicked")
+    modalw.classList.add("pressedBtn");
+    yesBtn.classList.add("clearSales");
+    msg.innerHTML = 'Do you want to clear Sales Table?';
+
+});
+yesBtn.addEventListener("click", () => {
+
+    if (yesBtn.classList.contains("clearService")) {
+        yesBtn.classList.remove("clearService");
+        let transaction = db.transaction(["serviceTax"], "readwrite");
+        transaction.oncomplete = function (event) {
+            console.log('Transaction completed.');
+        };
+        transaction.onerror = function (event) {
+            alert('Transaction not opened due to error: ' + transaction.error);
+        };
+        let objectStore = transaction.objectStore("serviceTax");
+        let objectStoreRequest = objectStore.clear();
+        objectStoreRequest.onsuccess = function (event) {
+            modalw.classList.remove("pressedBtn");
+            modal.style.display = "none";
+            alert('Service Tax is Cleared.');
+            location.reload();
+        };
+    }
+    if (yesBtn.classList.contains("clearSales")) {
+        yesBtn.classList.remove("clearSales");
+
+        let transaction = db.transaction(["invoice"], "readwrite");
+        transaction.oncomplete = function (event) {
+            console.log('Transaction completed.');
+        };
+        transaction.onerror = function (event) {
+            alert('Transaction not opened due to error: ' + transaction.error);
+        };
+        let objectStore = transaction.objectStore("invoice");
+        let objectStoreRequest = objectStore.clear();
+        objectStoreRequest.onsuccess = function (event) {
+            modalw.classList.remove("pressedBtn");
+            modal.style.display = "none";
+            alert('Service Tax is Cleared.');
+            location.reload();
+        };
+    }
+
+});
+noBtn.addEventListener("click", () => {
+    modalw.classList.remove("pressedBtn");
+    modal.style.display = "none";
+    if (yesBtn.classList.contains("clearSales")) {
+        yesBtn.classList.remove("clearSales");
+    }
+    if (yesBtn.classList.contains("clearService")) {
+        yesBtn.classList.remove("clearService");
+    }
+});
+closeBtn.addEventListener("click", () => {
+
+    modalw.classList.remove("pressedBtn");
+
+    modal.style.display = "none";
+});
+
 tables.forEach(e => {
     if (e.reserved == true) {
         item += `<li class="reservedTable" >Table ${e.tableNo}</li>`;
@@ -71,97 +200,7 @@ reservedTable.forEach(e => {
             tableClicked: true,
             tableNo: tableNum
         }
-        modal.style.display = 'flex';
-        modalw.classList.add("pressedBtn");
         sessionStorage.setItem("tableClick", JSON.stringify(tableClick));
+        window.location.href = "pages/Order/order.html";
     });
 });
-
-closeBtn.addEventListener("click", () => {
-    tableClick = "";
-    sessionStorage.setItem("tableClick", "");
-    modalw.classList.remove("pressedBtn");
-    modal.style.display = "none";
-    // salesTable.style.display = "block";
-    // billInvoice.style.display = 'none';
-});
-
-updateBtn.addEventListener("click", () => {
-    let updateClick = true;
-    sessionStorage.setItem("updateClick", JSON.stringify(updateClick));
-    window.location.href = "pages/Order/order.html";
-});
-invoiceBtn.addEventListener("click", () => {
-    sessionStorage.setItem("tableClick", "");
-    let tableOrderItem = [];
-    billInvoice.style.display = "block";
-    item = "";
-    if (tableOrder) {
-        tableOrder.forEach(e => {
-            if (e.tableNum == tableClick.tableNo) {
-                e.description.forEach(e => {
-                    tableOrderItem.push(e);
-                });
-            }
-        });
-    }
-    if (tableOrderItem) {
-        salesTable.style.display = "none";
-        fillPrintData(tableOrderItem, invoice, invoicep, invoiceTfoot, invoicepTfoot, "tableOrder");
-        orderId = document.querySelectorAll('.orderID');
-        console.log(orderId);
-        let dt = new Date();
-        printInfo.innerHTML = `<h4>Order ID: ${orderId.length > 0 ? orderId.length : orderId.length + 1}</h4>
-                               <h4>Date: ${String(dt.getDay()).length > 1 ? dt.getDay() : '0' + dt.getDay()}/${dt.getMonth()}/${dt.getFullYear()}</h4>`;
-        modal.style.display = "none";
-        printBtns.classList.add("d-flexi");
-        cashrcvd = document.querySelector(".cashrcvd");
-        cashReturn = document.querySelector(".cashReturn");
-        cashrcvd.contentEditable = true;
-    }
-});
-backBtn.addEventListener("click", () => {
-    billInvoice.style.display = "none";
-    salesTable.style.display = "block";
-    printBtns.classList.remove("d-flexi");
-});
-enterBtn.addEventListener("click", () => {
-    cashrcvd = document.querySelector(".cashrcvd");
-    let cashRcvd = Number(cashrcvd.innerHTML);
-    let totalAmount = Number(document.querySelector(".tkta").innerHTML);
-
-    if (cashRcvd) {
-        if (cashRcvd < totalAmount) {
-            alert("Kindly Enter Valid Received Cash");
-            // cashrcvd.innerHTML = "";
-            enterCash('', '', "", '');
-        } else {
-            let rs = cashRcvd - totalAmount;
-            enterCash('none', rs, 'remove', cashRcvd);
-        }
-    } else {
-        console.log(cashRcvd);
-        enterCash('', "", '', '');
-        alert("Enter Received Cash");
-    }
-});
-printBtn.addEventListener("click", () => {
-    window.print();
-});
-
-function enterCash(borderVal, rs, cmd, cash) {
-    let cashrcvd = document.querySelectorAll(".cashrcvd"),
-        cashReturn = document.querySelectorAll(".cashReturn");
-    cashrcvd.forEach(e => {
-        e.innerHTML = cash;
-        if (cmd == "remove") {
-            e.parentNode.classList.remove("border-focus");
-        } else {
-            e.parentNode.classList.add("border-focus");
-        }
-        e.style.border = borderVal;
-    });
-    cashReturn.forEach(e => {
-        e.innerHTML = rs;
-    });
-}

@@ -67,14 +67,12 @@
 }
 
 .Input-text::placeholder {
-  // color: $white;
   color: $black2;
 }
 
 .Input-text:focus {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   outline: none;
-  // box-shadow: 0.2rem 0.8rem 1.6rem var(--colorPrimary600);
 }
 .Input-text:not(:placeholder-shown) {
   background-color: #e8f0fe;

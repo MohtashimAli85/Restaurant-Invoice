@@ -1,15 +1,8 @@
 import { fillDataArr } from "../Data/fillData.js";
-import { muttonMenu } from "../Data/mutton.js";
-import { chickenMenu } from '../Data/chicken.js';
-import { drinksMenu } from '../Data/drinks.js';
-import { sideOrderMenu } from '../Data/sideOrder.js';
 import { executeOrder } from "../Menu/order.js"
-import { menuListenerArr, muttonDB } from "../Data/eventListeners.js";
-import { validateActive, fillingData } from "../functions/function.js";
+import { menuListenerArr } from "../Data/eventListeners.js";
+import { fillingData } from "../functions/function.js";
 import { menuFn } from "../functions/menuFunctions.js";
-let orderNowBtn = document.querySelector(".orderNow");
-let items = document.querySelector(".items");
-let args = [], filled = false;
 
 if (!window.indexedDB) {
     window.alert(
@@ -17,41 +10,18 @@ if (!window.indexedDB) {
     );
 }
 let db, request = window.indexedDB.open("AminKababHouse", 2);
-request.onupgradeneeded = function (e) {
-
-    let db = request.result;
-    switch (e.oldVersion) {
-        case 0:
-            let objectStore = db.createObjectStore("chicken", { keyPath: "id" });
-            chickenMenu.forEach(e => {
-                objectStore.add(e);
-            });
-            objectStore = db.createObjectStore("sideOrder", { keyPath: "id" });
-            sideOrderMenu.forEach(e => {
-                objectStore.add(e);
-            });
-            objectStore = db.createObjectStore("drinks", { keyPath: "id" });
-            drinksMenu.forEach(e => {
-                objectStore.add(e);
-            });
-            objectStore = db.createObjectStore("mutton", { keyPath: "id" });
-            muttonMenu.forEach(e => {
-                objectStore.add(e);
-            });
-            break;
-        case 1:
-            console.log("its 1!");
-            break;
-        case 2:
-            console.log("its 2");
-            break;
-    }
-}
-request.onsuccess = async function (e) {
+request.onsuccess = function (e) {
     db = request.result;
     console.log("success", db);
-    document.querySelector(".menu1").click();
+    if (JSON.parse(localStorage.getItem("DataBaseBuilt"))) {
+        document.querySelector(".menu1").click();
 
+    }
+    if (JSON.parse(localStorage.getItem('reloaded'))) {
+        localStorage.removeItem('reloaded');
+        window.location.href = "../../index.html";
+
+    }
 };
 function read(menu, menuArr) {
     try {
@@ -94,6 +64,20 @@ function read(menu, menuArr) {
         }
     } catch (e) {
         console.log(e);
+        let deleteRequest = indexedDB.deleteDatabase('AminKababHouse');
+        console.log(deleteRequest);
+        deleteRequest.onsuccess = () => {
+            location.reload();
+            localStorage.setItem('reloaded', JSON.stringify(true));
+        }
+        deleteRequest.onerror = () => {
+            location.reload();
+            localStorage.setItem('reloaded', JSON.stringify(true));
+        }
+        deleteRequest.onblocked = () => {
+            location.reload();
+            localStorage.setItem('reloaded', JSON.stringify(true));
+        }
     }
 }
 menuListenerArr.forEach(e => {
@@ -103,16 +87,5 @@ menuListenerArr.forEach(e => {
         read(mn, mr);
     });
 });
-if (document.querySelector(".menu1")) {
-    document.querySelector(".menu1").click();
-}
-menuListenerArr.forEach(e => {
-    args.push(e.Vname);
-});
 
-orderNowBtn.addEventListener("click", () => {
-    if (items.innerHTML != "0") {
-        validateActive(...args);
-    }
-});
 export let addBtn = document.querySelectorAll('.addBtn');

@@ -21,7 +21,7 @@ export let chickenMenu = [
     id: 4,
     name: "Chicken Kabab Handi",
     price: 1100,
-    type: "",
+    type: "F",
   },
   {
     id: 5,

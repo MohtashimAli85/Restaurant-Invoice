@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="style/style.min.css" />
-    <link rel="stylesheet" href="style/animation.min.css" />
+    <link rel="stylesheet" href="style/style.css" type='text/css'/>
+    <link rel="stylesheet" href="style/animation.min.css" type='text/css'/>
     <title>Amin Kabab House</title>
   </head>
   <body>
@@ -17,32 +17,37 @@
       </div>
       <div class="tabs">
         <ul>
-          <li class="activeLink">
-            <a href="index.html"
-              ><img src="assets/homeIcon.png" alt="home icon"
-            /></a>
+          <li id="dineIn">
+            <a href="pages/Order/order.html">
+              <img src="assets/orderIcon.png" alt="order icon"/>
+              <h4>DineIn Order</h4>
+             </a>
           </li>
-          <li>
-            <a href="pages/Order/order.html"
-              ><img src="assets/orderIcon.png" alt="order icon"
-            /></a>
-          </li>
-          <li>
-            <a href="#"
-              ><img src="assets/orderHistory.png" alt="order history icon"
-            /></a>
+          <li id= "takeAway">
+            <a href="pages/Order/order.html">
+              <img src="assets/icons8-take-away-food-100.png" alt="order icon"/>
+              <h4>TakeAway Order</h4>
+            </a>
           </li>
           <li>
             <a href="pages/Admin/admin.html"
               ><img src="assets/userIcon.png" alt="user icon"
-            /></a>
+            />
+              <h4>Admin Panel</h4>
+          </a>
           </li>
         </ul>
       </div>
     </header>
     <main>
       <div class="main no-print">
+        <div class="d-flex justify-content-sp">
         <h1>Sales</h1>
+        <div class="service d-flex v-center">
+          <h3>Service Tax:</h3>
+          <h3 class="serviceTax">0</h3>
+        </div>
+        </div>
         <div class="homeTable">
           <table class="salesTable">
             <colgroup>
@@ -59,17 +64,9 @@
             </thead>
 
             <tbody id="orders">
-              <!-- <tr>
-                <td class="orderID">#1</td>
-                <td>
-                  1 Mutton Kabab Handi, 1 Mutton Karahi, 30 Roti, 2 1.5ltr
-                  Drinks, 1 Water Bottle
-                </td>
-                <td>1850</td>
-              </tr> -->
+
             </tbody>
-            <!-- 
-            <tfoot></tfoot> -->
+
           </table>
         </div>
         <table class="tfoot">
@@ -80,11 +77,11 @@
           </colgroup>
           <tr>
             <td class="totalfoot" colspan="2">Total</td>
-            <td class="total">1850</td>
+            <td class="total"></td>
           </tr>
         </table>
       </div>
-      <div class="billInvoice">
+      <!-- <div class="billInvoice">
         <div class="orderTitle no-printf">
           <button class="backBtn">
             <img src="assets/arrow-forward.svg" alt="" />
@@ -94,7 +91,7 @@
         <div class="receipt-container d-flex">
           <div class="no-print npreceipt">
             <!-- <img src="assets/logo.svg" alt="logo" /> -->
-            <div class="invoicetable">
+            <!-- <div class="invoicetable">
               <table class="">
                 <colgroup>
                   <col width="50%" />
@@ -107,7 +104,7 @@
                     <th>Product Detail</th>
                     <th>Qty</th>
                     <th>Price</th>
-                    <th>Amount</th>
+                    <th>Amnt</th>
                   </tr>
                 </thead>
                 <tbody class="invoice"></tbody>
@@ -144,23 +141,33 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --> 
         </div>
       </div>
     </main>
     <footer class="no-print">
       <h1>Reserved Table</h1>
       <ul class="reservedList"></ul>
-
-      <div class="printBtns">
-        <button class="enterBtn btn">Enter</button>
-        <button class="printBtn btn">Print</button>
+      <div class="downloadBtn d-flex">
+        <button class="btn clearBtn">Clear Service Tax</button>
+        <button class="btn clearSalesBtn">Clear Sales</button>
       </div>
+      <!-- <div class="clear">
+        <button class="btn">Clear ST</button>
+      </div> -->
+      <!-- <div class="printBtns">
+        <button class="enterBtn btn clearBtn">Clear Service Tax</button>
+        <button class="printBtn btn">Print</button>
+      </div> -->
     </footer>
     <div class="modal d-flex v-center">
       <div class="modal-wrap d-flex">
-        <button class="btn updateBtn">Update</button>
-        <button class="btn invoiceBtn">Invoice</button>
+
+        <div class="btns">
+          <h6 class="msg">Do you want to clear Service Tax?</h6>
+        <button class="btn updateBtn yesBtn">Yes</button>
+        <button class="btn invoiceBtn noBtn">No</button>
+        </div>
         <div class="closeBtn">
           <img src="assets/close-icon.png" alt="close icon" />
         </div>

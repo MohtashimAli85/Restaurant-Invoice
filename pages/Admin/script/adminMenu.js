@@ -3,6 +3,9 @@ import { menuFn } from "../../Order/script/functions/menuFunctions.js";
 let name = document.getElementById('name');
 let price = document.getElementById('price');
 let type = document.getElementById('type');
+sessionStorage.setItem("updateClick", "");
+sessionStorage.setItem("tableClick", "");
+
 let submitBtn = document.getElementById('submitBtn');
 adminMenuListenerArr.forEach(e => {
     e.Vname.addEventListener("click", () => {

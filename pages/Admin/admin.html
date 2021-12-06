@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="../../style/style.min.css" />
-    <link rel="stylesheet" href="../Order/style/order.min.css" />
-    <link rel="stylesheet" href="../../style/animation.min.css" />
-    <link rel="stylesheet" href="style/admin.min.css" />
+    <link rel="stylesheet" href="../../style/style.css" type='text/css'/>
+    <link rel="stylesheet" href="../Order/style/order.min.css" type='text/css'/>
+    <link rel="stylesheet" href="../../style/animation.min.css" type='text/css'/>
+    <link rel="stylesheet" href="style/admin.min.css" type='text/css'/>
     <title>Amin Kabab House</title>
   </head>
 
@@ -16,31 +16,30 @@
     <header>
       <div class="decorations d-flex col">
         <img src="../../assets/meal-icon.png" alt="meal icon" class="meal" />
+<a href="../../index.html">
         <img src="../../assets/logo.svg" alt="logo icon" class="icon logo" />
+</a>
       </div>
       <div class="tabs">
-        <ul>
-          <li>
-            <a href="../../index.html"
-              ><img src="../../assets/homeIcon.png" alt="home icon"
-            /></a>
+         <ul>
+          <li id="dineIn">
+            <a href="../Order/order.html">
+              <img src="../../assets/orderIcon.png" alt="order icon"/>
+              <h4>DineIn Order</h4>
+             </a>
+          </li>
+          <li id= "takeAway">
+            <a href="../Order/order.html">
+              <img src="../../assets/icons8-take-away-food-100.png" alt="order icon"/>
+              <h4>TakeAway Order</h4>
+            </a>
           </li>
           <li>
-            <a href="../Order/order.html"
-              ><img src="../../assets/orderIcon.png" alt="order icon"
-            /></a>
-          </li>
-          <li>
-            <a href="#"
-              ><img
-                src="../../assets/orderHistory.png"
-                alt="order history icon"
-            /></a>
-          </li>
-          <li class="activeLink">
-            <a href="admin.html"
+            <a href="pages/Admin/admin.html"
               ><img src="../../assets/userIcon.png" alt="user icon"
-            /></a>
+            />
+              <h4>Admin Panel</h4>
+          </a>
           </li>
         </ul>
       </div>
@@ -78,25 +77,10 @@
       </div>
       <div class="menu" id="adminMenu1">
         <h1>Mutton Menu</h1>
-        <div class="menu admin_inputs">
+        <!-- <div class="menu admin_inputs">
         
-        </div>
-      </div>
-      <div class="menu" id="adminMenu2">
-        <h1>Chicken Menu</h1>
-        
-        </div>
-      </div>
-      <div class="menu" id="adminMenu3">
-        <h1>Drinks Menu</h1>
-      
-      </div>
-      <div class="menu" id="adminMenu4">
-        <h1>Sides Menu</h1>
-        
-        </div>
-      </div>
-      <form method='post' id='submitBtn'>
+        </div> -->
+        <form method='post' id='submitBtn'>
       <div class="d-flex">
 <div class="Input">
     <input type="text" id="name" class="Input-text" placeholder="Enter Item Name, e.g. Mutton Karahi" required>
@@ -117,10 +101,27 @@
   </div>
 </div>   
 </form> 
+      </div>
+      <div class="menu" id="adminMenu2">
+        <h1>Chicken Menu</h1>
+        
+        </div>
+      </div>
+      <div class="menu" id="adminMenu3">
+        <h1>Drinks Menu</h1>
+      
+      </div>
+      <div class="menu" id="adminMenu4">
+        <h1>Sides Menu</h1>
+        
+        </div>
+      </div>
+      
   
     </main>
     <footer></footer>
 
     <script async type="module" src="script/adminMenu.js"></script>
+    <script type="module"  src="../../script/index.js"></script>
   </body>
 </html>

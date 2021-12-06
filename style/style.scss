@@ -18,8 +18,28 @@ $white: #fff;
 }
 
 @font-face {
+  font-family: "ebold";
+  src: url("../assets/ebold.otf");
+}
+@font-face {
+  font-family: "eebold";
+  src: url("../assets/eebold.otf");
+}
+@font-face {
+  font-family: "Helvetica";
+  src: url("../assets/Helvetica.ttf");
+}
+@font-face {
+  font-family: "HelveticaBold";
+  src: url("../assets/Helvetica-Bold.ttf");
+}
+@font-face {
   font-family: "bold";
   src: url("../assets/Montserrat-SemiBold.otf");
+}
+@font-face {
+  font-family: "urdu";
+  src: url("../assets/urduFont.ttf");
 }
 @font-face {
   font-family: "nimbus";
@@ -38,6 +58,14 @@ body {
   user-select: none;
   // overflow: hidden;
 }
+.strong {
+  font-family: "bold", sans-serif;
+}
+.modal {
+  .btns {
+    text-align: center;
+  }
+}
 header,
 footer {
   height: 100vh;
@@ -47,6 +75,11 @@ footer {
 img {
   width: 100%;
   height: auto;
+}
+a {
+  text-decoration: none;
+  font-family: "bold", sans-serif;
+  color: $black;
 }
 header {
   flex-basis: 10%;
@@ -80,6 +113,9 @@ header {
   border: 1px solid #ff8d6bff;
   border-color: #ff8d6bff;
 }
+.serviceTax {
+  margin-left: 10px;
+}
 .decorations {
   align-items: center;
   .icon {
@@ -107,16 +143,20 @@ header {
     li {
       background-color: $white;
       border-radius: 10px;
-      width: 65px;
-      margin: 0 auto;
 
       a {
         display: block;
         padding: 0.5rem;
         font-family: "bold", sans-serif;
         color: $black;
+        display: flex;
+        align-items: center;
         img {
           max-width: 45px;
+          margin-right: 2.5px;
+        }
+        h5 {
+          font-family: "montserat", sans-serif;
         }
       }
     }
@@ -145,7 +185,7 @@ main {
     margin-bottom: 1rem;
   }
   .homeTable {
-    height: 500px;
+    height: 80vh;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     overflow-y: auto;
@@ -208,8 +248,8 @@ table {
     td {
       padding: 10px;
       border-bottom: 1px solid $black-coral;
-      font-family: "montserat", sans-serif;
-      font-size: 14px;
+      font-family: "bold", sans-serif;
+      font-size: 15px;
     }
     .orderID {
       font-family: "bold", sans-serif;
@@ -239,6 +279,8 @@ footer {
       border-radius: 5px;
       letter-spacing: 3px;
       cursor: pointer;
+      border: 2px solid transparent;
+      transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
         rgba(17, 17, 26, 0.1) 0px 0px 8px;
     }
@@ -246,7 +288,22 @@ footer {
       margin-top: 10px;
     }
   }
-
+  .downloadBtn {
+    // display: none;
+    text-align: center;
+    margin: 0.5rem 0 0;
+    .startBtn {
+      width: 70%;
+      transition: border 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .clearBtn {
+      font-size: 15px;
+      margin-right: 1.5rem;
+    }
+    .clearSalesBtn {
+      font-size: 15px;
+    }
+  }
   .printBtns {
     display: none;
     justify-content: space-between;
@@ -270,7 +327,8 @@ footer {
       box-shadow: none;
     }
   }
-  .enterBtn {
+  .enterBtn,
+  .startBtn {
     &:hover {
       background-color: #f9fafb;
     }
@@ -283,7 +341,9 @@ footer {
     }
   }
 }
-
+.addBorder {
+  border: 2px solid #ff6c47;
+}
 .modal {
   display: none;
   position: absolute;
@@ -294,8 +354,8 @@ footer {
   .modal-wrap {
     position: relative;
     background-color: $cultured;
-    width: 350px;
-    height: 150px;
+    width: 90%;
+    height: 80vh;
     border-radius: 1rem;
     align-items: center;
     justify-content: space-around;
@@ -393,6 +453,7 @@ footer {
     }
     .printInfo {
       padding: 8px 11px;
+      font-family: "bold", sans-serif;
     }
     .houseInfo {
       padding: 8px 11px;
@@ -423,10 +484,7 @@ footer {
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
     }
-    .invoice {
-      // height: 350px;
-      // overflow: auto;
-    }
+
     .invoiceTfoot {
       .cashrcvd {
         border-left: 1px solid #ff8d6b;
@@ -434,7 +492,61 @@ footer {
     }
   }
 }
-
+.receiptPrint {
+  position: absolute;
+  margin: auto;
+  background-color: $white;
+  text-align: center;
+  width: 360px;
+  font-size: 12pt !important;
+  img {
+    max-width: 170px;
+    margin-bottom: 1rem;
+  }
+  .printInfo {
+    padding: 4px;
+  }
+  .houseInfo {
+    padding: 8px 11px;
+    text-align: left;
+    h5 + h5 {
+      margin-top: 10px;
+    }
+  }
+  table {
+    border: 1px solid $black;
+    thead {
+      background-color: $black;
+      height: 23px !important;
+      th {
+        padding: 3px 0 0 0;
+        font-size: 11pt;
+      }
+    }
+    tbody {
+      td {
+        padding: 3px 0 0 0;
+        font-size: 11pt;
+        border: none;
+      }
+    }
+    tr {
+      height: unset !important;
+    }
+    .invoice {
+      tr {
+        background-color: unset;
+      }
+    }
+  }
+  .tfoot {
+    width: 100%;
+    td {
+      font-size: 12pt;
+      border-top: none;
+    }
+  }
+}
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -452,18 +564,26 @@ footer {
   border-radius: 30px;
   box-shadow: inset 0px 0px 0px 0px #f0f0f0;
 }
-
+.printClicked {
+  width: 320px !important;
+  height: 170px !important;
+}
+.msg {
+  text-align: center;
+  font-size: 1rem;
+  margin: 15px 0;
+}
+.yesBtn {
+  margin-right: 80px;
+}
 @media print {
   .no-print {
-    display: none;
+    display: none !important;
   }
   .print {
     display: block;
   }
-  .receipt {
-    // display: flex;
-    // opacity: 1;
-  }
+
   html {
     width: 315px;
   }

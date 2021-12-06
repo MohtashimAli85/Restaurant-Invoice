@@ -1,4 +1,4 @@
-export function fillPrintData(itemArr, invoice, invoicep, invoiceTfoot, invoicepTfoot, command) {
+export function fillPrintData(itemArr, invoicep, invoicepTfoot, command) {
     let item = "", totalAmount = 0;
     itemArr.forEach(e => {
         let price = e.price;
@@ -11,7 +11,6 @@ export function fillPrintData(itemArr, invoice, invoicep, invoiceTfoot, invoicep
                     </tr>`;
         totalAmount += Number(e.total);
     });
-    invoice.innerHTML = item;
     invoicep.innerHTML = item;
     item = ""
     let serviceTax = Math.round(totalAmount * 0.03);
@@ -31,21 +30,27 @@ export function fillPrintData(itemArr, invoice, invoicep, invoiceTfoot, invoicep
                 <col width="15%" />
               </colgroup>
               ${serviceTaxHtml}
-                <tr class="border-focus">
-                    <td colspan="3">Received Cash</td>
-                    <td class="cashrcvd"></td>
-                </tr>
                 <tr>
                         <td colspan="3">Total</td>
 
                         <td class="tkta">${totalAmount}</td>
-                </tr>
-                <tr>
-                        <td colspan="3">Return</td>
-
-                        <td class="cashReturn"></td>
                 </tr>`;
 
-    invoiceTfoot.innerHTML = item;
     invoicepTfoot.innerHTML = item;
+}
+
+export function printInfofn(printInfo, orderId) {
+    let dt = new Date();
+    printInfo.innerHTML = `<h4>Order ID: ${orderId.length > 0 ? orderId.length : orderId.length + 1}</h4>
+                               <h4>Date: ${String(dt.getDay()).length > 1 ? dt.getDay() : '0' + dt.getDay()}/${dt.getMonth()}/${dt.getFullYear()}</h4>`;
+}
+export function startPrint(arr) {
+    let invoice = document.querySelector(".invoice"),
+        invoicep = document.querySelector(".invoicep"),
+        invoiceTfoot = document.querySelector(".invoiceTfoot"), invoicepTfoot = document.querySelector(".invoicepTfoot"),
+        printInfo = document.querySelector(".printInfo"),
+        item = ""; totalAmount = 0;
+    fillPrintData(arr, invoice, invoicep, invoiceTfoot, invoicepTfoot, "takeAway");
+    orderId = document.querySelectorAll('.orderID');
+    printInfofn(printInfo, orderId);
 }
