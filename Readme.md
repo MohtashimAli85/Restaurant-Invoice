@@ -42,7 +42,7 @@ It is a simple invoice desktop app having the following features:
 
 - Download Win64: [Restaurant-Invoice-Desktop-App-Win64](https://drive.google.com/file/d/1FpEXEDx5P1FBeqsxu5fW9yYd0YhqrJOO/view?usp=sharing)
 - Download Win32: [Restaurant-Invoice-Desktop-App-Win32](https://drive.google.com/file/d/1RDF2dbd5aEDr6xpgyzc3_0dsc4T_-lyY/view?usp=sharing)
-- Live Site URL: [Restaurant-Invoice-Desktop-App](https://restaurant-invoice.vercel.app/index.html)
+- Live Site URL: [Restaurant-Invoice-Desktop-App](https://restaurant-invoice.vercel.app/index.html) (Note: It will just show the demo for properly working you have to download it.)
 
 ## My process
 
