@@ -26,7 +26,7 @@ It is a simple invoice desktop app having the following features:
     - Order Update
 - Silent Printing
 - Sales Table
-- Menu Update
+- Menu Addition
 
 ### Screenshot
 
