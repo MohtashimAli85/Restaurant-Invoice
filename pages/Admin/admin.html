@@ -1,51 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="../../style/style.min.css" type='text/css'/>
-    <link rel="stylesheet" href="../Order/style/order.min.css" type='text/css'/>
-    <link rel="stylesheet" href="../../style/animation.min.css" type='text/css'/>
-    <link rel="stylesheet" href="style/admin.min.css" type='text/css'/>
-    <title>Amin Kabab House</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <body>
-    <header>
-      <div class="decorations d-flex col">
-        <img src="../../assets/meal-icon.png" alt="meal icon" class="meal" />
-<a href="../../index.html">
+  <link rel="stylesheet" href="../../style/style.min.css" type='text/css' />
+  <link rel="stylesheet" href="../Order/style/order.min.css" type='text/css' />
+  <link rel="stylesheet" href="../../style/animation.min.css" type='text/css' />
+  <link rel="stylesheet" href="style/admin.min.css" type='text/css' />
+  <title>Amin Kabab House</title>
+</head>
+
+<body>
+  <header>
+    <div class="decorations d-flex col">
+      <img src="../../assets/meal-icon.png" alt="meal icon" class="meal" />
+      <a href="../../index.html">
         <img src="../../assets/logo.png" alt="logo icon" class="icon logo" />
-</a>
-      </div>
-      <div class="tabs">
-         <ul>
-          <li id="dineIn">
-            <a href="../Order/order.html">
-              <img src="../../assets/orderIcon.png" alt="order icon"/>
-              <h4>DineIn Order</h4>
-             </a>
-          </li>
-          <li id= "takeAway">
-            <a href="../Order/order.html">
-              <img src="../../assets/icons8-take-away-food-100.png" alt="order icon"/>
-              <h4>TakeAway Order</h4>
-            </a>
-          </li>
-          <li>
-            <a href="pages/Admin/admin.html"
-              ><img src="../../assets/userIcon.png" alt="user icon"
-            />
-              <h4>Admin Panel</h4>
+      </a>
+    </div>
+    <div class="tabs">
+      <ul>
+        <li id="dineIn">
+          <a href="../Order/order.html">
+            <img src="../../assets/orderIcon.png" alt="order icon" />
+            <h4>DineIn Order</h4>
           </a>
-          </li>
-        </ul>
-      </div>
-    </header>
-    <main>
-      <!-- <div class="restaurantMenu d-flex justify-content-sp v-center">
+        </li>
+        <li id="takeAway">
+          <a href="../Order/order.html">
+            <img src="../../assets/icons8-take-away-food-100.png" alt="order icon" />
+            <h4>TakeAway Order</h4>
+          </a>
+        </li>
+        <li>
+          <a href="pages/Admin/admin.html"><img src="../../assets/userIcon.png" alt="user icon" />
+            <h4>Admin Panel</h4>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <main>
+    <!-- <div class="restaurantMenu d-flex justify-content-sp v-center">
         <img
           src="../../assets/restaurant-menu-icon.png"
           alt="restaurantMenu icon"
@@ -54,74 +53,76 @@
           <img src="../../assets/logo.svg" alt="logo icon" class="icon logo" />
         </div>
       </div> -->
-      <div class="categories">
-        <h1>Categories</h1>
-        <ul class="d-flex">
-          <li class="d-flex amenu1">
-            <img src="../../assets/rack-of-lamb.png" alt="mutton img" />
-            <h5>Mutton</h5>
-          </li>
-          <li class="d-flex amenu2">
-            <img src="../../assets/chicken-leg.png" alt="img" />
-            <h5>Chicken</h5>
-          </li>
-          <li class="d-flex amenu3">
-            <img src="../../assets/soda-bottle.png" alt="img" />
-            <h5>Drinks</h5>
-          </li>
-          <li class="d-flex amenu4">
-            <img src="../../assets/menu.png" alt="img" />
-            <h5>Sides</h5>
-          </li>
-        </ul>
-      </div>
-      <div class="menu" id="adminMenu1">
-        <h1>Mutton Menu</h1>
-        <!-- <div class="menu admin_inputs">
+    <div class="categories">
+      <h1>Categories</h1>
+      <ul class="d-flex">
+        <li class="d-flex amenu1">
+          <img src="../../assets/rack-of-lamb.png" alt="mutton img" />
+          <h5>Mutton</h5>
+        </li>
+        <li class="d-flex amenu2">
+          <img src="../../assets/chicken-leg.png" alt="img" />
+          <h5>Chicken</h5>
+        </li>
+        <li class="d-flex amenu3">
+          <img src="../../assets/soda-bottle.png" alt="img" />
+          <h5>Drinks</h5>
+        </li>
+        <li class="d-flex amenu4">
+          <img src="../../assets/menu.png" alt="img" />
+          <h5>Sides</h5>
+        </li>
+      </ul>
+    </div>
+    <div class="menu" id="adminMenu1">
+      <h1>Mutton Menu</h1>
+      <!-- <div class="menu admin_inputs">
         
         </div> -->
-        <form method='post' id='submitBtn'>
-      <div class="d-flex">
-<div class="Input">
-    <input type="text" id="name" class="Input-text" placeholder="Enter Item Name, e.g. Mutton Karahi" required>
-    <label for="name" class="Input-label">Item Name</label>
-  </div>
-  <div class="Input">
-    <input type="number" id="price" class="Input-text" placeholder="Enter Price, e.g. 500" required>
-    <label for="price" class="Input-label">Price</label>
-  </div>
-      </div>
-  <div class="d-flex">
-    <div class="Input">
-    <input type="text" id="type" class="Input-text" placeholder="Enter Type, e.g. F  note: F means Full" required>
-    <label for="input" class="Input-label">Type</label>
-  </div>
-  <div class="Input">
-    <input type='submit' value='Add'  class="addBtn btn d-flex "/>
-  </div>
-</div>   
-</form> 
-      </div>
-      <div class="menu" id="adminMenu2">
-        <h1>Chicken Menu</h1>
-        
+      <form method='post' id='submitBtn'>
+        <div class="d-flex">
+          <div class="Input">
+            <input type="text" id="name" class="Input-text" placeholder="Enter Item Name, e.g. Mutton Karahi" required>
+            <label for="name" class="Input-label">Item Name</label>
+          </div>
+          <div class="Input">
+            <input type="number" id="price" class="Input-text" placeholder="Enter Price, e.g. 500" required>
+            <label for="price" class="Input-label">Price</label>
+          </div>
         </div>
-      </div>
-      <div class="menu" id="adminMenu3">
-        <h1>Drinks Menu</h1>
-      
-      </div>
-      <div class="menu" id="adminMenu4">
-        <h1>Sides Menu</h1>
-        
+        <div class="d-flex">
+          <div class="Input">
+            <input type="text" id="type" class="Input-text" placeholder="Enter Type, e.g. F  note: F means Full"
+              required>
+            <label for="input" class="Input-label">Type</label>
+          </div>
+          <div class="Input">
+            <input type='submit' value='Add' class="addBtn btn d-flex " />
+          </div>
         </div>
-      </div>
-      
-  
-    </main>
-    <footer></footer>
+      </form>
+    </div>
+    <div class="menu" id="adminMenu2">
+      <h1>Chicken Menu</h1>
 
-    <script async type="module" src="script/adminMenu.js"></script>
-    <script type="module"  src="../../script/index.js"></script>
-  </body>
+    </div>
+    </div>
+    <div class="menu" id="adminMenu3">
+      <h1>Drinks Menu</h1>
+
+    </div>
+    <div class="menu" id="adminMenu4">
+      <h1>Sides Menu</h1>
+
+    </div>
+    </div>
+
+
+  </main>
+  <footer></footer>
+
+  <script async type="module" src="script/adminMenu.js"></script>
+  <script type="module" src="../../script/index.js"></script>
+</body>
+
 </html>
