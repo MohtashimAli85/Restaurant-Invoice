@@ -40,8 +40,51 @@
 #adminMenu4 {
   display: none;
 }
-.categories {
-  margin: 3rem 0;
+.crud {
+  @include ulLiCss;
+  ul {
+    padding: 2rem;
+    li {
+      justify-content: space-around;
+      border: 1px solid transparent;
+      transition: border 0.2s ease-in;
+    }
+    li:hover {
+      // background-color: $orange;
+      border: 1px solid $orange;
+    }
+  }
+  .active {
+    &.add {
+      img {
+        content: url("../../../assets/crud-addIcon-active.png");
+      }
+    }
+    &.update {
+      img {
+        content: url("../../../assets/crud-updateIcon-active.png");
+      }
+    }
+    &.delete {
+      img {
+        content: url("../../../assets/crud-delIcon-active.png");
+      }
+    }
+  }
+}
+.d-none {
+  display: none;
+}
+// .categories {
+//   margin: 3rem 0;
+// }
+.crud-active {
+  &.categories {
+    display: block;
+  }
+  &.operation-add {
+    display: block;
+  }
 }
 .Input {
   flex-basis: 50%;
