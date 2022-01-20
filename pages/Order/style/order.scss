@@ -36,6 +36,33 @@ $blackCoralbs: #5c667259;
   // -webkit-user-select: none;
   touch-action: manipulation;
 }
+@mixin ulLiCss {
+  ul {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.5rem;
+    li {
+      flex-basis: 22%;
+      align-items: center;
+      background-color: $white;
+      transition: background 0.2s ease-in, color 0.2s ease-in;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      img {
+        padding: 1rem;
+        max-width: 80px;
+      }
+      h5 {
+        font-family: "bold", sans-serif;
+      }
+    }
+    .active {
+      color: $white;
+      background-color: $orange;
+    }
+  }
+}
 main,
 footer,
 header {
@@ -63,31 +90,7 @@ main {
     margin-bottom: 15px;
     font-family: "bold", sans-serif;
   }
-
-  ul {
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 1.5rem;
-    li {
-      flex-basis: 22%;
-      align-items: center;
-      background-color: $white;
-      transition: background 0.2s ease-in, color 0.2s ease-in;
-      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-      border-radius: 5px;
-      font-size: 1.2rem;
-      img {
-        padding: 1rem;
-        max-width: 80px;
-      }
-      h5 {
-        font-family: "bold", sans-serif;
-      }
-    }
-    .active {
-      color: $white;
-    }
-  }
+  @include ulLiCss;
 }
 .active {
   color: $black;
