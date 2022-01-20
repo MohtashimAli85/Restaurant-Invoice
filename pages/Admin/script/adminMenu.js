@@ -1,20 +1,31 @@
-import { adminMenuListenerArr } from "../../Order/script/Data/eventListeners.js";
-import { menuFn } from "../../Order/script/functions/menuFunctions.js";
+import { adminMenuListenerArr, adminCRUDList, updateCrud } from "../../Order/script/Data/eventListeners.js";
+import { menuFn, crudfn } from "../../Order/script/functions/menuFunctions.js";
+import { testing101 } from '../../Order/script/functions/IndexedDBfn.js';
 let name = document.getElementById('name');
 let price = document.getElementById('price');
 let type = document.getElementById('type');
+let updateActive = document.querySelector('.update-active');
 sessionStorage.setItem("updateClick", "");
 sessionStorage.setItem("tableClick", "");
 
 let submitBtn = document.getElementById('submitBtn');
+adminCRUDList.forEach(e => {
+    e.Vname.addEventListener("click", () => {
+        crudfn(...e.args);
+        if (e.Vname == updateCrud) {
+            console.log('Run Update function');
+            testing101(adminMenuListenerArr, console.log('callback'));
+        }
+    });
+
+})
 adminMenuListenerArr.forEach(e => {
     e.Vname.addEventListener("click", () => {
-        menuFn(e.args[0], e.args[1], e.args[2], e.args[3], e.args[4], e.args[5], e.args[6], e.args[7]);
-
+        menuFn(...e.args);
     });
 });
 
-document.querySelector(".amenu1").click();
+// document.querySelector(".amenu1").click();
 let db, request = window.indexedDB.open("AminKababHouse", 2);
 request.onsuccess = function (e) {
     db = request.result;
@@ -33,8 +44,13 @@ submitBtn.addEventListener("submit", (e) => {
         }
     });
     console.log(selectedDB);
-    let transaction = db.transaction(selectedDB, "readwrite"); // (1)
-
+    let transaction = '';
+    if (selectedDB.length > 0) {
+        transaction = db.transaction(selectedDB, "readwrite");
+    }
+    else {
+        alert('Kindly select category');
+    } // (1)
     // get an object store to operate on it
     let items = transaction.objectStore(selectedDB); // (2)
     let countReq = items.count(), count = 0, result; //
@@ -53,6 +69,7 @@ submitBtn.addEventListener("submit", (e) => {
         };
 
         request.onerror = function () {
+            alert(`Error`);
             console.log("Error", request.error);
         };
     }
