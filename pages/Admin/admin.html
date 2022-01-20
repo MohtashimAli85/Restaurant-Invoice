@@ -36,7 +36,7 @@
           </a>
         </li>
         <li>
-          <a href="pages/Admin/admin.html"><img src="../../assets/userIcon.png" alt="user icon" />
+          <a href="admin.html"><img src="../../assets/userIcon.png" alt="user icon" />
             <h4>Admin Panel</h4>
           </a>
         </li>
@@ -44,16 +44,23 @@
     </div>
   </header>
   <main>
-    <!-- <div class="restaurantMenu d-flex justify-content-sp v-center">
-        <img
-          src="../../assets/restaurant-menu-icon.png"
-          alt="restaurantMenu icon"
-        />
-        <div>
-          <img src="../../assets/logo.svg" alt="logo icon" class="icon logo" />
-        </div>
-      </div> -->
-    <div class="categories">
+      <div class="crud">
+        <ul class="d-flex">
+          <li class="d-flex add">
+            <h4>Add</h4>
+            <img src="../../assets/crud-addIcon.png" alt="add icon">
+          </li>
+          <li class="d-flex update">
+            <h4>Update</h4>
+            <img src="../../assets/crud-updateIcon.png" alt="update icon">
+          </li>
+          <li class="d-flex delete">
+            <h4>Delete</h4>
+            <img src="../../assets/crud-delIcon.png" alt="del icon">
+          </li>
+        </ul>
+      </div>
+    <div class="categories d-none">
       <h1>Categories</h1>
       <ul class="d-flex">
         <li class="d-flex amenu1">
@@ -74,12 +81,28 @@
         </li>
       </ul>
     </div>
-    <div class="menu" id="adminMenu1">
+    <div class="" id="adminMenu1">
       <h1>Mutton Menu</h1>
-      <!-- <div class="menu admin_inputs">
-        
-        </div> -->
-      <form method='post' id='submitBtn'>
+        <div class="menuGrid" id="mutton"></div>
+
+    </div>
+    <div class="" id="adminMenu2">
+      <h1>Chicken Menu</h1>
+        <div class="menuGrid" id="chicken"></div>
+
+    </div>
+    </div>
+    <div class="" id="adminMenu3">
+      <h1>Drinks Menu</h1>
+        <div class="menuGrid" id="drinks"></div>
+
+    </div>
+    <div class="" id="adminMenu4">
+      <h1>Sides Menu</h1>
+        <div class="menuGrid" id="sides"></div>
+
+    </div>
+     <form method='post' id='submitBtn' class='operation-add d-none'>
         <div class="d-flex">
           <div class="Input">
             <input type="text" id="name" class="Input-text" placeholder="Enter Item Name, e.g. Mutton Karahi" required>
@@ -101,28 +124,13 @@
           </div>
         </div>
       </form>
-    </div>
-    <div class="menu" id="adminMenu2">
-      <h1>Chicken Menu</h1>
-
-    </div>
-    </div>
-    <div class="menu" id="adminMenu3">
-      <h1>Drinks Menu</h1>
-
-    </div>
-    <div class="menu" id="adminMenu4">
-      <h1>Sides Menu</h1>
-
-    </div>
-    </div>
 
 
   </main>
   <footer></footer>
 
-  <script async type="module" src="script/adminMenu.js"></script>
-  <script type="module" src="../../script/index.js"></script>
+  <script defer type="module" src="script/adminMenu.js"></script>
+  <!-- <script type="module" src="../../script/index.js"></script> -->
 </body>
 
 </html>
