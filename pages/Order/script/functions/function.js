@@ -106,9 +106,7 @@ export function fillingData(Vname, item, img, imgName, menu) {
     menu.innerHTML = item;
     item = "";
 }
-export function fillData() {
 
-}
 export function getOrderItem(item, command, tn) {
     let name = "";
     if (command == "takeAway") {
