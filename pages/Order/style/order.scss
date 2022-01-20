@@ -380,7 +380,7 @@ footer {
 }
 @media screen and (min-width: 900px) {
   .menu {
-    height: 65vh;
+    height: 55vh;
   }
   .menuGrid {
     grid-template-columns: repeat(2, minmax(10px, 1fr));
@@ -399,6 +399,9 @@ footer {
   }
 }
 @media screen and (min-width: 1300px) {
+  .menu {
+    height: 65vh;
+  }
   .menuGrid {
     grid-template-columns: repeat(3, minmax(10px, 1fr));
   }
