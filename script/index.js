@@ -1,5 +1,4 @@
 import { tables } from "../pages/Order/script/Data/tables.js";
-import { fillPrintData, printInfofn } from "./printdata.js";
 let orderArray = localStorage.getItem('takeAway')
     ? JSON.parse(localStorage.getItem('takeAway'))
     : [],
