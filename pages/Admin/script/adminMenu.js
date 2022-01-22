@@ -1,9 +1,10 @@
-import { adminMenuListenerArr, adminCRUDList, updateCrud } from "../../Order/script/Data/eventListeners.js";
+import { adminMenuListenerArr, adminCRUDList, updateCrud, addCrud } from "../../Order/script/Data/eventListeners.js";
 import { menuFn, crudfn } from "../../Order/script/functions/menuFunctions.js";
 import { testing101 } from '../../Order/script/functions/IndexedDBfn.js';
 let name = document.getElementById('name');
 let price = document.getElementById('price');
 let type = document.getElementById('type');
+let menuGrid = document.querySelectorAll('.menuGrid');
 let updateActive = document.querySelector('.update-active');
 sessionStorage.setItem("updateClick", "");
 sessionStorage.setItem("tableClick", "");
@@ -15,10 +16,21 @@ adminCRUDList.forEach(e => {
         if (e.Vname == updateCrud) {
             console.log('Run Update function');
             testing101(adminMenuListenerArr, console.log('callback'));
+            attribute(false);
+
+        }
+        if (e.Vname == addCrud) {
+            console.log('add');
+            attribute(true);
         }
     });
 
-})
+});
+function attribute(arg) {
+    menuGrid.forEach(e => {
+        e.setAttribute('crud-add', arg);
+    });
+}
 adminMenuListenerArr.forEach(e => {
     e.Vname.addEventListener("click", () => {
         menuFn(...e.args);
