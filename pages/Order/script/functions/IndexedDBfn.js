@@ -2,12 +2,12 @@ import { fillDataArr } from '../Data/fillData.js';
 // import { fillingData } from './function.js';
 import { menuFn } from './menuFunctions.js';
 // import { read } from '../Menu/menu.js';
-export function testing101(arr, cb) {
+export function testing101(arr, cb, add, update, del) {
     arr.forEach(e => {
         let mn = e.menuName, mr = e.menuArr;
         e.Vname.addEventListener("click", () => {
             menuFn(...e.args);
-            read(mn, mr, cb);
+            read(mn, mr, cb, add, update, del);
         });
     });
 }
@@ -25,7 +25,7 @@ request.onsuccess = function (e) {
 
     // }
 };
-function read(menu, menuArr, callBack) {
+function read(menu, menuArr, callBack, add, update, del) {
     try {
         let objectStore = db.transaction(menu).objectStore(menu);
         objectStore.openCursor().onsuccess = function (e) {
@@ -57,7 +57,7 @@ function read(menu, menuArr, callBack) {
                 cursor.continue();
             } else {
                 fillDataArr.forEach(e => {
-                    fillingData(menuArr, e.item, e.img, e.imgName, e.menu);
+                    fillingData(menuArr, e.item, e.img, e.imgName, e.menu, add, update, del);
                     e.item = "";
                 });
                 menuArr = [];
@@ -82,14 +82,18 @@ function read(menu, menuArr, callBack) {
         }
     }
 }
-function fillingData(Vname, item, img, imgName, menu) {
+function fillingData(Vname, item, img, imgName, menu, add, update, del) {
     Vname.forEach(e => {
-        item += dataProvider(e.name, e.type, e.price, img, imgName);
+        item += dataProvider(e.name, e.type, e.price, img, imgName, add, update, del);
     });
     menu.innerHTML = item;
     item = "";
 }
-function dataProvider(name, type, price, img, imgName) {
+function dataProvider(name, type, price, img, imgName, add, update, del) {
+    let updated = update ? `<img src="../../assets/crud-updateIcon-active.png" alt="update icon" class="updateBtn crudIcon">` : '',
+        dele = del ? `<img src="../../assets/crud-delIcon.png" alt="del icon" class="delBtn crudIcon">` : '',
+        added = add ? ` <img src="../../assets/add-icon.svg" alt="add icon" class="addIcon addBtn"> ` : '';
+
     return (`<div class="item d-flex">
     <div class="d-flex v-center">
         <img src="../../assets/${img}.png" alt="${imgName} img">
@@ -98,6 +102,7 @@ function dataProvider(name, type, price, img, imgName) {
         <p>Rs.${price}</p>
         </div>
     </div>
-      <img src="../../assets/add-icon.svg" alt="add icon" class="addIcon addBtn">
+     ${updated}${dele}${added}
+    
   </div>`)
 };
