@@ -86,6 +86,9 @@
     display: block;
   }
 }
+.menuGrid[crud-add="true"] {
+  display: none;
+}
 .Input {
   flex-basis: 50%;
   position: relative;
