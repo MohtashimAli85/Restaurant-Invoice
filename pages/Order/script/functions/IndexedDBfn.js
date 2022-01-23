@@ -3,6 +3,7 @@ import { fillDataArr } from '../Data/fillData.js';
 import { menuFn } from './menuFunctions.js';
 // import { read } from '../Menu/menu.js';
 export function testing101(arr, cb, add, update, del) {
+
     arr.forEach(e => {
         let mn = e.menuName, mr = e.menuArr;
         e.Vname.addEventListener("click", () => {
@@ -61,7 +62,7 @@ function read(menu, menuArr, callBack, add, update, del) {
                     e.item = "";
                 });
                 menuArr = [];
-                callBack();
+                callBack('indexedDBfn sae call ho rhi');
             }
         }
     } catch (e) {
