@@ -1,4 +1,4 @@
-import { adminMenuListenerArr, adminCRUDList, updateCrud, addCrud } from "../../Order/script/Data/eventListeners.js";
+import { adminMenuListenerArr, adminCRUDList, updateCrud, addCrud, delCrud } from "../../Order/script/Data/eventListeners.js";
 import { menuFn, crudfn } from "../../Order/script/functions/menuFunctions.js";
 import { testing101 } from '../../Order/script/functions/IndexedDBfn.js';
 let name = document.getElementById('name');
@@ -14,22 +14,30 @@ adminCRUDList.forEach(e => {
     e.Vname.addEventListener("click", () => {
         crudfn(...e.args);
         if (e.Vname == updateCrud) {
-            console.log('Run Update function');
-            testing101(adminMenuListenerArr, console.log('callback'));
-            attribute(false);
-
+            crudOperations(adminMenuListenerArr, consoles, false, true, false, false);
         }
         if (e.Vname == addCrud) {
             console.log('add');
-            attribute(true);
+            attribute('crud-add', true);
+        }
+        if (e.Vname == delCrud) {
+            crudOperations(adminMenuListenerArr, consoles, false, false, true, false);
         }
     });
 
 });
-function attribute(arg) {
+function crudOperations(arr, cb, val_1, val_2, val_3, val_4) {
+    testing101(arr, cb, val_1, val_2, val_3);
+    attribute('crud-add', val_4);
+    document.querySelector('.amenu1').click();
+}
+function attribute(attr, val) {
     menuGrid.forEach(e => {
-        e.setAttribute('crud-add', arg);
+        e.setAttribute(attr, val);
     });
+}
+function consoles(arg) {
+    console.log(arg + 'L lo')
 }
 adminMenuListenerArr.forEach(e => {
     e.Vname.addEventListener("click", () => {
