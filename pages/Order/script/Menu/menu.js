@@ -24,7 +24,7 @@ request.onsuccess = function (e) {
     }
 };
 
-testing101(menuListenerArr, executeOrder);
+testing101(menuListenerArr, executeOrder, true, false, false);
 // export function testing101(arr, cb) {
 //     arr.forEach(e => {
 //         let mn = e.menuName, mr = e.menuArr;
