@@ -1,6 +1,6 @@
 import { adminMenuListenerArr, adminCRUDList, updateCrud, addCrud, delCrud } from "../../Order/script/Data/eventListeners.js";
 import { menuFn, crudfn } from "../../Order/script/functions/menuFunctions.js";
-import { testing101 } from '../../Order/script/functions/IndexedDBfn.js';
+import { crud } from '../../Order/script/functions/IndexedDBfn.js';
 let name = document.getElementById('name');
 let price = document.getElementById('price');
 let type = document.getElementById('type');
@@ -27,7 +27,7 @@ adminCRUDList.forEach(e => {
 
 });
 function crudOperations(arr, cb, val_1, val_2, val_3, val_4) {
-    testing101(arr, cb, val_1, val_2, val_3);
+    crud(arr, cb, val_1, val_2, val_3);
     attribute('crud-add', val_4);
     document.querySelector('.amenu1').click();
 }
