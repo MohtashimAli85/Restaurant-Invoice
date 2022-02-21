@@ -1,5 +1,5 @@
 $orange: #ff8d6b;
-$orange2: rgb(255, 98, 67);
+$orange2: #ff6243;
 $outrageousOrange: #ff6c47;
 $orangeBs: #ce5d41;
 $gray: #efeff1;
@@ -63,6 +63,46 @@ $blackCoralbs: #5c667259;
     }
   }
 }
+@mixin gridCss {
+  display: grid;
+  grid-auto-rows: 13vh;
+  gap: 1em 1.5em;
+  overflow-y: auto;
+  padding: 6px 1rem 6px 0.2rem;
+  .item {
+    background-color: $white;
+    border-radius: 5px;
+    box-shadow: rgba(141, 67, 67, 0.24) 0px 3px 8px;
+    align-items: center;
+    justify-content: space-between;
+
+    img {
+      max-width: 50px;
+      margin: 0 0.5rem;
+    }
+
+    h5,
+    span,
+    p {
+      font-family: "montserat";
+    }
+    h6 {
+      font-size: 15px;
+      font-family: "bold";
+      span {
+        font-family: "montserat";
+        font-size: 14px;
+      }
+    }
+    p {
+      font-size: 13px;
+    }
+    .ename {
+      // opacity: 0;
+      display: none;
+    }
+  }
+}
 main,
 footer,
 header {
@@ -103,44 +143,7 @@ main {
     font-family: "bold", sans-serif;
   }
   .menuGrid {
-    display: grid;
-    grid-auto-rows: 13vh;
-    gap: 1em 1.5em;
-    overflow-y: auto;
-    padding: 6px 1rem 6px 0.2rem;
-    .item {
-      background-color: $white;
-      border-radius: 5px;
-      box-shadow: rgba(141, 67, 67, 0.24) 0px 3px 8px;
-      align-items: center;
-      justify-content: space-between;
-
-      img {
-        max-width: 50px;
-        margin: 0 0.5rem;
-      }
-
-      h5,
-      span,
-      p {
-        font-family: "montserat";
-      }
-      h6 {
-        font-size: 15px;
-        font-family: "bold";
-        span {
-          font-family: "montserat";
-          font-size: 14px;
-        }
-      }
-      p {
-        font-size: 13px;
-      }
-      .ename {
-        // opacity: 0;
-        display: none;
-      }
-    }
+    @include gridCss;
   }
 }
 
