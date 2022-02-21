@@ -92,9 +92,9 @@ function fillingData(Vname, item, img, imgName, menu, add, update, del) {
 }
 function dataProvider(name, type, price, img, imgName, add, update, del) {
     let updated = update ? `<img src="../../assets/crud-updateIcon-active.png" alt="update icon" class="updateBtn crudIcon">` : '',
-        dele = del ? `<img src="../../assets/crud-delIcon.png" alt="del icon" class="delBtn crudIcon">` : '',
+        dele = del ? `<img src="../../assets/crud-delIcon-active.png" alt="del icon" class="delBtn crudIcon">` : '',
         added = add ? ` <img src="../../assets/add-icon.svg" alt="add icon" class="addIcon addBtn"> ` : '';
-
+    console.log(added);
     return (`<div class="item d-flex">
     <div class="d-flex v-center">
         <img src="../../assets/${img}.png" alt="${imgName} img">
