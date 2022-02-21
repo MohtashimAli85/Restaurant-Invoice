@@ -2,7 +2,7 @@ import { fillDataArr } from '../Data/fillData.js';
 // import { fillingData } from './function.js';
 import { menuFn } from './menuFunctions.js';
 // import { read } from '../Menu/menu.js';
-export function testing101(arr, cb, add, update, del) {
+export function crud(arr, cb, add, update, del) {
 
     arr.forEach(e => {
         let mn = e.menuName, mr = e.menuArr;
