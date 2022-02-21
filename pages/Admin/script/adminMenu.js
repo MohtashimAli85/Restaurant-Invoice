@@ -4,7 +4,7 @@ import { testing101 } from '../../Order/script/functions/IndexedDBfn.js';
 let name = document.getElementById('name');
 let price = document.getElementById('price');
 let type = document.getElementById('type');
-let menuGrid = document.querySelectorAll('.menuGrid');
+let amenu = document.querySelectorAll('.amenu');
 let updateActive = document.querySelector('.update-active');
 sessionStorage.setItem("updateClick", "");
 sessionStorage.setItem("tableClick", "");
@@ -32,7 +32,7 @@ function crudOperations(arr, cb, val_1, val_2, val_3, val_4) {
     document.querySelector('.amenu1').click();
 }
 function attribute(attr, val) {
-    menuGrid.forEach(e => {
+    amenu.forEach(e => {
         e.setAttribute(attr, val);
     });
 }
@@ -97,9 +97,6 @@ submitBtn.addEventListener("submit", (e) => {
 
 });
 
-
-function getSelectedMenu(menu) {
-    if (menu.classList.contains("active")) {
-        return menu.children[1].innerHTML;
-    }
+function updateClick() {
+    let updateBtn = document.querySelectorAll('.updateBtn')
 }
