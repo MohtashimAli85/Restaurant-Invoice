@@ -86,8 +86,31 @@
     display: block;
   }
 }
-.menuGrid[crud-add="true"] {
-  display: none;
+.menuGrid {
+  @include gridCss;
+  .item {
+    .crudIcon {
+      background: $orange;
+      border-radius: 5px;
+      padding: 0.2rem;
+    }
+  }
+}
+.amenu {
+  h1 {
+    margin: 1.2rem 0;
+  }
+  .crudIcon {
+    border: 2px solid transparent;
+    transition: border 0.3s ease-out;
+  }
+  .crudIcon:hover {
+    cursor: pointer;
+    border: 2px solid $outrageousOrange;
+  }
+}
+.amenu[crud-add="true"] {
+  display: none !important;
 }
 .Input {
   flex-basis: 50%;
