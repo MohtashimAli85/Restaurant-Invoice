@@ -3,7 +3,7 @@ import { executeOrder } from "../Menu/order.js"
 import { menuListenerArr } from "../Data/eventListeners.js";
 import { fillingData } from "../functions/function.js";
 import { menuFn } from "../functions/menuFunctions.js";
-import { testing101 } from "../functions/IndexedDBfn.js"
+import { crud } from "../functions/IndexedDBfn.js"
 if (!window.indexedDB) {
     window.alert(
         "Your browser doesn't support a stable version of IndexedDB."
@@ -24,7 +24,7 @@ request.onsuccess = function (e) {
     }
 };
 
-testing101(menuListenerArr, executeOrder, true, false, false);
+crud(menuListenerArr, executeOrder, true, false, false);
 // export function testing101(arr, cb) {
 //     arr.forEach(e => {
 //         let mn = e.menuName, mr = e.menuArr;
